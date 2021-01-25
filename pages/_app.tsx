@@ -8,7 +8,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import '../styles/global.css';
 import theme from 'src/theme';
-import MDXProvider from '@components/MDXProvider';
 
 const TopProgressBar = dynamic(
   () => {
@@ -30,7 +29,7 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <TopProgressBar />
       <Head>
-        <title>Contractors Dashboard</title>
+        <title>Victor Aiyeola</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -40,9 +39,7 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <MDXProvider>
-          <Component {...pageProps} />
-        </MDXProvider>
+        <Component {...pageProps} />
       </ThemeProvider>
     </>
   );
