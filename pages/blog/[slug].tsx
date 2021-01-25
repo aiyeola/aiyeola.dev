@@ -67,9 +67,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: {
-  params: string | string[] | undefined;
+  params: any;
 }) => {
-  const postContent = await getPostData(params?.slug);
+  const postContent = await getPostData(params.slug);
   const { data, content } = matter(postContent);
 
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
