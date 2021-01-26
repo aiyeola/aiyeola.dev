@@ -3,11 +3,11 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import matter from 'gray-matter';
 import renderToString from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import { getAllPostSlugs, getPostData } from '@lib/posts';
+import LayoutContainer from '@components/Layouts/Container';
 
 type FrontMatter = {
   date: string;
@@ -25,14 +25,6 @@ const components = {
   TestComponent: dynamic(() => import('@components/TestComponent')),
 };
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    // backgroundColor: '#fee343',
-    padding: theme.spacing(4),
-    maxWidth: '70vw',
-  },
-}));
-
 export default function Post({
   source,
   frontMatter,
@@ -40,19 +32,19 @@ export default function Post({
   source: Source;
   frontMatter: FrontMatter;
 }) {
-  const classes = useStyles();
-
   const content = hydrate(source, { components });
   return (
-    <Grid container justify="center">
-      <Grid item container direction="column" className={classes.container}>
+    <LayoutContainer>
+      <>
         <Grid item style={{ marginBottom: '2rem' }}>
-          <Typography variant="h2">{frontMatter.title}</Typography>
+          <Typography variant="h2" style={{ lineHeight: 1 }} paragraph>
+            {frontMatter.title}
+          </Typography>
           <Typography>{frontMatter.date}</Typography>
         </Grid>
         <Grid item>{content}</Grid>
-      </Grid>
-    </Grid>
+      </>
+    </LayoutContainer>
   );
 }
 

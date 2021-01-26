@@ -15,6 +15,9 @@ let theme = createMuiTheme({
     h3: {
       fontFamily: 'Jost',
     },
+    body1: {
+      // fontSize: '2rem',
+    },
   },
   overrides: {},
 });
