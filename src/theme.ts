@@ -1,9 +1,8 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import grey from '@material-ui/core/colors/grey';
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import '@fontsource/jost';
 import '@fontsource/quicksand';
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {},
   typography: {
     fontFamily: 'Quicksand',
@@ -20,7 +19,6 @@ const theme = createMuiTheme({
   overrides: {},
 });
 
-export default theme;
+theme = responsiveFontSizes(theme);
 
-// "Quicksand";
-//  "Jost";
+export default theme;
