@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import matter from 'gray-matter';
 import renderToString from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
@@ -64,12 +64,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-}: {
-  params: any;
-}) => {
-  const postContent = await getPostData(params.slug);
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const postContent = await getPostData(ctx.params?.slug as string);
   const { data, content } = matter(postContent);
 
   const options = { month: 'long', day: 'numeric', year: 'numeric' };
