@@ -1,63 +1,94 @@
-import Link from 'next/link';
-import { GetStaticProps } from 'next';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { useState } from "react";
+import { GetStaticProps } from "next";
+import { parseISO, format } from "date-fns";
+import Grid from "@material-ui/core/Grid";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Typography from "@material-ui/core/Typography";
+import useTheme from "@material-ui/core/styles/useTheme";
 
-import { getSortedPosts } from '@lib/posts';
-import LayoutContainer from '@components/Layouts/Container';
+import { getAllFilesFrontMatter } from "@lib/mdx";
+import LayoutContainer from "@layouts/Container";
+import Link from "@components/Link";
 
 type Posts = {
-  date: string;
   title: string;
+  publishedAt: string;
+  summary: string;
+  image: string;
   slug: string;
 };
 
-const useStyles = makeStyles((theme) => ({
-  blogTitle: {
-    cursor: 'pointer',
-    fontWeight: 'bold',
-  },
-}));
+export default function Home({ posts }: { posts: Posts[] }) {
+  const theme = useTheme();
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
-export default function Home({ allPostsData }: { allPostsData: Posts[] }) {
-  const classes = useStyles();
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const filteredBlogPosts = posts.sort(
+    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+  );
+  // .filter((frontMatter) =>
+  //   frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()),
+  // );
 
   return (
     <LayoutContainer>
       <>
-        <Grid item>
-          <Typography variant="h3" paragraph>
+        <Grid
+          item
+          style={{
+            marginBottom: "2rem",
+          }}
+        >
+          <Typography variant="h1" paragraph>
             Hi, I'm Victor
           </Typography>
-          <Typography variant="h5" gutterBottom>
+          <Typography>
             Welcome to my own corner on the internet, I hope you find this space
             interesting sooner or later!
           </Typography>
         </Grid>
 
         <Grid item>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h2" gutterBottom>
             Latest Posts
           </Typography>
-          {allPostsData.map(({ slug, date, title }) => (
-            <Grid item container key={slug}>
-              <Box
+        </Grid>
+
+        <Grid item>
+          {!filteredBlogPosts.length && "No posts found."}
+          {filteredBlogPosts.map(({ title, slug, publishedAt }) => (
+            <Grid
+              item
+              container
+              direction={matchesXS ? "column" : "row"}
+              justify={matchesXS ? undefined : "space-between"}
+              key={slug}
+              style={{
+                marginBottom: "2rem",
+              }}
+            >
+              <Grid
+                item
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginBottom: '1rem',
-                  width: '100%',
+                  maxWidth: matchesXS ? "100%" : "75%",
                 }}
               >
                 <Link href={`/blog/[slug]`} as={`/blog/${slug}`}>
-                  <Typography component={'a'} className={classes.blogTitle}>
+                  <Typography
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
                     {title}
                   </Typography>
                 </Link>
-                <Typography>{date}</Typography>
-              </Box>
+              </Grid>
+              <Grid item>
+                <Typography variant="subtitle1">
+                  {format(parseISO(publishedAt), "MMMM dd, yyyy")}
+                </Typography>
+              </Grid>
             </Grid>
           ))}
         </Grid>
@@ -67,8 +98,8 @@ export default function Home({ allPostsData }: { allPostsData: Posts[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPosts();
+  const posts = await getAllFilesFrontMatter("blog");
   return {
-    props: { allPostsData },
+    props: { posts },
   };
 };

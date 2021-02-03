@@ -18,7 +18,9 @@
       "@components/*": ["src/components/*"],
       "@posts/*": ["posts/*"],
       "@lib/*": ["src/lib/*"],
-      "@wrapper/*": ["src/components/Provider/*"]
+      "@utils/*": ["src/utils/*"],
+      "@types/*": ["src/types/*"],
+      "@layouts/*": ["src/layouts/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],

@@ -1,45 +1,47 @@
-import Link from 'next/link';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Typography from "@material-ui/core/Typography";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+
+import Link from "@components/Link";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    textDecoration: 'none',
-    color: 'inherit',
-    cursor: 'pointer',
-    transition: 'all 0.3s',
-    ['&:hover']: {
-      transform: 'scale(1.2)',
+    transition: "all 0.3s",
+    "&:not(:last-child)": {
+      marginRight: "1rem",
     },
-    ['&:not(:last-child)']: {
-      marginRight: '1rem',
+    "&:hover": {
+      transform: "scale(1.2)",
     },
   },
 }));
 
 export default function Footer() {
   const classes = useStyles();
+  const matches = useMediaQuery("(max-width: 360px)");
 
   return (
     <Grid
       item
       container
+      direction={matches ? "column" : "row"}
+      justify="space-between"
       style={{
-        marginTop: 'auto',
-        paddingTop: '3rem',
-        maxWidth: '42rem',
+        marginTop: "auto",
+        paddingTop: "3rem",
+        maxWidth: "42rem",
       }}
     >
-      <Box
+      <Grid
+        item
         style={{
-          display: 'flex',
-          width: '100%',
+          alignSelf: "center",
+          marginBottom: matches ? "1.2rem" : 0,
         }}
       >
         <Typography
@@ -50,36 +52,45 @@ export default function Footer() {
         >
           &copy; Victor Aiyeola {new Date().getFullYear()}
         </Typography>
-        <Box
-          style={{
-            display: 'flex',
-          }}
+      </Grid>
+      <Grid
+        item
+        style={{
+          alignSelf: "center",
+        }}
+      >
+        <Link
+          href="https://github.com/aiyeola"
+          target="_blank"
+          className={classes.link}
         >
-          <Link href="https://github.com/aiyeola">
-            <a target="_blank" className={classes.link}>
-              <GitHubIcon />
-            </a>
-          </Link>
+          <GitHubIcon />
+        </Link>
 
-          <Link href="https://twitter.com/victor_aiyeola">
-            <a target="_blank" className={classes.link}>
-              <TwitterIcon />
-            </a>
-          </Link>
+        <Link
+          href="https://twitter.com/victor_aiyeola"
+          target="_blank"
+          className={classes.link}
+        >
+          <TwitterIcon />
+        </Link>
 
-          <Link href="https://web.facebook.com/vickyvayne">
-            <a target="_blank" className={classes.link}>
-              <FacebookIcon />
-            </a>
-          </Link>
+        <Link
+          href="https://web.facebook.com/vickyvayne"
+          target="_blank"
+          className={classes.link}
+        >
+          <FacebookIcon />
+        </Link>
 
-          <Link href="https://www.linkedin.com/in/victor-aiyeola">
-            <a target="_blank" className={classes.link}>
-              <LinkedInIcon />
-            </a>
-          </Link>
-        </Box>
-      </Box>
+        <Link
+          href="https://www.linkedin.com/in/victor-aiyeola"
+          target="_blank"
+          className={classes.link}
+        >
+          <LinkedInIcon />
+        </Link>
+      </Grid>
     </Grid>
   );
 }

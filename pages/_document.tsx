@@ -1,9 +1,6 @@
-import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core/styles';
-
-import theme from 'src/theme';
-import { NAME } from 'src/types/constants';
+import React from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { ServerStyleSheets } from "@material-ui/core/styles";
 
 export default class MyDocument extends Document {
   render() {
@@ -11,9 +8,10 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
-          <meta name="apple-mobile-web-app-title" content={NAME} />
-          <meta name="application-name" content={NAME} />
+          <meta name="theme-color" content="#000" />
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta httpEquiv="x-ua-compatible" content="ie-edge" />
           <meta property="og:locale" content="en_GB" />
         </Head>
         <body>
