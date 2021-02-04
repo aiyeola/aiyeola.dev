@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Head from "next/head";
 import { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import "nprogress/nprogress.css";
@@ -28,6 +29,9 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <TopProgressBar />
       <ThemeProvider theme={theme}>
         <MDXProvider components={MDXComponents}>

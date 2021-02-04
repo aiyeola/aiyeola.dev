@@ -28,10 +28,6 @@ function ElevationScroll(props: Props) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(9),
-    height: theme.spacing(9),
-  },
   link: {
     fontSize: "1.5rem",
     "&:not(:last-child)": {
@@ -140,11 +136,3 @@ export default function Header() {
     </ElevationScroll>
   );
 }
-
-// <Grid item>
-// <Avatar
-//   alt="my profile image"
-//   src="https://res.cloudinary.com/aboyeji-barnes-backstars/image/upload/v1611593557/projects/passport_v3a6x0.jpg"
-//   className={classes.large}
-// />
-// </Grid>

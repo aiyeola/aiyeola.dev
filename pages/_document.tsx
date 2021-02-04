@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content="#000" />
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta httpEquiv="x-ua-compatible" content="ie-edge" />
           <meta property="og:locale" content="en_GB" />
         </Head>

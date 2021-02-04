@@ -45,7 +45,18 @@ export default function Home({ posts }: { posts: Posts[] }) {
           </Typography>
           <Typography>
             Welcome to my own corner on the internet, I hope you find this space
-            interesting sooner or later!
+            interesting sooner or later! - while you're here you can{" "}
+            <Link
+              href="/guestbook"
+              underline="hover"
+              color="primary"
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              sign my guestbook
+            </Link>
+            .
           </Typography>
         </Grid>
 
