@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-import Link from '@components/Link'
+import Link from "@components/Link";
+import Paragraph from "@components/Paragraph";
 
 //@ts-ignore
 const CustomLink = (props) => {
@@ -9,18 +10,34 @@ const CustomLink = (props) => {
 
   if (isInternalLink) {
     return (
-      <Link href={href}>
-        <a {...props} />
-      </Link>
+      <Link
+        underline="always"
+        color="primary"
+        style={{
+          fontWeight: "bold",
+        }}
+        href={href}
+        {...props}
+      />
     );
   }
 
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        fontWeight: "bold",
+      }}
+      {...props}
+    />
+  );
 };
 
 const MDXComponents = {
-  Image,
+  img: Image,
   a: CustomLink,
+  p: (props: any) => <Paragraph {...props} />,
 };
 
 export default MDXComponents;

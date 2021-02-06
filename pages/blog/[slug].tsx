@@ -1,18 +1,18 @@
-import dynamic from 'next/dynamic';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import matter from 'gray-matter';
-import renderToString from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { GetStaticPaths, GetStaticProps } from "next";
+import hydrate from "next-mdx-remote/hydrate";
 
-import { getAllPostSlugs, getPostData } from '@lib/posts';
-import LayoutContainer from '@components/Layouts/Container';
+import { getFiles, getFileBySlug } from "@lib/mdx";
+import MDXComponents from "@components/MDXComponents";
+import BlogLayout from "@layouts/Blog";
 
 type FrontMatter = {
-  date: string;
-  excerpt: string;
   title: string;
+  summary: string;
+  image: string;
+  publishedAt: string;
+  wordCount: number;
+  readingTime: ReadingTime;
+  slug: string;
 };
 
 type Source = {
@@ -21,68 +21,40 @@ type Source = {
   scope: FrontMatter;
 };
 
-const components = {
-  TestComponent: dynamic(() => import('@components/TestComponent')),
+type ReadingTime = {
+  text: string;
+  minutes: number;
+  time: number;
+  words: number;
 };
 
 export default function Post({
-  source,
+  mdxSource,
   frontMatter,
 }: {
-  source: Source;
+  mdxSource: Source;
   frontMatter: FrontMatter;
 }) {
-  const content = hydrate(source, { components });
-  return (
-    <LayoutContainer>
-      <>
-        <Grid item style={{ marginBottom: '2rem' }}>
-          <Typography variant="h2" style={{ lineHeight: 1 }} paragraph>
-            {frontMatter.title}
-          </Typography>
-          <Typography>{frontMatter.date}</Typography>
-        </Grid>
-        <Grid item>{content}</Grid>
-      </>
-    </LayoutContainer>
-  );
+  const content = hydrate(mdxSource, { components: MDXComponents });
+
+  return <BlogLayout frontMatter={frontMatter}>{content}</BlogLayout>;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostSlugs();
+  const posts = await getFiles("blog");
+
   return {
-    paths,
+    paths: posts.map((p) => ({
+      params: {
+        slug: p.replace(/\.mdx/, ""),
+      },
+    })),
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const postContent = await getPostData(ctx.params?.slug as string);
-  const { data, content } = matter(postContent);
+export const getStaticProps: GetStaticProps = async (context) => {
+  const post = await getFileBySlug("blog", context.params?.slug as string);
 
-  const options = { month: 'long', day: 'numeric', year: 'numeric' };
-  const formattedDate = new Date(data.date).toLocaleDateString(
-    'en-GB',
-    options
-  );
-  const frontmatter = {
-    ...data,
-    date: formattedDate,
-  };
-  const mdxSource = await renderToString(content, {
-    components,
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
-    scope: data,
-  });
-
-  return {
-    props: {
-      source: mdxSource,
-      frontMatter: frontmatter,
-    },
-  };
+  return { props: post };
 };

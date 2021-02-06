@@ -1,14 +1,11 @@
-import { useState } from "react";
 import { GetStaticProps } from "next";
-import { parseISO, format } from "date-fns";
 import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Typography from "@material-ui/core/Typography";
-import useTheme from "@material-ui/core/styles/useTheme";
 
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
 import Link from "@components/Link";
+import BlogPost from "@components/BlogPost";
 
 type Posts = {
   title: string;
@@ -19,17 +16,12 @@ type Posts = {
 };
 
 export default function Home({ posts }: { posts: Posts[] }) {
-  const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
-
-  const [searchValue, setSearchValue] = useState<string>("");
-
-  const filteredBlogPosts = posts.sort(
-    (a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
-  );
-  // .filter((frontMatter) =>
-  //   frontMatter.title.toLowerCase().includes(searchValue.toLowerCase()),
-  // );
+  const sortedBlogPost = posts
+    .sort(
+      (a, b) =>
+        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+    )
+    .slice(0, 3);
 
   return (
     <LayoutContainer>
@@ -48,7 +40,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
             interesting sooner or later! - while you're here you can{" "}
             <Link
               href="/guestbook"
-              underline="hover"
+              underline="always"
               color="primary"
               style={{
                 fontWeight: "bold",
@@ -67,40 +59,9 @@ export default function Home({ posts }: { posts: Posts[] }) {
         </Grid>
 
         <Grid item>
-          {!filteredBlogPosts.length && "No posts found."}
-          {filteredBlogPosts.map(({ title, slug, publishedAt }) => (
-            <Grid
-              item
-              container
-              direction={matchesXS ? "column" : "row"}
-              justify={matchesXS ? undefined : "space-between"}
-              key={slug}
-              style={{
-                marginBottom: "2rem",
-              }}
-            >
-              <Grid
-                item
-                style={{
-                  maxWidth: matchesXS ? "100%" : "75%",
-                }}
-              >
-                <Link href={`/blog/[slug]`} as={`/blog/${slug}`}>
-                  <Typography
-                    style={{
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {title}
-                  </Typography>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">
-                  {format(parseISO(publishedAt), "MMMM dd, yyyy")}
-                </Typography>
-              </Grid>
-            </Grid>
+          {!sortedBlogPost.length && "No posts found."}
+          {sortedBlogPost.map((frontMatter) => (
+            <BlogPost key={frontMatter.title} {...frontMatter} />
           ))}
         </Grid>
       </>
