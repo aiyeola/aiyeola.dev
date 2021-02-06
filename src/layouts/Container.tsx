@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
@@ -9,7 +8,7 @@ import Footer from "@layouts/Footer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxWidth: "42rem",
+    maxWidth: "46rem",
     [theme.breakpoints.down("xs")]: {
       maxWidth: "100vw",
     },
@@ -18,23 +17,25 @@ const useStyles = makeStyles((theme) => ({
 
 type Props = {
   children: React.ReactNode;
-};
-
-type MetaTypes = {
-  title: string;
-  description: string;
-  image: string;
-  type: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
   date?: string;
 };
+
 export default function Container(props: Props) {
   const classes = useStyles();
 
   const router = useRouter();
 
-  const { children, ...customMeta } = props;
+  const { children, ...customProps } = props;
 
-  const meta: MetaTypes = {
+  const customMeta = {
+    ...customProps,
+  };
+
+  const meta = {
     title: "Victor Aiyeola – Software Developer",
     description: "Personal website and blog",
     image: "https://aiyeola.dev/static/images/banner.png",

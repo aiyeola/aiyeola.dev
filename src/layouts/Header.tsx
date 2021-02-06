@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: "1.5rem",
     "&:not(:last-child)": {
-      marginRight: "1rem",
+      marginRight: "2rem",
+      [theme.breakpoints.down(360)]: {
+        marginRight: "1rem",
+      },
     },
   },
 }));
@@ -66,7 +69,6 @@ export default function Header() {
             style={{
               maxWidth: "56rem",
               position: "sticky",
-              zIndex: 10,
               top: 0,
               paddingLeft: matchesXS ? 0 : "2rem",
               paddingRight: matchesXS ? 0 : "2rem",

@@ -22,7 +22,7 @@ export default function About() {
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
-    <LayoutContainer>
+    <LayoutContainer title="About - Victor Aiyeola">
       <Grid
         item
         style={{
@@ -48,7 +48,7 @@ export default function About() {
           to my{" "}
           <Link
             href="/newsletter"
-            underline="hover"
+            underline="always"
             color="primary"
             style={{
               fontWeight: "bold",
