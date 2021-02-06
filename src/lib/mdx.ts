@@ -56,14 +56,8 @@ export async function getFileBySlug(type: string, slug: string) {
 
   const { data, content } = matter(source);
 
-  const options = { month: "long", day: "numeric", year: "numeric" };
-  const formattedDate = new Date(data.date).toLocaleDateString(
-    "en-GB",
-    options,
-  );
   const frontMatter = {
     ...data,
-    date: formattedDate,
     wordCount: content.split(/\s+/gu).length,
     readingTime: readingTime(content),
     slug: slug || null,
