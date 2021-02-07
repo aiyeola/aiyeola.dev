@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Header from "@layouts/Header";
 import Footer from "@layouts/Footer";
-import { WEBSITE_URL} from '@uitls/config'
+import { WEBSITE_URL} from '@utils/config'
 
 const useStyles = makeStyles((theme) => ({
   container: {

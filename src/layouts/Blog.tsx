@@ -6,7 +6,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
-import { WEBSITE_URL} from '@uitls/config'
+import { WEBSITE_URL} from '@utils/config'
 
 type FrontMatter = {
   title: string;
