@@ -11,11 +11,13 @@ const { WEBSITE_URL } = require("../src/utils/configuration");
 
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
   const pages = await globby([
-    "pages/**/*{.tsx,.js,.mdx}",
+    "data/**/*.mdx",
+    "pages/*.tsx",
+    "pages/*.ts",
     "!pages/404.ts",
     "!pages/_*.tsx",
+    "!pages/_*.ts",
     "!pages/api",
-    "pages/*.tsx",
   ]);
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
@@ -25,7 +27,10 @@ const { WEBSITE_URL } = require("../src/utils/configuration");
                 const path = page
                   .replace("pages", "")
                   .replace(".tsx", "")
-                  .replace(".mdx", "");
+                  .replace(".mdx", "")
+                  .replace("data", "")
+                  .replace(".js", "");
+
                 const route =
                   /\/blog\/(.*)\/index/.test(path) || path === "/index"
                     ? path.slice(0, -"/index".length)
