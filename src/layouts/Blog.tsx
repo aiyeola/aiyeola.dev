@@ -6,6 +6,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
+import { WEBSITE_URL} from '@uitls/config'
 
 type FrontMatter = {
   title: string;
@@ -39,7 +40,7 @@ export default function BlogLayout({
     <LayoutContainer
       title={`${frontMatter.title} – Victor Aiyeola`}
       description={frontMatter.summary}
-      image={`https://aiyeola.dev${frontMatter.image}`}
+      image={`${WEBSITE_URL}${frontMatter.image}`}
       date={new Date(frontMatter.publishedAt).toISOString()}
       type="article"
     >

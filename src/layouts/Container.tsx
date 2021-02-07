@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Header from "@layouts/Header";
 import Footer from "@layouts/Footer";
+import { WEBSITE_URL} from '@uitls/config'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -48,7 +49,7 @@ export default function Container(props: Props) {
   const meta = {
     title: "Victor Aiyeola – Software Developer",
     description: "Personal website and blog",
-    image: "https://aiyeola.dev/static/images/banner-black.png",
+    image: `${WEBSITE_URL}/static/images/banner-black.png`,
     type: "website",
     ...customMeta,
   };
