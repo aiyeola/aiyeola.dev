@@ -13,6 +13,16 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "100vw",
     },
   },
+  toolbarMargin: {
+    ...theme.mixins.toolbar,
+    marginBottom: "3.3em",
+    [theme.breakpoints.down("md")]: {
+      marginBottom: "2.3em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: "1.25em",
+    },
+  },
 }));
 
 type Props = {
@@ -67,14 +77,9 @@ export default function Container(props: Props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <Grid
-        container
-        justify="center"
-        style={{
-          minHeight: "100vh",
-        }}
-      >
+      <Grid container justify="center">
         <Header />
+        <div className={classes.toolbarMargin} />
 
         <Grid
           item
