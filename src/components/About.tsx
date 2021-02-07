@@ -35,7 +35,7 @@ export default function About() {
         </Typography>
         <Avatar
           alt="my profile image"
-          src="https://res.cloudinary.com/aboyeji-barnes-backstars/image/upload/v1611593557/projects/passport_v3a6x0.jpg"
+          src="/static/images/avatar.jpg"
           className={classes.large}
         />
       </Grid>
