@@ -77,7 +77,13 @@ export default function Container(props: Props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <Grid container justify="center">
+      <Grid
+        container
+        justify="center"
+        style={{
+          minHeight: "100vh",
+        }}
+      >
         <Header />
         <div className={classes.toolbarMargin} />
 
