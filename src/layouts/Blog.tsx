@@ -6,7 +6,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
-import { WEBSITE_URL} from '@utils/config'
+import { WEBSITE_URL } from "@utils/config";
 
 type FrontMatter = {
   title: string;
@@ -52,19 +52,24 @@ export default function BlogLayout({
       <Grid
         item
         container
-        justify="space-between"
-        style={{ marginBottom: "2rem" }}
+        direction={matchesXS ? "column" : "row"}
+        justify={matchesXS ? undefined : "space-between"}
+        style={{ marginBottom: matchesXS ? 0 : "1rem" }}
       >
-        <Grid item>
-          <Typography variant="subtitle1">
+        <Grid
+          item
+          style={{
+            marginBottom: matchesXS ? "0.4rem" : 0,
+          }}
+        >
+          <Typography variant="subtitle2">
             {"Victor Aiyeola / "}
             {format(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
           </Typography>
         </Grid>
         <Grid item>
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle2">
             {frontMatter.readingTime.text}
-            {` • `}
           </Typography>
         </Grid>
       </Grid>
@@ -73,13 +78,3 @@ export default function BlogLayout({
     </LayoutContainer>
   );
 }
-
-// frontMatter:  {
-//   title: "You don't have to be an expert, you just have to be confident in your ability to figure things out",
-//   publishedAt: '2021-01-26',
-//   summary: 'Visualize my journey through the scenic lands of Norway with rich, stunning pictures and daily travel logs.',
-//   image: '/static/images/10-days-in-norway/banner.png',
-//   wordCount: 87,
-//   readingTime: { text: '1 min read', minutes: 0.425, time: 25500, words: 85 },
-//   slug: 'you-dont-have-to-be-an-expert'
-// }
