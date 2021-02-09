@@ -1,6 +1,7 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
 import { responsiveFontSizes, createMuiTheme } from "@material-ui/core/styles";
+import grey from "@material-ui/core/colors/grey";
 
 let theme = createMuiTheme({
   palette: {
@@ -26,14 +27,31 @@ let theme = createMuiTheme({
       underline: "none",
       color: "inherit",
     },
+    MuiButton: {
+      disableElevation: true,
+      variant: "contained",
+    },
+    MuiCircularProgress: {
+      size: 25,
+    },
   },
   overrides: {
-    MuiLink: {
-      root: {},
-    },
     MuiToolbar: {
       root: {
         justifyContent: "center",
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        "&$focused $notchedOutline": {
+          borderColor: grey[900],
+        },
+      },
+      notchedOutline: {},
+    },
+    MuiCircularProgress: {
+      colorPrimary: {
+        color: "inherit",
       },
     },
   },
