@@ -36,9 +36,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (accessToken) {
       const userInfo = await (
         await fetch("https://api.github.com/user", {
-          method: "GET",
-          withCredentials: true,
-          credentials: "include",
           headers: {
             Authorization: `token ${accessToken}`,
             Accept: "application/json",
