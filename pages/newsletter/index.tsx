@@ -33,9 +33,9 @@ export default function Newsletter({
           Newsletter
         </Typography>
         <Typography>
-          My newsletter provides a behind-the-scenes look into what I'm working
-          on and writing about. I frequently share some of my favorite articles
-          I've read, as well as anything fascinating about technology.
+          My newsletter provides a sneak peek into what I'm working on, projects
+          that interest me and things I'm writing about. Things fascinating
+          about the tech space will also be shared.
         </Typography>
       </Grid>
 

@@ -5,7 +5,11 @@ import Link from "@components/Link";
 //@ts-ignore
 export default function NewsletterLink({ slug, publishedAt }) {
   return (
-    <li>
+    <li
+      style={{
+        marginBottom: "1rem",
+      }}
+    >
       <Link
         href={`/newsletter/${slug}`}
         underline="always"
