@@ -7,6 +7,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
 import { WEBSITE_URL } from "@utils/config";
+import Subscribe from "@components/Subscribe";
 
 type FrontMatter = {
   title: string;
@@ -75,6 +76,15 @@ export default function BlogLayout({
       </Grid>
 
       <Grid item>{children}</Grid>
+
+      <Grid
+        item
+        style={{
+          marginTop: "1rem",
+        }}
+      >
+        <Subscribe />
+      </Grid>
     </LayoutContainer>
   );
 }

@@ -11,12 +11,15 @@ let theme = createMuiTheme({
     fontFamily: "Quicksand",
     h1: {
       fontFamily: "Jost",
+      fontWeight: "bold",
     },
     h2: {
       fontFamily: "Jost",
+      fontWeight: "bold",
     },
     h3: {
       fontFamily: "Jost",
+      fontWeight: "bold",
     },
     body1: {
       fontSize: "1.5rem",
@@ -48,6 +51,9 @@ let theme = createMuiTheme({
         },
       },
       notchedOutline: {},
+      input: {
+        fontSize: "1rem",
+      },
     },
     MuiCircularProgress: {
       colorPrimary: {

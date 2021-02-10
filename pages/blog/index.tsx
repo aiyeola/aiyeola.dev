@@ -44,12 +44,3 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { posts },
   };
 };
-
-// posts:
-// 	{
-// 	  title: "You don't have to be an expert",
-// 	  publishedAt: '2021-01-26',
-// 	  summary: 'Visualize my journey through the scenic lands of Norway with rich, stunning pictures and daily travel logs.',
-// 	  image: '/static/images/10-days-in-norway/banner.png',
-// 	  slug: 'you-dont-have-to-be-an-expert'
-// 	},
