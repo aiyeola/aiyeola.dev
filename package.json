@@ -27,6 +27,7 @@
     "@mdx-js/loader": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "clsx": "^1.1.1",
+    "comma-number": "^2.0.1",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "ioredis": "^4.19.4",

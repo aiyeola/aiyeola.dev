@@ -48,7 +48,12 @@ function GuestbookEntry({ entry, user }) {
 
   return (
     <>
-      <Grid item>
+      <Grid
+        item
+        style={{
+          marginBottom: ".5rem",
+        }}
+      >
         <Typography variant="h5">{entry.body}</Typography>
       </Grid>
       <Grid
