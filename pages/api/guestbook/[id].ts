@@ -9,6 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   //@ts-ignore
   const { login, email } = req.session;
+  //@ts-ignore
   const entry = JSON.parse((await redis.hget("guestbook", id)) || "null");
 
   if (req.method === "GET") {
@@ -20,6 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(403).send("Unauthorized");
     }
 
+    //@ts-ignore
     await redis.hdel("guestbook", id);
     return res.status(204).json({});
   }
