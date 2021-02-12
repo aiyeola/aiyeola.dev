@@ -24,7 +24,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     );
 
-    console.log("response: ", response);
     if (response.status >= 400) {
       const text = await response.text();
 
