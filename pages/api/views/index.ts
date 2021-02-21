@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import db from "@lib/firebase";
+import db from "@lib/firebaseAdmin";
 
 export default async (_: NextApiRequest, res: NextApiResponse) => {
   const snapshot = await db.ref("views").once("value");

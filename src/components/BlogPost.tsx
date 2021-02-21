@@ -1,4 +1,3 @@
-import { parseISO, format as formatDate } from "date-fns";
 import Grid from "@material-ui/core/Grid";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Typography from "@material-ui/core/Typography";
@@ -21,7 +20,7 @@ export default function BlogPost(props: Posts) {
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
-  const { slug, title, publishedAt } = props;
+  const { slug, title } = props;
 
   const { data } = useSWR(`/api/views/${slug}`, fetcher);
   const views = data?.total;
@@ -54,7 +53,6 @@ export default function BlogPost(props: Posts) {
       </Grid>
       <Grid item>
         <Typography variant="subtitle1">
-          {formatDate(parseISO(publishedAt), "MMMM dd, yyyy")}{" "}
           {`${views ? format(views) : "––"} views`}
         </Typography>
       </Grid>

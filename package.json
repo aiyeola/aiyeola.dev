@@ -29,6 +29,7 @@
     "clsx": "^1.1.1",
     "comma-number": "^2.0.1",
     "date-fns": "^2.16.1",
+    "firebase": "^8.2.9",
     "firebase-admin": "^9.5.0",
     "gray-matter": "^4.0.2",
     "ioredis": "^4.19.4",

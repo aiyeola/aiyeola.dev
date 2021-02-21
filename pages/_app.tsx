@@ -10,6 +10,7 @@ import "../styles/global.css";
 import theme from "src/theme";
 import ThemeProvider from "@utils/dark-mode";
 import MDXComponents from "@components/MDXComponents";
+import "@lib/firebaseClient";
 
 const TopProgressBar = dynamic(
   () => {
