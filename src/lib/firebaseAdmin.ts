@@ -12,5 +12,3 @@ if (!admin.apps.length) {
 }
 
 export default admin.database();
-
-// change  to NEXT_PUBLIC_FIREBASE_DATABASE_URL on vercel

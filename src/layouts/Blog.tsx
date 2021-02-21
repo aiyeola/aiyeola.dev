@@ -40,7 +40,7 @@ export default function BlogLayout({
 
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
-  const { data, mutate } = useSWR(`/api/views/${frontMatter.slug}`, fetcher);
+  const { data } = useSWR(`/api/views/${frontMatter.slug}`, fetcher);
   const views = data?.total;
 
   React.useEffect(() => {
@@ -50,7 +50,6 @@ export default function BlogLayout({
       });
 
     registerView();
-    mutate();
   }, [frontMatter.slug]);
 
   return (
