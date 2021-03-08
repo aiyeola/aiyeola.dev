@@ -54,8 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       req.session.email = "";
     }
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Failed to auth." });
+    return res.status(500).json({ error: "Failed to authenticate" });
   }
 
   return res.redirect("/guestbook");

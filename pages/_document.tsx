@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie-edge" />
           <meta property="og:locale" content="en_GB" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"

@@ -80,8 +80,8 @@ export default function Subscribe() {
           Subscribe to the newsletter
         </Typography>
         <Typography variant="h6" paragraph>
-          Get emails from me about web development, tech, and early access to
-          new articles.
+          Get emails from me about web development, techie stuff, and latest
+          articles.
         </Typography>
 
         <TextField

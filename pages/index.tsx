@@ -6,6 +6,7 @@ import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
 import Link from "@components/Link";
 import BlogPost from "@components/BlogPost";
+import Subscribe from "@components/Subscribe";
 
 type Posts = {
   title: string;
@@ -63,6 +64,15 @@ export default function Home({ posts }: { posts: Posts[] }) {
           {sortedBlogPost.map((frontMatter) => (
             <BlogPost key={frontMatter.title} {...frontMatter} />
           ))}
+        </Grid>
+
+        <Grid
+          item
+          style={{
+            marginTop: "1rem",
+          }}
+        >
+          <Subscribe />
         </Grid>
       </>
     </LayoutContainer>

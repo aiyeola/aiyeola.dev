@@ -37,6 +37,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  appBar: {
+    backgroundColor: "inherit",
+    backdropFilter: "saturate(180%) blur(20px)",
+    height: "100%",
+    marginTop: "1rem",
+    boxShadow: "none",
+  },
 }));
 
 export default function Header() {
@@ -56,10 +63,7 @@ export default function Header() {
         position="sticky"
         color="inherit"
         elevation={0}
-        style={{
-          backgroundColor: "inherit",
-          backdropFilter: "saturate(180%) blur(20px)",
-        }}
+        className={classes.appBar}
       >
         <Toolbar>
           <Grid
@@ -72,8 +76,6 @@ export default function Header() {
               top: 0,
               paddingLeft: matchesXS ? 0 : "2rem",
               paddingRight: matchesXS ? 0 : "2rem",
-              paddingTop: matches ? 0 : "2rem",
-              paddingBottom: "2rem",
             }}
             justify="space-between"
             direction={matches ? "column" : "row"}
@@ -82,8 +84,7 @@ export default function Header() {
               item
               style={{
                 alignSelf: matches ? "flex-start" : undefined,
-                marginBottom: matches ? "1rem" : 0,
-                marginTop: matches ? "1.2rem" : 0,
+                marginBottom: matches ? ".9rem" : 0,
               }}
             >
               <IconButton onClick={() => changeTheme()}>
@@ -93,7 +94,6 @@ export default function Header() {
                     viewBox="0 0 24 24"
                     fill="currentColor"
                     stroke="currentColor"
-                    className="h-4 w-4 text-gray-800 dark:text-gray-200"
                     style={{
                       width: "2rem",
                       height: "2rem",
@@ -119,7 +119,12 @@ export default function Header() {
               </IconButton>
             </Grid>
 
-            <Grid item>
+            <Grid
+              item
+              style={{
+                marginBottom: matches ? ".7rem" : 0,
+              }}
+            >
               <Link className={classes.link} href="/blog">
                 Blog
               </Link>
