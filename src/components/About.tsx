@@ -30,7 +30,13 @@ export default function About() {
           alignSelf: matchesXS ? "center" : undefined,
         }}
       >
-        <Typography variant="h1" paragraph>
+        <Typography
+          variant="h1"
+          paragraph
+          style={{
+            letterSpacing: "0.13rem",
+          }}
+        >
           About Me
         </Typography>
         <Avatar
@@ -42,8 +48,8 @@ export default function About() {
 
       <Grid item>
         <Typography>
-          Hi, I'm Victor Aiyeola. JavaScript Software developer based in Lagos,
-          Nigeria. I love all things JS 😍. I'll be writing here about
+          Hi, I'm Victor Aiyeola 😉. JavaScript software developer based in
+          Lagos, Nigeria. I love all things JS ✌🏽. I'll be writing here about
           development, techie stuff and personal experiences. Kindly subscribe
           to my{" "}
           <Link

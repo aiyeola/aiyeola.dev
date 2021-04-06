@@ -33,7 +33,13 @@ export default function Home({ posts }: { posts: Posts[] }) {
             marginBottom: "2rem",
           }}
         >
-          <Typography variant="h1" paragraph>
+          <Typography
+            variant="h1"
+            paragraph
+            style={{
+              letterSpacing: "0.13rem",
+            }}
+          >
             Hi, I'm Victor
           </Typography>
           <Typography>

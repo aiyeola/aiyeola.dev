@@ -29,7 +29,13 @@ export default function Newsletter({
           marginBottom: "1rem",
         }}
       >
-        <Typography variant="h1" paragraph>
+        <Typography
+          variant="h1"
+          paragraph
+          style={{
+            letterSpacing: "0.13rem",
+          }}
+        >
           Newsletter
         </Typography>
         <Typography>

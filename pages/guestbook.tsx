@@ -24,7 +24,13 @@ export default function GuestbookPage({
       description="Sign my digital guestbook and share some wisdom."
     >
       <Grid item>
-        <Typography variant="h1" gutterBottom>
+        <Typography
+          variant="h1"
+          gutterBottom
+          style={{
+            letterSpacing: "0.13rem",
+          }}
+        >
           Guestbook
         </Typography>
         <Typography paragraph>
