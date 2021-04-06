@@ -15,7 +15,7 @@ import ErrorMessage from "@components/ErrorMessage";
 
 const useStyles = makeStyles((theme) => ({
   guestBox: {
-    border: `1px solid ${theme.palette.grey[400]}`,
+    border: `2px solid ${theme.palette.grey[400]}`,
     borderRadius: 20,
     padding: "1.1rem",
     marginTop: "1rem",
