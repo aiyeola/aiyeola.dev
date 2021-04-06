@@ -84,30 +84,36 @@ export default function Subscribe() {
           articles.
         </Typography>
 
-        <TextField
-          fullWidth
-          size="small"
-          type="email"
-          name="subscribe-email"
-          autoComplete="email"
-          value={message}
-          variant="outlined"
-          placeholder="adam@flutter.com"
-          required
-          onChange={(e) => setMessage(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <Button
-                onClick={subscribe}
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                {form.state === "loading" ? <CircularProgress /> : "Subscribe"}
-              </Button>
-            ),
-          }}
-        />
+        <form>
+          <TextField
+            fullWidth
+            size="small"
+            type="email"
+            name="subscribe-email"
+            autoComplete="email"
+            value={message}
+            variant="outlined"
+            placeholder="adam@flutter.com"
+            required
+            onChange={(e) => setMessage(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <Button
+                  onClick={subscribe}
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {form.state === "loading" ? (
+                    <CircularProgress />
+                  ) : (
+                    "Subscribe"
+                  )}
+                </Button>
+              ),
+            }}
+          />
+        </form>
         {form.state === "error" ? (
           <ErrorMessage>{form.message}</ErrorMessage>
         ) : form.state === "success" ? (

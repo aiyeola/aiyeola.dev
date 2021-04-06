@@ -70,7 +70,7 @@ export default function BlogLayout({
         container
         direction={matchesXS ? "column" : "row"}
         justify={matchesXS ? undefined : "space-between"}
-        style={{ marginBottom: matchesXS ? 0 : "1rem" }}
+        style={{ marginBottom: "2rem" }}
       >
         <Grid
           item

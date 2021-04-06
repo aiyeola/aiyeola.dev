@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Header from "@layouts/Header";
 import Footer from "@layouts/Footer";
-import { WEBSITE_URL} from '@utils/config'
+import { WEBSITE_URL } from "@utils/config";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,7 +58,11 @@ export default function Container(props: Props) {
     <>
       <Head>
         <title>{meta.title}</title>
-        <meta name="robots" content="follow, index" />
+        <meta name="robots" content="index,follow" />
+        <meta
+          name="keywords"
+          content="aiyeola,victor,developer,personal website,blog,javascript,react"
+        />
         <meta content={meta.description} name="description" />
         <meta
           property="og:url"

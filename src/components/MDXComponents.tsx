@@ -35,7 +35,7 @@ const CustomLink = (props) => {
 };
 
 const MDXComponents = {
-  img: Image,
+  Image,
   a: CustomLink,
   p: (props: any) => <Paragraph {...props} />,
 };

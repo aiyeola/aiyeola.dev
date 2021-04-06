@@ -10,6 +10,11 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
   }
 
   const song = await response.json();
+
+  if (song.currently_playing_type === "episode") {
+    return res.status(200).json({ isPlaying: false });
+  }
+
   const isPlaying = song.is_playing;
   const title = song.item.name;
   const artist = song.item.artists

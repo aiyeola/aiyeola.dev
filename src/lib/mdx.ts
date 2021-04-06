@@ -22,7 +22,7 @@ export function getSortedPosts() {
 
     const { data } = matter(fileContents);
 
-    const options = { month: "long", day: "numeric", year: "numeric" };
+    const options = { month: "long", day: "numeric", year: "numeric" } as const;
     const formattedDate = new Date(data.publishedAt).toLocaleDateString(
       "en-GB",
       options,

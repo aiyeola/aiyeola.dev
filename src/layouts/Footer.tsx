@@ -85,30 +85,22 @@ export default function Footer() {
           >
             <Grid item className={classes.footerLink}>
               <Typography component="span">
-                <Link href="/home" target="_blank">
-                  Home
-                </Link>
+                <Link href="/">Home</Link>
               </Typography>
             </Grid>
             <Grid item className={classes.footerLink}>
               <Typography component="span">
-                <Link href="/about" target="_blank">
-                  About
-                </Link>
+                <Link href="/about">About</Link>
               </Typography>
             </Grid>
             <Grid item className={classes.footerLink}>
               <Typography component="span">
-                <Link href="/guestbook" target="_blank">
-                  Guestbook
-                </Link>
+                <Link href="/guestbook">Guestbook</Link>
               </Typography>
             </Grid>
             <Grid item className={classes.footerLink}>
               <Typography component="span">
-                <Link href="/newsletter" target="_blank">
-                  Newsletter
-                </Link>
+                <Link href="/newsletter">Newsletter</Link>
               </Typography>
             </Grid>
           </Grid>
@@ -154,7 +146,7 @@ export default function Footer() {
           </Link>
 
           <Link
-            href="https://web.facebook.com/vickyvayne"
+            href="https://web.facebook.com/victoraiyeoladev"
             target="_blank"
             className={classes.link}
           >

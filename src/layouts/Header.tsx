@@ -84,7 +84,8 @@ export default function Header() {
               item
               style={{
                 alignSelf: matches ? "flex-start" : undefined,
-                marginBottom: matches ? ".9rem" : 0,
+                marginBottom: matches ? ".9rem" : "1.5rem",
+                marginTop: matches ? 0 : "1.5rem",
               }}
             >
               <IconButton onClick={() => changeTheme()}>
@@ -122,7 +123,7 @@ export default function Header() {
             <Grid
               item
               style={{
-                marginBottom: matches ? ".7rem" : 0,
+                marginBottom: matches ? "1rem" : 0,
               }}
             >
               <Link className={classes.link} href="/blog">
