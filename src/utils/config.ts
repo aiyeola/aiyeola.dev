@@ -1,1 +1,1 @@
-export const WEBSITE_URL = "https://aiyeola-dev.vercel.app";
+export const WEBSITE_URL = "https://aiyeola.dev";
