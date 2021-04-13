@@ -54,6 +54,9 @@ let theme = createMuiTheme({
       input: {
         fontSize: "1rem",
       },
+      adornedEnd: {
+        paddingRight: 0,
+      },
     },
     MuiCircularProgress: {
       colorPrimary: {
