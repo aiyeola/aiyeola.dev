@@ -65,6 +65,8 @@ export default function NowPlaying() {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 maxWidth: "max-content",
+                fontWeight: "bold",
+
               }}
             >
               <Link
@@ -76,7 +78,11 @@ export default function NowPlaying() {
               </Link>
             </Typography>
           ) : (
-            <Typography>Not Playing</Typography>
+            <Typography 
+            style={{
+              fontWeight: "bold",
+              }}
+              >Not Playing</Typography>
           )}
           <Typography
             component="span"
