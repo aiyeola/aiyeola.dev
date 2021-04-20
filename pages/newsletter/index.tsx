@@ -30,7 +30,7 @@ export default function Newsletter({
         }}
       >
         <Typography
-          variant="h1"
+          variant="h2"
           paragraph
           style={{
             letterSpacing: "0.13rem",
@@ -53,7 +53,7 @@ export default function Newsletter({
           marginTop: "1rem",
         }}
       >
-        <Typography variant="h3" paragraph>
+        <Typography variant="h4" paragraph>
           Archive
         </Typography>
         <Box>

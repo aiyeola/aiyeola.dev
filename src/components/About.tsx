@@ -31,7 +31,7 @@ export default function About() {
         }}
       >
         <Typography
-          variant="h1"
+          variant="h2"
           paragraph
           style={{
             letterSpacing: "0.13rem",

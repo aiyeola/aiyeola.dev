@@ -34,7 +34,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
           }}
         >
           <Typography
-            variant="h1"
+            variant="h2"
             paragraph
             style={{
               letterSpacing: "0.13rem",
@@ -60,7 +60,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
         </Grid>
 
         <Grid item>
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h3" gutterBottom>
             Latest Posts
           </Typography>
         </Grid>

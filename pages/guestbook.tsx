@@ -25,7 +25,7 @@ export default function GuestbookPage({
     >
       <Grid item>
         <Typography
-          variant="h1"
+          variant="h2"
           gutterBottom
           style={{
             letterSpacing: "0.13rem",

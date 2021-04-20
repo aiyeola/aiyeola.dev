@@ -71,7 +71,7 @@ export default function Subscribe() {
     <>
       <Grid item className={classes.guestBox}>
         <Typography
-          variant="h5"
+          variant="h6"
           gutterBottom
           style={{
             fontWeight: "bold",
@@ -79,7 +79,7 @@ export default function Subscribe() {
         >
           Subscribe to the newsletter
         </Typography>
-        <Typography variant="h6" paragraph>
+        <Typography variant="body1" paragraph>
           Get emails from me about web development, techie stuff, and latest
           articles.
         </Typography>

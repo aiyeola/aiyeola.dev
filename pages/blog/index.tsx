@@ -26,7 +26,7 @@ export default function Blog({ posts }: { posts: Posts[] }) {
       title="Blog – Victor Aiyeola"
       description="Thoughts on the software industry, programming, tech, and my personal life."
     >
-      <Typography variant="h1" paragraph>
+      <Typography variant="h2" paragraph>
         All Posts
       </Typography>
       {!filteredBlogPosts.length && "No posts found."}

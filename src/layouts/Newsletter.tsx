@@ -46,7 +46,7 @@ export default function NewsletterLayout({
       type="article"
     >
       <Grid item>
-        <Typography variant="h1" style={{ lineHeight: 1 }} paragraph>
+        <Typography variant="h3" style={{ lineHeight: 1 }} paragraph>
           {frontMatter.title}
         </Typography>
       </Grid>

@@ -1,29 +1,13 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
-import { responsiveFontSizes, createMuiTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 
-let theme = createMuiTheme({
+const theme = {
   palette: {
     type: "dark",
   },
   typography: {
     fontFamily: "Quicksand",
-    h1: {
-      fontFamily: "Jost",
-      fontWeight: "bold",
-    },
-    h2: {
-      fontFamily: "Jost",
-      fontWeight: "bold",
-    },
-    h3: {
-      fontFamily: "Jost",
-      fontWeight: "bold",
-    },
-    body1: {
-      fontSize: "1.5rem",
-    },
   },
   props: {
     MuiLink: {
@@ -63,9 +47,28 @@ let theme = createMuiTheme({
         color: "inherit",
       },
     },
+    MuiTypography: {
+      h1: {
+        fontFamily: "Jost",
+        fontWeight: "bold",
+      },
+      h2: {
+        fontFamily: "Jost",
+        fontWeight: "bold",
+      },
+      h3: {
+        fontFamily: "Jost",
+        fontWeight: "bold",
+      },
+      h4: {
+        fontFamily: "Jost",
+        fontWeight: "bold",
+      },
+      body1: {
+        fontSize: "1.25rem",
+      },
+    },
   },
-});
-
-theme = responsiveFontSizes(theme);
+};
 
 export default theme;

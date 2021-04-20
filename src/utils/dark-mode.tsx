@@ -3,13 +3,12 @@ import {
   createMuiTheme,
   responsiveFontSizes,
   ThemeProvider as MuiThemeProvider,
-  Theme,
   useTheme,
 } from "@material-ui/core/styles";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
-  theme: Theme;
+  theme: any;
 }
 
 const ThemeDispatchContext = React.createContext<any>(null);
