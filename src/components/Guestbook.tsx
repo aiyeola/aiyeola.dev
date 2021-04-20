@@ -54,7 +54,7 @@ function GuestbookEntry({ entry, user }) {
           marginBottom: ".5rem",
         }}
       >
-        <Typography variant="h5">{entry.body}</Typography>
+        <Typography variant="h6">{entry.body}</Typography>
       </Grid>
       <Grid
         item
@@ -171,7 +171,7 @@ export default function Guestbook({
     <>
       <Grid item className={classes.guestBox}>
         <Typography
-          variant="h5"
+          variant="h6"
           gutterBottom
           style={{
             fontWeight: "bold",
@@ -179,7 +179,7 @@ export default function Guestbook({
         >
           Sign the Guestbook
         </Typography>
-        <Typography variant="h6" paragraph>
+        <Typography variant="body1" paragraph>
           Share a message for a future visitor of my site.
         </Typography>
         {user?.name ? (
