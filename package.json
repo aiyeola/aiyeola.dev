@@ -17,7 +17,10 @@
     "dev": "next dev",
     "dev:watch": "next-remote-watch ./posts",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@fontsource/jost": "^4.1.1",
