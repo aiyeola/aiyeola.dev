@@ -29,7 +29,8 @@ function ElevationScroll(props: Props) {
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    fontSize: "1.3rem",
+    fontSize: "1.25rem",
+    fontWeight: 500,
     "&:not(:last-child)": {
       marginRight: "2rem",
       [theme.breakpoints.down(360)]: {

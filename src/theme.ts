@@ -1,5 +1,6 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
+import "@fontsource/quicksand/500.css" 
 import grey from "@material-ui/core/colors/grey";
 
 const theme = {
@@ -66,6 +67,7 @@ const theme = {
       },
       body1: {
         fontSize: "1.25rem",
+        fontWeight: 500,
       },
     },
   },

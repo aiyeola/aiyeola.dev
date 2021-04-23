@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footerLink: {
+    fontSize: "1.25rem",
+    fontWeight: 500,
     "&:not(:last-child)": {
       marginRight: "2rem",
       marginBottom: 0,
