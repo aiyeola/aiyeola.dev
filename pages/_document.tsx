@@ -31,6 +31,10 @@ export default class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta content="#ffffff" name="theme-color" />
+          <meta content="#ffffff" name="msapplication-TileColor" />
+          <meta name="yandex-verification" content="17501c365143c9ab" />
+          <meta name="google-site-verification" content="xZIqK8cJ8x6g8euo7U7p0pYnFN35a6wqQsBPvfZ9TPc" />
         </Head>
         <body>
           <Main />
