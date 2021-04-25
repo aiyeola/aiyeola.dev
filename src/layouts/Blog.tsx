@@ -6,6 +6,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import useSWR from "swr";
 import format from "comma-number";
+import { DiscussionEmbed } from "disqus-react";
 
 import fetcher from "@lib/fetcher";
 import LayoutContainer from "@layouts/Container";
@@ -41,6 +42,7 @@ export default function BlogLayout({
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
   const { data } = useSWR(`/api/views/${frontMatter.slug}`, fetcher);
+
   const views = data?.total;
 
   React.useEffect(() => {
@@ -101,6 +103,22 @@ export default function BlogLayout({
         }}
       >
         <Subscribe />
+      </Grid>
+
+      <Grid
+        item
+        style={{
+          width: "100%",
+        }}
+      >
+        <DiscussionEmbed
+          shortname="aiyeola"
+          config={{
+            url: `${WEBSITE_URL}/blog/${frontMatter.slug}`,
+            identifier: frontMatter.slug,
+            title: frontMatter.title,
+          }}
+        />
       </Grid>
     </LayoutContainer>
   );

@@ -31,10 +31,11 @@ module.exports = withBundleAnalyzer({
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.twitter.com cdn.usefathom.com;
+  default-src 'self' 'unsafe-inline' disqus.com c.disquscdn.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.disqus.com c.disquscdn.com;
   child-src *.google.com;
-  style-src 'self' 'unsafe-inline' *.googleapis.com;
+  frame-src disqus.com;
+  style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
