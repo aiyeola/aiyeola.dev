@@ -109,6 +109,7 @@ export default function BlogLayout({
         item
         style={{
           width: "100%",
+          marginTop: "1rem",
         }}
       >
         <DiscussionEmbed

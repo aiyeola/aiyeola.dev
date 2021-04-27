@@ -8,31 +8,40 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content="#fff" />
           <meta charSet="utf-8" />
+          <meta name="theme-color" content="#ffffff" />
+          <meta name="application-name" content="aiyeola.dev" />
+          <meta name="apple-mobile-web-app-title" content="aiyeola.dev" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="default"
+          />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="msapplication-config" content="/static/browserconfig.xml" />
+          <meta name="msapplication-TileColor" content="#ffffff" />
+          <meta name="msapplication-tap-highlight" content="no" />
           <meta httpEquiv="x-ua-compatible" content="ie-edge" />
           <meta property="og:locale" content="en_GB" />
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/apple-touch-icon.png"
+            href="/static/apple-touch-icon.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/favicon-32x32.png"
+            href="/static/favicon-32x32.png"
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="/favicon-16x16.png"
+            href="/static/favicon-16x16.png"
           />
-          <link rel="manifest" href="/site.webmanifest" />
-          <meta content="#ffffff" name="theme-color" />
-          <meta content="#ffffff" name="msapplication-TileColor" />
+          <link rel="manifest" href="/static/site.webmanifest" />
           <meta name="yandex-verification" content="17501c365143c9ab" />
           <meta
             name="google-site-verification"

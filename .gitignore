@@ -37,3 +37,9 @@ yarn-error.log*
 .idea
 
 public/sitemap.xml
+**/public/workbox-*.js
+**/public/workbox-*.js.map
+**/public/sw.js
+**/public/sw.js.map
+**/public/worker-*.js
+**/public/worker-*.js.map

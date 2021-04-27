@@ -48,7 +48,7 @@ export default function Container(props: Props) {
   const meta = {
     title: "Victor Aiyeola – Software Developer",
     description: "Javascript Software Developer - Personal website and blog",
-    image: "https://www.aiyeola.dev/static/images/banner-black.png",
+    image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
     ...customMeta,
   };

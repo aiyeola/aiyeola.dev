@@ -1,8 +1,11 @@
+const withPlugins = require("next-compose-plugins");
+const withPWA = require("next-pwa");
+const runtimeCaching = require("next-pwa/cache");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withBundleAnalyzer({
+const nextConfig = {
   future: {
     webpack5: true,
     strictPostcssConfiguration: true,
@@ -27,13 +30,29 @@ module.exports = withBundleAnalyzer({
     }
     return config;
   },
-});
+};
+
+module.exports = withPlugins(
+  [
+    [
+      withPWA,
+      {
+        pwa: {
+          dest: "public",
+          runtimeCaching,
+        },
+      },
+    ],
+    [withBundleAnalyzer],
+  ],
+  nextConfig,
+);
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self' 'unsafe-inline' disqus.com c.disquscdn.com;
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.disqus.com c.disquscdn.com;
-  child-src *.google.com;
+  child-src 'self' *.google.com;
   frame-src disqus.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
   img-src * blob: data:;
