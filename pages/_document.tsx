@@ -18,7 +18,10 @@ export default class MyDocument extends Document {
             content="default"
           />
           <meta name="mobile-web-app-capable" content="yes" />
-          <meta name="msapplication-config" content="/static/browserconfig.xml" />
+          <meta
+            name="msapplication-config"
+            content="/static/browserconfig.xml"
+          />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-tap-highlight" content="no" />
           <meta httpEquiv="x-ua-compatible" content="ie-edge" />
@@ -49,6 +52,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <script src="noflash.js" />
           <Main />
           <NextScript />
         </body>
