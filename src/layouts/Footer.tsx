@@ -134,6 +134,7 @@ export default function Footer() {
           <Link
             href="https://github.com/aiyeola"
             target="_blank"
+            rel="noopener"
             className={classes.link}
           >
             <GitHubIcon />
@@ -142,6 +143,7 @@ export default function Footer() {
           <Link
             href="https://twitter.com/victor_aiyeola"
             target="_blank"
+            rel="noopener"
             className={classes.link}
           >
             <TwitterIcon />
@@ -150,6 +152,7 @@ export default function Footer() {
           <Link
             href="https://web.facebook.com/victoraiyeoladev"
             target="_blank"
+            rel="noopener"
             className={classes.link}
           >
             <FacebookIcon />
@@ -158,6 +161,7 @@ export default function Footer() {
           <Link
             href="https://www.linkedin.com/in/victor-aiyeola"
             target="_blank"
+            rel="noopener"
             className={classes.link}
           >
             <LinkedInIcon />

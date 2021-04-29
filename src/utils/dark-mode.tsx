@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -14,9 +14,16 @@ interface ThemeProviderProps {
 const ThemeDispatchContext = React.createContext<any>(null);
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme }) => {
+  const [darkState, setDarkState] = useState(false);
+  const palletType = darkState ? "dark" : "light";
+
   const themeInitialOptions = {
-    paletteType: "light",
+    paletteType: palletType,
   };
+
+  // function handleThemeChange() {
+  //   setDarkState(!darkState);
+  // }
 
   const [themeOptions, dispatch] = React.useReducer(
     (state: any, action: any) => {
@@ -56,13 +63,14 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children, theme }) => {
 export default ThemeProvider;
 
 export const useChangeTheme = () => {
+  const [darkState, setDarkState] = useState(false);
   const dispatch = React.useContext(ThemeDispatchContext);
   const theme = useTheme();
   const changeTheme = React.useCallback(
     () =>
       dispatch({
         type: "changeTheme",
-        payload: theme.palette.type === "light" ? "dark" : "light",
+        payload: setDarkState(!darkState),
       }),
     [theme.palette.type, dispatch],
   );

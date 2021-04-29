@@ -5,6 +5,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
+const __prod__ = process.env.NODE_ENV === "production";
+
 const nextConfig = {
   future: {
     webpack5: true,
@@ -39,6 +41,7 @@ module.exports = withPlugins(
       {
         pwa: {
           dest: "public",
+          disable: __prod__ ? false : true,
           runtimeCaching,
         },
       },

@@ -1,12 +1,11 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
-import "@fontsource/quicksand/500.css" 
+import "@fontsource/quicksand/500.css";
+import { createMuiTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
 
-const theme = {
-  palette: {
-    type: "dark",
-  },
+
+const coreThemeObject = {
   typography: {
     fontFamily: "Quicksand",
   },
@@ -73,4 +72,20 @@ const theme = {
   },
 };
 
-export default theme;
+//@ts-ignore
+export const darkTheme = createMuiTheme({
+  ...coreThemeObject,
+  palette: {
+    type: "dark",
+  },
+});
+
+//@ts-ignore
+export const lightTheme = createMuiTheme({
+  ...coreThemeObject,
+  palette: {
+    type: "light",
+  },
+});
+
+

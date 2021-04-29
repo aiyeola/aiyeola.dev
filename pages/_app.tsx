@@ -5,10 +5,11 @@ import dynamic from "next/dynamic";
 import "nprogress/nprogress.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MDXProvider } from "@mdx-js/react";
+import { ThemeProvider, responsiveFontSizes } from "@material-ui/core/styles";
+import useDarkMode from "use-dark-mode";
 
 import "../styles/global.css";
-import theme from "src/theme";
-import ThemeProvider from "@utils/dark-mode";
+import { darkTheme, lightTheme } from "src/theme";
 import MDXComponents from "@components/MDXComponents";
 import "@lib/firebaseClient";
 
@@ -20,6 +21,12 @@ const TopProgressBar = dynamic(
 );
 
 function App({ Component, pageProps }: AppProps) {
+  const { value: isDark } = useDarkMode(true);
+
+  const themeConfig = isDark
+    ? responsiveFontSizes(darkTheme)
+    : responsiveFontSizes(lightTheme);
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -37,7 +44,7 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <TopProgressBar />
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themeConfig}>
         <MDXProvider components={MDXComponents}>
           <CssBaseline />
           <Component {...pageProps} />
