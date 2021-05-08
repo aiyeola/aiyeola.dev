@@ -14,12 +14,8 @@ import NowPlaying from "@components/NowPlaying";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    transition: "all 0.3s",
     "&:not(:last-child)": {
       marginRight: "1rem",
-    },
-    "&:hover": {
-      transform: "scale(1.2)",
     },
   },
   footerLink: {
@@ -34,6 +30,12 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down(360)]: {
         marginRight: "1rem",
       },
+    },
+  },
+  hover: {
+    transition: "all 0.3s",
+    "&:hover": {
+      transform: "scale(1.2)",
     },
   },
 }));
@@ -137,7 +139,7 @@ export default function Footer() {
             rel="noopener"
             className={classes.link}
           >
-            <GitHubIcon />
+            <GitHubIcon className={classes.hover} />
           </Link>
 
           <Link
@@ -146,7 +148,7 @@ export default function Footer() {
             rel="noopener"
             className={classes.link}
           >
-            <TwitterIcon />
+            <TwitterIcon className={classes.hover} />
           </Link>
 
           <Link
@@ -155,7 +157,7 @@ export default function Footer() {
             rel="noopener"
             className={classes.link}
           >
-            <FacebookIcon />
+            <FacebookIcon className={classes.hover} />
           </Link>
 
           <Link
@@ -164,7 +166,7 @@ export default function Footer() {
             rel="noopener"
             className={classes.link}
           >
-            <LinkedInIcon />
+            <LinkedInIcon className={classes.hover} />
           </Link>
         </Grid>
       </Grid>
