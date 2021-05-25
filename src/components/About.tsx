@@ -47,11 +47,15 @@ export default function About() {
       </Grid>
 
       <Grid item>
-        <Typography>
+        <Typography gutterBottom>
           Hi, I'm Victor Aiyeola 😉. JavaScript software developer based in
-          Lagos, Nigeria. I love all things JS ✌🏽. I'll be writing here about
-          development, techie stuff and personal experiences. Kindly subscribe
-          to my{" "}
+          Lagos, Nigeria. I see every day as an opportunity to become
+          world-class 🌍.
+        </Typography>
+
+        <Typography>
+          I'll be writing here about development, techie stuff, and personal
+          experiences. Kindly subscribe to my{" "}
           <Link
             href="/newsletter"
             underline="always"
@@ -62,7 +66,7 @@ export default function About() {
           >
             newsletter
           </Link>{" "}
-          to be posted.
+          to be kept posted.
         </Typography>
       </Grid>
     </LayoutContainer>
