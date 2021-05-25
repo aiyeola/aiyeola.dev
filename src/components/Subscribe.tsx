@@ -127,7 +127,7 @@ export default function Subscribe() {
             }}
           >
             {`${subscriberCount || "-"} subscribers – `}
-            <Link href="/newsletter">3 issues</Link>
+            <Link href="/newsletter">4 issues</Link>
           </Typography>
         )}
       </Grid>
