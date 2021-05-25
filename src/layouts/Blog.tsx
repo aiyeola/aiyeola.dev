@@ -63,7 +63,7 @@ export default function BlogLayout({
       type="article"
     >
       <Grid item>
-        <Typography variant="h3" style={{ lineHeight: 1 }} paragraph>
+        <Typography variant="h3" style={{ lineHeight: 1.4 }} paragraph>
           {frontMatter.title}
         </Typography>
       </Grid>

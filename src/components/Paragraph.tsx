@@ -6,7 +6,8 @@ export default function Paragraph(props) {
     <Typography
       variant="body1"
       style={{
-        marginTop: "2rem",
+        marginTop: "1rem",
+        marginBottom: "1rem",
         fontSize: "1.2rem",
         lineHeight: "1.55",
       }}

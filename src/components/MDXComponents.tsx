@@ -2,7 +2,9 @@ import Image from "next/image";
 
 import Link from "@components/Link";
 import Paragraph from "@components/Paragraph";
-import Lists from "@components/Lists";
+import ULists from "@components/ULists";
+import OLists from "@components/OLists";
+import Code from "@components/Code";
 
 //@ts-ignore
 const CustomLink = (props) => {
@@ -39,7 +41,9 @@ const MDXComponents = {
   Image,
   a: CustomLink,
   p: (props: any) => <Paragraph {...props} />,
-  ul: (props: any) => <Lists {...props} />,
+  ul: (props: any) => <ULists {...props} />,
+  ol: (props: any) => <OLists {...props} />,
+  code: Code,
 };
 
 export default MDXComponents;
