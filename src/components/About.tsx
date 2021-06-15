@@ -40,7 +40,7 @@ export default function About() {
           About Me
         </Typography>
         <Avatar
-          alt="my profile image"
+          alt="Victor Aiyeola"
           src="/static/images/avatar.jpg"
           className={classes.large}
         />

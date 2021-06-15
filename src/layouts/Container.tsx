@@ -60,7 +60,7 @@ export default function Container(props: Props) {
         <meta name="robots" content="index,follow" />
         <meta
           name="keywords"
-          content="aiyeola,victor,developer,personal website,blog,javascript,react"
+          content="victor,aiyeola,developer,personal website,blog,javascript"
         />
         <meta content={meta.description} name="description" />
         <meta

@@ -10,7 +10,6 @@ const __prod__ = process.env.NODE_ENV === "production";
 const nextConfig = {
   future: {
     webpack5: true,
-    strictPostcssConfiguration: true,
   },
   images: {
     domains: [
