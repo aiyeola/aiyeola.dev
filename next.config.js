@@ -8,9 +8,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const __prod__ = process.env.NODE_ENV === "production";
 
 const nextConfig = {
-  future: {
-    webpack5: true,
-  },
   images: {
     domains: [
       "i.scdn.co", // Spotify Album Art

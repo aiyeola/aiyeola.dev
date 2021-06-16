@@ -218,7 +218,7 @@ export default function Header() {
                 {isDark ? (
                   <Image
                     src="/logos/white-logo.png"
-                    alt="logo"
+                    alt="Victor Aiyeola"
                     width={50}
                     height={50}
                     priority
@@ -226,7 +226,7 @@ export default function Header() {
                 ) : (
                   <Image
                     src="/logos/black-logo.png"
-                    alt="logo"
+                    alt="Victor Aiyeola"
                     width={50}
                     height={50}
                     priority
