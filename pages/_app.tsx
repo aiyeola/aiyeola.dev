@@ -8,7 +8,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider, responsiveFontSizes } from "@material-ui/core/styles";
 import useDarkMode from "use-dark-mode";
 
-import "../styles/global.css";
+import "styles/global.css";
 import { darkTheme, lightTheme } from "src/theme";
 import MDXComponents from "@components/MDXComponents";
 import "@lib/firebaseClient";
