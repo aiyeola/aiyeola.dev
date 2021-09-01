@@ -46,8 +46,9 @@ export default function Container(props: Props) {
   };
 
   const meta = {
-    title: "Victor Aiyeola – Software Developer",
-    description: "Javascript Software Developer - Personal website and blog",
+    title: "Victor Aiyeola – Software Developer, BI developer",
+    description:
+      "Javascript software developer, Business intelligence developer.",
     image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
     ...customMeta,
@@ -57,12 +58,13 @@ export default function Container(props: Props) {
     <>
       <Head>
         <title>{meta.title}</title>
-        <meta name="robots" content="index,follow" />
+        <meta name="robots" content="follow, index" />
         <meta
           name="keywords"
-          content="victor,aiyeola,developer,personal website,blog,javascript"
+          content="victor, aiyeola, developer, personal website, blog, javascript, typescript"
         />
-        <meta content={meta.description} name="description" />
+        <meta name="author" content="Victor Aiyeola" />
+        <meta name="description" content={meta.description} />
         <meta
           property="og:url"
           content={`https://aiyeola.dev${router.asPath}`}
