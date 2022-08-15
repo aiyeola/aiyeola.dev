@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import Paragraph from "@components/Paragraph";
 import ULists from "@components/ULists";
 import OLists from "@components/OLists";

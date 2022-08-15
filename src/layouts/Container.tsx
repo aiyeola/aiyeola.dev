@@ -69,7 +69,9 @@ export default function Container(props: Props) {
       </Head>
       <Flex
         flexDirection="column"
-        justifyContent="center"
+        justifyContent="space-between"
+        width="100%"
+        mx="auto"
         sx={{
           minHeight: "100vh",
         }}
@@ -81,6 +83,7 @@ export default function Container(props: Props) {
           px="2rem"
           mt="1rem"
           mb="2rem"
+          mx="auto"
         >
           <Flex
             flexDirection="column"
@@ -90,9 +93,8 @@ export default function Container(props: Props) {
           >
             {children}
           </Flex>
-
-          <Footer />
         </Flex>
+        <Footer />
       </Flex>
     </>
   );

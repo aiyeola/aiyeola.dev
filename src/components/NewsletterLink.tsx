@@ -1,6 +1,6 @@
 import { parseISO, format } from "date-fns";
 
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 
 export default function NewsletterLink({ slug, publishedAt }) {
   return (

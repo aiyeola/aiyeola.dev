@@ -1,30 +1,25 @@
 import { makeStyles } from "@mui/styles";
-import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Text from "@components/MuiComposed/Text";
 import Divider from "@mui/material/Divider";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import NowPlaying from "@components/NowPlaying";
+import Flex from "@components/MuiComposed/Flex";
+import Text from "@components/MuiComposed/Text";
 
 const useStyles = makeStyles((theme) => ({
-  link: {
-    "&:not(:last-child)": {
-      marginRight: "1rem",
-    },
-  },
   footerLink: {
     fontSize: "1.25rem",
     fontWeight: 500,
     "&:not(:last-child)": {
       marginRight: "2rem",
       marginBottom: 0,
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down("sm")]: {
         marginBottom: "1rem",
       },
       [theme.breakpoints.down(360)]: {
@@ -44,132 +39,112 @@ export default function Footer() {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery("(max-width: 360px)");
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <>
-      <Grid
-        item
-        container
-        direction={matches ? "column" : "row"}
-        justifyContent="space-between"
-        style={{
+    <Flex
+      flexDirection="column"
+      alignItems="center"
+      px="2rem"
+      mt="1rem"
+      mb="2rem"
+      mx="auto"
+      width="100%"
+    >
+      <Flex
+        flexDirection="column"
+        width="100%"
+        sx={{
+          maxWidth: matchesXS ? "100vw" : "46rem",
           marginTop: "auto",
           paddingTop: "2rem",
-          maxWidth: "46rem",
         }}
       >
-        <Grid item container>
-          <Divider
-            style={{
-              width: "100%",
-              marginBottom: "1rem",
-            }}
-          />
-
-          <NowPlaying />
-        </Grid>
-
-        <Grid
-          item
-          container
-          direction={matchesXS ? "column" : "row"}
+        <Divider
           style={{
-            marginBottom: "2rem",
+            width: "100%",
+            marginBottom: "1rem",
           }}
-        >
-          <Grid
-            item
-            md
-            container
-            style={{
-              display: "flex",
-              flexDirection: matchesXS ? "column" : "row",
+        />
+
+        <NowPlaying />
+
+        <Flex flexDirection={matchesXS ? "column" : "row"} mb="2rem">
+          <Flex flexDirection={matchesXS ? "column" : "row"}>
+            <Flex className={classes.footerLink}>
+              <Link href="/">Home</Link>
+            </Flex>
+            <Flex className={classes.footerLink}>
+              <Link href="/about">About</Link>
+            </Flex>
+            <Flex className={classes.footerLink}>
+              <Link href="/guestbook">Guestbook</Link>
+            </Flex>
+            <Flex className={classes.footerLink}>
+              <Link href="/newsletter">Newsletter</Link>
+            </Flex>
+          </Flex>
+        </Flex>
+
+        <Flex justifyContent="space-between">
+          <Flex
+            sx={{
+              alignSelf: "center",
+              marginBottom: matches ? "1.2rem" : 0,
             }}
           >
-            <Grid item className={classes.footerLink}>
-              <Text component="span">
-                <Link href="/">Home</Link>
-              </Text>
-            </Grid>
-            <Grid item className={classes.footerLink}>
-              <Text component="span">
-                <Link href="/about">About</Link>
-              </Text>
-            </Grid>
-            <Grid item className={classes.footerLink}>
-              <Text component="span">
-                <Link href="/guestbook">Guestbook</Link>
-              </Text>
-            </Grid>
-            <Grid item className={classes.footerLink}>
-              <Text component="span">
-                <Link href="/newsletter">Newsletter</Link>
-              </Text>
-            </Grid>
-          </Grid>
-        </Grid>
+            <Text
+              sx={{
+                flex: 1,
+              }}
+              variant="subtitle2"
+            >
+              &copy; Victor Aiyeola {new Date().getFullYear()}
+            </Text>
+          </Flex>
 
-        <Grid
-          item
-          style={{
-            alignSelf: "center",
-            marginBottom: matches ? "1.2rem" : 0,
-          }}
-        >
-          <Text
-            style={{
-              flex: 1,
+          <Flex
+            sx={{
+              alignSelf: "center",
+              "& :not(:last-child)": {
+                marginRight: "1rem",
+              },
             }}
-            variant="subtitle2"
           >
-            &copy; Victor Aiyeola {new Date().getFullYear()}
-          </Text>
-        </Grid>
+            <Link
+              href="https://github.com/aiyeola"
+              target="_blank"
+              rel="noopener"
+            >
+              <GitHubIcon className={classes.hover} />
+            </Link>
 
-        <Grid
-          item
-          style={{
-            alignSelf: "center",
-          }}
-        >
-          <Link
-            href="https://github.com/aiyeola"
-            target="_blank"
-            rel="noopener"
-            className={classes.link}
-          >
-            <GitHubIcon className={classes.hover} />
-          </Link>
+            <Link
+              href="https://twitter.com/victor_aiyeola"
+              target="_blank"
+              rel="noopener"
+            >
+              <TwitterIcon className={classes.hover} />
+            </Link>
 
-          <Link
-            href="https://twitter.com/victor_aiyeola"
-            target="_blank"
-            rel="noopener"
-            className={classes.link}
-          >
-            <TwitterIcon className={classes.hover} />
-          </Link>
+            <Link
+              href="https://web.facebook.com/victoraiyeoladev"
+              target="_blank"
+              rel="noopener"
+            >
+              <FacebookIcon className={classes.hover} />
+            </Link>
 
-          <Link
-            href="https://web.facebook.com/victoraiyeoladev"
-            target="_blank"
-            rel="noopener"
-            className={classes.link}
-          >
-            <FacebookIcon className={classes.hover} />
-          </Link>
-
-          <Link
-            href="https://www.linkedin.com/in/victor-aiyeola"
-            target="_blank"
-            rel="noopener"
-            className={classes.link}
-          >
-            <LinkedInIcon className={classes.hover} />
-          </Link>
-        </Grid>
-      </Grid>
-    </>
+            <Link
+              href="https://www.linkedin.com/in/victor-aiyeola"
+              target="_blank"
+              rel="noopener"
+            >
+              <LinkedInIcon className={classes.hover} />
+            </Link>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }

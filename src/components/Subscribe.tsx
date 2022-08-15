@@ -9,7 +9,7 @@ import Text from "@components/MuiComposed/Text";
 import { makeStyles } from "@mui/styles";
 
 import fetcher from "@lib/fetcher";
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 

@@ -6,7 +6,6 @@ import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Modal from "@mui/material/Modal";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
@@ -16,7 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import useDarkMode from "use-dark-mode";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import routes from "routes";
 import Text from "@components/MuiComposed/Text";
 import Flex from "@components/MuiComposed/Flex";
@@ -265,7 +264,7 @@ export default function Header() {
                 </IconButton>
               </Flex>
             </Flex>
-            <Flex flexDirection="column" my=".6rem" mx="0">
+            <Flex flexDirection="column" my=".6rem" mx={0}>
               <List disablePadding>
                 {React.Children.toArray(
                   routes.map((route) => (

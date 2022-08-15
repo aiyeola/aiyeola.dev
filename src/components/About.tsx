@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 
 const useStyles = makeStyles((theme) => ({
   large: {

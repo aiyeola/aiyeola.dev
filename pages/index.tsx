@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import BlogPost from "@components/BlogPost";
 import Subscribe from "@components/Subscribe";
 import Text from "@components/MuiComposed/Text";

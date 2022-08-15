@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import useSWR from "swr";
 import format from "comma-number";
 
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
 import fetcher from "@lib/fetcher";
 
 type Posts = {

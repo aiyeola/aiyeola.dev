@@ -1,36 +1,25 @@
 import useSWR from "swr";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Text from "@components/MuiComposed/Text";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 
 import fetcher from "@lib/fetcher";
-import Link from "@components/Link";
+import Link from "@components/MuiComposed/Link";
+import Flex from "@components/MuiComposed/Flex";
 
 export default function NowPlaying() {
   const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { data } = useSWR("/api/now-playing", fetcher);
 
   return (
-    <Grid
-      item
-      container
-      style={{
-        marginBottom: "2rem",
-      }}
-    >
-      <Grid
-        item
-        style={{
-          display: "flex",
-          flexDirection: matchesXS ? "row-reverse" : "row",
-          alignItems: "center",
-          width: "100%",
-        }}
+    <Flex mb="2rem">
+      <Flex
+        alignItems="center"
+        flexDirection={matchesXS ? "row-reverse" : "row"}
       >
         {data?.songUrl && data.isPlaying ? (
           <Image
@@ -117,7 +106,7 @@ export default function NowPlaying() {
             {data?.artist ?? "Spotify"}
           </Text>
         </Box>
-      </Grid>
-    </Grid>
+      </Flex>
+    </Flex>
   );
 }
