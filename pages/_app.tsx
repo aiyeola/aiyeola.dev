@@ -44,22 +44,6 @@ function App(props: Props) {
     ? responsiveFontSizes(darkTheme)
     : responsiveFontSizes(lightTheme);
 
-  // const themeConfig = responsiveFontSizes(lightTheme);
-  const themeObject = {
-    true: responsiveFontSizes(darkTheme),
-    false: responsiveFontSizes(lightTheme),
-  };
-
-  // const themeConfig = React.useMemo(() => themeObject[isDark], [isDark]);
-
-  // const themeConfig = React.useMemo(() => {
-  //   if (isDark) {
-  //     responsiveFontSizes(darkTheme);
-  //   } else {
-  //     responsiveFontSizes(lightTheme);
-  //   }
-  // }, [isDark]);
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>

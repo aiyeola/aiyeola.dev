@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";
@@ -26,9 +26,9 @@ export default function Blog({ posts }: { posts: Posts[] }) {
       title="Blog – Victor Aiyeola"
       description="Thoughts on the software industry, programming, tech, and my personal life."
     >
-      <Typography variant="h2" paragraph>
+      <Text variant="h2" paragraph>
         All Posts
-      </Typography>
+      </Text>
       {!filteredBlogPosts.length && "No posts found."}
       {filteredBlogPosts.map((frontMatter) => (
         <BlogPost key={frontMatter.title} {...frontMatter} />

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { parseISO, format as formatDate } from "date-fns";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useSWR from "swr";
@@ -63,9 +63,9 @@ export default function BlogLayout({
       type="article"
     >
       <Grid item>
-        <Typography variant="h3" style={{ lineHeight: 1.4 }} paragraph>
+        <Text variant="h3" style={{ lineHeight: 1.4 }} paragraph>
           {frontMatter.title}
-        </Typography>
+        </Text>
       </Grid>
       <Grid
         item
@@ -80,17 +80,17 @@ export default function BlogLayout({
             marginBottom: matchesXS ? "0.4rem" : 0,
           }}
         >
-          <Typography variant="subtitle2">
+          <Text variant="subtitle2">
             {"Victor Aiyeola / "}
             {formatDate(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
-          </Typography>
+          </Text>
         </Grid>
         <Grid item>
-          <Typography variant="subtitle2">
+          <Text variant="subtitle2">
             {frontMatter.readingTime.text}
             {` • `}
             {`${views ? format(views) : "–––"} views`}
-          </Typography>
+          </Text>
         </Grid>
       </Grid>
 

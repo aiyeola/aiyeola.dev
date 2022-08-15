@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import Avatar from "@mui/material/Avatar";
 import { makeStyles } from "@mui/styles";
 import { useTheme } from '@mui/material/styles';
@@ -30,7 +30,7 @@ export default function About() {
           alignSelf: matchesXS ? "center" : undefined,
         }}
       >
-        <Typography
+        <Text
           variant="h2"
           paragraph
           style={{
@@ -38,7 +38,7 @@ export default function About() {
           }}
         >
           About Me
-        </Typography>
+        </Text>
         <Avatar
           alt="Victor Aiyeola"
           src="/static/images/avatar.jpg"
@@ -47,13 +47,13 @@ export default function About() {
       </Grid>
 
       <Grid item>
-        <Typography gutterBottom>
+        <Text gutterBottom>
           Hi, I'm Victor Aiyeola 😉. JavaScript software developer based in
           Lagos, Nigeria. I see every day as an opportunity to become
           world-class 🌍.
-        </Typography>
+        </Text>
 
-        <Typography>
+        <Text>
           I'll be writing here about development, techie stuff, and personal
           experiences. Kindly subscribe to my{" "}
           <Link
@@ -67,7 +67,7 @@ export default function About() {
             newsletter
           </Link>{" "}
           to be kept posted.
-        </Typography>
+        </Text>
       </Grid>
     </LayoutContainer>
   );

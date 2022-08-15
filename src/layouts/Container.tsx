@@ -1,31 +1,11 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Header from "@layouts/Header";
 import Footer from "@layouts/Footer";
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    maxWidth: "46rem !important",
-    [theme.breakpoints.down("xs")]: {
-      maxWidth: "100vw",
-    },
-  },
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-    marginBottom: "3.3em",
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "2.3em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: "1.25em",
-    },
-  },
-}));
+import Flex from "@components/MuiComposed/Flex";
 
 type Props = {
   children: React.ReactNode;
@@ -37,7 +17,6 @@ type Props = {
 };
 
 export default function Container(props: Props) {
-  const classes = useStyles();
   const theme = useTheme();
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
@@ -88,41 +67,33 @@ export default function Container(props: Props) {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <Grid
-        container
+      <Flex
+        flexDirection="column"
         justifyContent="center"
         sx={{
           minHeight: "100vh",
         }}
       >
         <Header />
-        <div className={classes.toolbarMargin} />
-        <Grid
-          item
-          container
-          direction="column"
+        <Flex
+          flexDirection="column"
           alignItems="center"
-          sx={{
-            paddingLeft: "2rem",
-            paddingRight: "2rem",
-            marginTop: "1rem",
-            marginBottom: "2rem",
-          }}
+          px="2rem"
+          mt="1rem"
+          mb="2rem"
         >
-          <Grid
-            item
-            container
-            direction="column"
+          <Flex
+            flexDirection="column"
             sx={{
-              maxWidth: matchesXS ? "46rem" : "100vw",
+              maxWidth: matchesXS ? "100vw" : "46rem",
             }}
           >
             {children}
-          </Grid>
+          </Flex>
 
           <Footer />
-        </Grid>
-      </Grid>
+        </Flex>
+      </Flex>
     </>
   );
 }

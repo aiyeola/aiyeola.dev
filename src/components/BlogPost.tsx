@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import { useTheme } from "@mui/material/styles";
 import useSWR from "swr";
 import format from "comma-number";
@@ -42,19 +42,19 @@ export default function BlogPost(props: Posts) {
         }}
       >
         <Link href={`/blog/${slug}`}>
-          <Typography
+          <Text
             style={{
               fontWeight: "bold",
             }}
           >
             {title}
-          </Typography>
+          </Text>
         </Link>
       </Grid>
       <Grid item>
-        <Typography variant="subtitle1">
+        <Text variant="subtitle1">
           {`${views ? format(views) : "––"} views`}
-        </Typography>
+        </Text>
       </Grid>
     </Grid>
   );

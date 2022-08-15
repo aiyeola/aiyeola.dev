@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import { makeStyles } from "@mui/styles";
 
 import fetcher from "@lib/fetcher";
@@ -70,7 +70,7 @@ export default function Subscribe() {
   return (
     <>
       <Grid item className={classes.guestBox}>
-        <Typography
+        <Text
           variant="h6"
           gutterBottom
           style={{
@@ -78,11 +78,11 @@ export default function Subscribe() {
           }}
         >
           Subscribe to the newsletter
-        </Typography>
-        <Typography variant="body1" paragraph>
+        </Text>
+        <Text variant="body1" paragraph>
           Get emails from me about web development, techie stuff, and latest
           articles.
-        </Typography>
+        </Text>
 
         <form>
           <TextField
@@ -119,7 +119,7 @@ export default function Subscribe() {
         ) : form.state === "success" ? (
           <SuccessMessage>{form.message}</SuccessMessage>
         ) : (
-          <Typography
+          <Text
             variant="subtitle2"
             style={{
               color: "grey",
@@ -128,7 +128,7 @@ export default function Subscribe() {
           >
             {`${subscriberCount || "-"} subscribers – `}
             <Link href="/newsletter">4 issues</Link>
-          </Typography>
+          </Text>
         )}
       </Grid>
     </>

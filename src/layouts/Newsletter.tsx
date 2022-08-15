@@ -1,7 +1,7 @@
 import * as React from "react";
 import { parseISO, format } from "date-fns";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -46,9 +46,9 @@ export default function NewsletterLayout({
       type="article"
     >
       <Grid item>
-        <Typography variant="h3" style={{ lineHeight: 1 }} paragraph>
+        <Text variant="h3" style={{ lineHeight: 1 }} paragraph>
           {frontMatter.title}
-        </Typography>
+        </Text>
       </Grid>
       <Grid
         item
@@ -63,15 +63,15 @@ export default function NewsletterLayout({
             marginBottom: matchesXS ? "0.4rem" : 0,
           }}
         >
-          <Typography variant="subtitle2">
+          <Text variant="subtitle2">
             {"Victor Aiyeola / "}
             {format(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
-          </Typography>
+          </Text>
         </Grid>
         <Grid item>
-          <Typography variant="subtitle2">
+          <Text variant="subtitle2">
             {frontMatter.readingTime.text}
-          </Typography>
+          </Text>
         </Grid>
       </Grid>
 

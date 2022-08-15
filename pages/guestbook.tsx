@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 import redis from "@lib/redis";
 import Container from "@layouts/Container";
@@ -24,7 +24,7 @@ export default function GuestbookPage({
       description="Sign my digital guestbook and share some wisdom."
     >
       <Grid item>
-        <Typography
+        <Text
           variant="h2"
           gutterBottom
           style={{
@@ -32,11 +32,11 @@ export default function GuestbookPage({
           }}
         >
           Guestbook
-        </Typography>
-        <Typography paragraph>
+        </Text>
+        <Text paragraph>
           Leave a comment below. It could be anything – appreciation,
           information, wisdom, or even humor. Surprise me!
-        </Typography>
+        </Text>
       </Grid>
       <Grid item>
         <Guestbook initialEntries={initialEntries} />

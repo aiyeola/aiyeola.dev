@@ -1,26 +1,26 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Grid from "@mui/material/Grid";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import IconButton from "@mui/material/IconButton";
-import { makeStyles } from "@mui/styles";
 import { useTheme } from "@mui/material/styles";
-import Hidden from "@mui/material/Hidden";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import Modal from "@mui/material/Modal";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import Typography from "@mui/material/Typography";
 import useDarkMode from "use-dark-mode";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import Link from "@components/Link";
 import routes from "routes";
+import Text from "@components/MuiComposed/Text";
+import Flex from "@components/MuiComposed/Flex";
+import HamburgerIcon from "@assets/HamburgerIcon";
 
 type Props = {
   children: React.ReactElement;
@@ -37,64 +37,23 @@ function ElevationScroll(props: Props) {
   });
 }
 
-const useStyles = makeStyles((theme) => ({
-  link: {
-    fontSize: "1.25rem",
-    fontWeight: 500,
-    color:
-      theme.palette.mode === "dark"
-        ? theme.palette.common.white
-        : theme.palette.common.black,
-    "&:not(:last-child)": {
-      marginRight: "2rem",
-    },
-  },
-  appBar: {
-    backgroundColor: "inherit",
-    backdropFilter: "saturate(180%) blur(20px)",
-    height: "100%",
-    marginTop: "1rem",
-    boxShadow: "none",
-  },
-  drawerIcon: {
-    height: "30px",
-    width: "30px",
-    color:
-      theme.palette.mode === "dark"
-        ? theme.palette.common.white
-        : theme.palette.common.black,
-  },
-  modal: {
-    display: "flex",
-    alignItems: "flex-start",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    padding: "15px 18px",
-    width: "97%",
-    boxShadow:
-      "0 10px 15px -8px rgba(0, 0, 0, 0.1), 0 4px 6px 6px rgba(0, 0, 0, 0.05);",
-  },
-}));
-
 export default function Header() {
-  const classes = useStyles();
   const theme = useTheme();
   const { value: isDark, toggle: toggleDarkMode } = useDarkMode();
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const modalMenu = useRef();
+  const matchesXS = useMediaQuery(theme.breakpoints.up("sm"));
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => setMounted(true), []);
 
-  const handleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const handleMenu = () => setMenuOpen(!menuOpen);
 
   useEffect(() => {
     window.addEventListener("resize", resizeFunction);
-    return function cleanup() {
+
+    () => {
       window.removeEventListener("resize", resizeFunction);
     };
   }, [modalMenu]);
@@ -105,79 +64,80 @@ export default function Header() {
     }
   };
 
+  const logo = {
+    0: (
+      <Image
+        src="/logos/black-logo.png"
+        alt="Victor Aiyeola"
+        width={50}
+        height={50}
+        priority
+      />
+    ),
+    1: (
+      <Image
+        src="/logos/white-logo.png"
+        alt="Victor Aiyeola"
+        width={50}
+        height={50}
+        priority
+      />
+    ),
+  };
+
   return (
     <>
       <ElevationScroll>
         <AppBar
           position="sticky"
           color="inherit"
-          elevation={0}
-          className={classes.appBar}
+          enableColorOnDark
+          sx={{
+            backgroundColor: "inherit",
+            backdropFilter: "saturate(180%) blur(20px)",
+            height: "100%",
+            marginTop: "1rem",
+            boxShadow: "none",
+          }}
         >
           <Toolbar>
-            <Grid
-              item
-              container
+            <Flex
               justifyContent="space-between"
               alignItems="center"
-              style={{
+              px="1rem"
+              sx={{
+                width: "100%",
                 maxWidth: "56rem",
                 position: "sticky",
                 top: 0,
-                paddingLeft: "1rem",
-                paddingRight: "1rem",
               }}
             >
-              <Grid
-                item
-                style={{
-                  marginBottom: "1rem",
-                  marginTop: "1rem",
-                }}
-              >
-                <Link href="/">
-                  {isDark ? (
-                    <Image
-                      src="/logos/white-logo.png"
-                      alt="Victor Aiyeola"
-                      width={50}
-                      height={50}
-                      priority
-                    />
-                  ) : (
-                    <Image
-                      src="/logos/black-logo.png"
-                      alt="Victor Aiyeola"
-                      width={50}
-                      height={50}
-                      priority
-                    />
-                  )}
-                </Link>
-              </Grid>
+              <Flex my="1rem">
+                <Link href="/">{logo[Number(isDark)]}</Link>
+              </Flex>
 
-              <Hidden xsDown>
-                <Grid
-                  item
-                  style={{
-                    marginLeft: "auto",
-                    marginRight: "1rem",
-                  }}
-                >
-                  {React.Children.toArray(
-                    routes.map((route) => (
-                      <Typography
-                        href={route.path}
-                        component={Link}
-                        className={classes.link}
-                      >
-                        {route.name}
-                      </Typography>
-                    )),
-                  )}
-                </Grid>
+              {matchesXS && (
+                <>
+                  <Flex ml="auto" mr="1rem">
+                    {React.Children.toArray(
+                      routes.map((route) => (
+                        <Text
+                          href={route.path}
+                          component={Link}
+                          sx={{
+                            fontSize: "1.25rem",
+                            fontWeight: 500,
+                            "&:not(:last-child)": {
+                              marginRight: "2rem",
+                            },
+                          }}
+                        >
+                          {route.name}
+                        </Text>
+                      )),
+                    )}
+                  </Flex>
 
-                <Grid item>
                   <IconButton onClick={toggleDarkMode}>
                     {mounted && (
                       <svg
@@ -216,31 +176,31 @@ export default function Header() {
                       </svg>
                     )}
                   </IconButton>
-                </Grid>
-              </Hidden>
+                </>
+              )}
 
-              <Hidden smUp>
-                <Grid
-                  item
-                  style={{
-                    marginLeft: "auto",
-                  }}
-                >
+              {matchesSM && (
+                <Flex ml="auto">
                   <IconButton onClick={handleMenu} disableRipple>
-                    <MenuRoundedIcon className={classes.drawerIcon} />
+                    <HamburgerIcon
+                      style={{
+                        fill:
+                          theme.palette.mode === "light"
+                            ? theme.palette.common.black
+                            : theme.palette.common.white,
+                      }}
+                    />
                   </IconButton>
-                </Grid>
-              </Hidden>
-            </Grid>
+                </Flex>
+              )}
+            </Flex>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
 
       <Modal
-        className={classes.modal}
         open={menuOpen}
         onClose={handleMenu}
-        // onBackdropClick={handleMenu}
         closeAfterTransition
         disableEscapeKeyDown
         ref={modalMenu.current}
@@ -248,7 +208,10 @@ export default function Header() {
           invisible: true,
         }}
         sx={{
-          marginTop: 8,
+          marginTop: 2,
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "center",
         }}
       >
         <Grow
@@ -257,37 +220,20 @@ export default function Header() {
             transformOrigin: "top right",
           }}
         >
-          <Paper className={classes.paper} elevation={0}>
-            <Grid container>
-              <Grid item>
-                <Link href="/">
-                  {isDark ? (
-                    <Image
-                      src="/logos/white-logo.png"
-                      alt="Victor Aiyeola"
-                      width={50}
-                      height={50}
-                      priority
-                    />
-                  ) : (
-                    <Image
-                      src="/logos/black-logo.png"
-                      alt="Victor Aiyeola"
-                      width={50}
-                      height={50}
-                      priority
-                    />
-                  )}
-                </Link>
-              </Grid>
-
-              <Grid
-                item
-                style={{
-                  marginLeft: "auto",
-                }}
-              >
-                <IconButton onClick={toggleDarkMode}>
+          <Paper
+            elevation={0}
+            sx={{
+              backgroundColor: theme.palette.background.paper,
+              padding: "15px 18px",
+              width: "97%",
+              boxShadow:
+                "0 10px 15px -8px rgba(0, 0, 0, 0.1), 0 4px 6px 6px rgba(0, 0, 0, 0.05);",
+            }}
+          >
+            <Flex>
+              <Link href="/">{logo[Number(isDark)]}</Link>
+              <Flex ml="auto">
+                <IconButton onClick={toggleDarkMode} disableRipple>
                   {mounted && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -317,33 +263,23 @@ export default function Header() {
                     </svg>
                   )}
                 </IconButton>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              direction="column"
-              style={{
-                margin: ".6rem 0",
-              }}
-            >
+              </Flex>
+            </Flex>
+            <Flex flexDirection="column" my=".6rem" mx="0">
               <List disablePadding>
                 {React.Children.toArray(
-                  routes.map((route) => {
-                    return (
-                      <ListItem
-                        button
-                        component={Link}
-                        href={`${route.path}`}
-                        className={classes.link}
-                        onClick={handleMenu}
-                      >
-                        <ListItemText primary={route.name} />
-                      </ListItem>
-                    );
-                  }),
+                  routes.map((route) => (
+                    <ListItemButton
+                      component={Link}
+                      href={route.path}
+                      onClick={handleMenu}
+                    >
+                      <ListItemText primary={route.name} />
+                    </ListItemButton>
+                  )),
                 )}
               </List>
-            </Grid>
+            </Flex>
           </Paper>
         </Grow>
       </Modal>

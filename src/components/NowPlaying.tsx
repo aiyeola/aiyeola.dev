@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from '@mui/material/styles';
 import Image from "next/image";
@@ -70,7 +70,7 @@ export default function NowPlaying() {
           }}
         >
           {data?.songUrl && data.isPlaying ? (
-            <Typography
+            <Text
               style={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
@@ -87,17 +87,17 @@ export default function NowPlaying() {
               >
                 {data.title}
               </Link>
-            </Typography>
+            </Text>
           ) : (
-            <Typography
+            <Text
               style={{
                 fontWeight: "bold",
               }}
             >
               Not Playing
-            </Typography>
+            </Text>
           )}
-          <Typography
+          <Text
             component="span"
             style={{
               margin: "0 0.5rem",
@@ -105,8 +105,8 @@ export default function NowPlaying() {
             }}
           >
             {" – "}
-          </Typography>
-          <Typography
+          </Text>
+          <Text
             style={{
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -115,7 +115,7 @@ export default function NowPlaying() {
             }}
           >
             {data?.artist ?? "Spotify"}
-          </Typography>
+          </Text>
         </Box>
       </Grid>
     </Grid>

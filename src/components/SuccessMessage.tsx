@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 export default function SuccessMessage({ children }: { children: string }) {
   return (
@@ -12,7 +12,7 @@ export default function SuccessMessage({ children }: { children: string }) {
       }}
     >
       <Grid item>
-        <Typography
+        <Text
           variant="subtitle2"
           style={{
             color: "#0a740a",
@@ -39,7 +39,7 @@ export default function SuccessMessage({ children }: { children: string }) {
           </svg>
 
           {children}
-        </Typography>
+        </Text>
       </Grid>
     </Grid>
   );

@@ -9,6 +9,15 @@ declare module "@mui/styles" {
 }
 
 const coreThemeObject = {
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   typography: {
     fontFamily: "Quicksand",
     h1: {
@@ -92,21 +101,15 @@ const coreThemeObject = {
   // },
 };
 
-// //@ts-ignore
-// export const darkTheme = createTheme({
-//   ...coreThemeObject,
-//   palette: {
-//     mode: "dark",
-//   },
-// });
+//@ts-ignore
+export const darkTheme = createTheme({
+  ...coreThemeObject,
+  palette: {
+    mode: "dark",
+  },
+});
 
 //@ts-ignore
 export const lightTheme = createTheme({
   ...coreThemeObject,
-});
-
-export const darkTheme = createTheme(lightTheme, {
-  palette: {
-    mode: "dark",
-  },
 });

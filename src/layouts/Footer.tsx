@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import Divider from "@mui/material/Divider";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -88,24 +88,24 @@ export default function Footer() {
             }}
           >
             <Grid item className={classes.footerLink}>
-              <Typography component="span">
+              <Text component="span">
                 <Link href="/">Home</Link>
-              </Typography>
+              </Text>
             </Grid>
             <Grid item className={classes.footerLink}>
-              <Typography component="span">
+              <Text component="span">
                 <Link href="/about">About</Link>
-              </Typography>
+              </Text>
             </Grid>
             <Grid item className={classes.footerLink}>
-              <Typography component="span">
+              <Text component="span">
                 <Link href="/guestbook">Guestbook</Link>
-              </Typography>
+              </Text>
             </Grid>
             <Grid item className={classes.footerLink}>
-              <Typography component="span">
+              <Text component="span">
                 <Link href="/newsletter">Newsletter</Link>
-              </Typography>
+              </Text>
             </Grid>
           </Grid>
         </Grid>
@@ -117,14 +117,14 @@ export default function Footer() {
             marginBottom: matches ? "1.2rem" : 0,
           }}
         >
-          <Typography
+          <Text
             style={{
               flex: 1,
             }}
             variant="subtitle2"
           >
             &copy; Victor Aiyeola {new Date().getFullYear()}
-          </Typography>
+          </Text>
         </Grid>
 
         <Grid

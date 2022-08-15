@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 import { makeStyles } from "@mui/styles";
 
 import fetcher from "@lib/fetcher";
@@ -54,7 +54,7 @@ function GuestbookEntry({ entry, user }) {
           marginBottom: ".5rem",
         }}
       >
-        <Typography variant="h6">{entry.body}</Typography>
+        <Text variant="h6">{entry.body}</Text>
       </Grid>
       <Grid
         item
@@ -62,7 +62,7 @@ function GuestbookEntry({ entry, user }) {
           marginBottom: "1rem",
         }}
       >
-        <Typography
+        <Text
           component={"span"}
           variant="subtitle2"
           style={{
@@ -70,8 +70,8 @@ function GuestbookEntry({ entry, user }) {
           }}
         >
           {entry.created_by}
-        </Typography>
-        <Typography
+        </Text>
+        <Text
           component={"span"}
           variant="subtitle2"
           style={{
@@ -80,7 +80,7 @@ function GuestbookEntry({ entry, user }) {
         >
           {" "}
           / {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}{" "}
-        </Typography>
+        </Text>
         {user && entry.created_by === user.name && (
           <>
             /
@@ -170,7 +170,7 @@ export default function Guestbook({
   return (
     <>
       <Grid item className={classes.guestBox}>
-        <Typography
+        <Text
           variant="h6"
           gutterBottom
           style={{
@@ -178,10 +178,10 @@ export default function Guestbook({
           }}
         >
           Sign the Guestbook
-        </Typography>
-        <Typography variant="body1" paragraph>
+        </Text>
+        <Text variant="body1" paragraph>
           Share a message for a future visitor of my site.
-        </Typography>
+        </Text>
         {user?.name ? (
           <TextField
             fullWidth
@@ -220,7 +220,7 @@ export default function Guestbook({
         ) : form.state === "success" ? (
           <SuccessMessage>{form.message}</SuccessMessage>
         ) : (
-          <Typography
+          <Text
             variant="subtitle2"
             style={{
               color: "grey",
@@ -229,7 +229,7 @@ export default function Guestbook({
           >
             Your information is only used to display your name and reply by
             email.
-          </Typography>
+          </Text>
         )}
       </Grid>
 

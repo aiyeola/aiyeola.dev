@@ -1,8 +1,8 @@
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 export default function Paragraph(props) {
   return (
-    <Typography
+    <Text
       variant="body1"
       style={{
         marginTop: "1rem",

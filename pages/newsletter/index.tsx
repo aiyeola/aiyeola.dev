@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";
@@ -29,7 +29,7 @@ export default function Newsletter({
           marginBottom: "1rem",
         }}
       >
-        <Typography
+        <Text
           variant="h2"
           paragraph
           style={{
@@ -37,12 +37,12 @@ export default function Newsletter({
           }}
         >
           Newsletter
-        </Typography>
-        <Typography>
+        </Text>
+        <Text>
           My newsletter provides a sneak peek into what I'm working on, projects
           that interest me and things I'm writing about. Things fascinating
           about the tech space will also be shared.
-        </Typography>
+        </Text>
       </Grid>
 
       <Subscribe />
@@ -53,9 +53,9 @@ export default function Newsletter({
           marginTop: "1rem",
         }}
       >
-        <Typography variant="h4" paragraph>
+        <Text variant="h4" paragraph>
           Archive
-        </Typography>
+        </Text>
         <Box>
           <ul>
             {newsletters

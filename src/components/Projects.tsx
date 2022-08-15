@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+import Text from "@components/MuiComposed/Text";
 
 import LayoutContainer from "src/layouts/Container";
 
@@ -7,16 +7,16 @@ export default function Projects() {
   return (
     <LayoutContainer title="Projects - Victor Aiyeola">
       <Grid item>
-        <Typography
+        <Text
           style={{
             letterSpacing: "0.13rem",
           }}
         >
           Projects
-        </Typography>
-        <Typography>
+        </Text>
+        <Text>
           The validation of your work is what makes you pro
-        </Typography>
+        </Text>
       </Grid>
     </LayoutContainer>
   );

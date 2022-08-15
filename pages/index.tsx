@@ -1,12 +1,12 @@
 import { GetStaticProps } from "next";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
 import Link from "@components/Link";
 import BlogPost from "@components/BlogPost";
 import Subscribe from "@components/Subscribe";
+import Text from "@components/MuiComposed/Text";
 
 type Posts = {
   title: string;
@@ -33,7 +33,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
             marginBottom: "2rem",
           }}
         >
-          <Typography
+          <Text
             variant="h2"
             paragraph
             sx={{
@@ -41,8 +41,8 @@ export default function Home({ posts }: { posts: Posts[] }) {
             }}
           >
             Hi, I'm Victor
-          </Typography>
-          <Typography>
+          </Text>
+          <Text>
             Welcome to my own corner on the internet, I hope you find this space
             interesting sooner or later! - while you're here you can{" "}
             <Link
@@ -56,13 +56,13 @@ export default function Home({ posts }: { posts: Posts[] }) {
               sign my guestbook
             </Link>
             .
-          </Typography>
+          </Text>
         </Grid>
 
         <Grid item>
-          <Typography variant="h3" gutterBottom>
+          <Text variant="h3" gutterBottom>
             Latest Posts
-          </Typography>
+          </Text>
         </Grid>
 
         <Grid item>
