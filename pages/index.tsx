@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
@@ -18,9 +18,9 @@ type Posts = {
 
 export default function Home({ posts }: { posts: Posts[] }) {
   const sortedBlogPost = posts
-    .sort(
-      (a, b) =>
-        Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
+  .sort(
+    (a, b) =>
+    Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)),
     )
     .slice(0, 3);
 
@@ -36,7 +36,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
           <Typography
             variant="h2"
             paragraph
-            style={{
+            sx={{
               letterSpacing: "0.13rem",
             }}
           >
@@ -49,7 +49,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
               href="/guestbook"
               underline="always"
               color="primary"
-              style={{
+              sx={{
                 fontWeight: "bold",
               }}
             >
@@ -74,7 +74,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
 
         <Grid
           item
-          style={{
+          sx={{
             marginTop: "1rem",
           }}
         >
@@ -87,6 +87,7 @@ export default function Home({ posts }: { posts: Posts[] }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await getAllFilesFrontMatter("blog");
+
   return {
     props: { posts },
   };

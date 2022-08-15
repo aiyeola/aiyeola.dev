@@ -1,13 +1,13 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import useTheme from "@material-ui/core/styles/useTheme";
+import { makeStyles } from "@mui/styles";
+import Grid from "@mui/material/Grid";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useTheme } from '@mui/material/styles';
 
 import Link from "@components/Link";
 import NowPlaying from "@components/NowPlaying";
@@ -52,7 +52,7 @@ export default function Footer() {
         item
         container
         direction={matches ? "column" : "row"}
-        justify="space-between"
+        justifyContent="space-between"
         style={{
           marginTop: "auto",
           paddingTop: "2rem",

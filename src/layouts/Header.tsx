@@ -1,21 +1,22 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Grid from "@material-ui/core/Grid";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import useTheme from "@material-ui/core/styles/useTheme";
-import Hidden from "@material-ui/core/Hidden";
-import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
-import Modal from "@material-ui/core/Modal";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import Grid from "@mui/material/Grid";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import IconButton from "@mui/material/IconButton";
+import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
+import Hidden from "@mui/material/Hidden";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import Modal from "@mui/material/Modal";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
 import useDarkMode from "use-dark-mode";
 
 import Link from "@components/Link";
@@ -40,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     fontSize: "1.25rem",
     fontWeight: 500,
+    color:
+      theme.palette.mode === "dark"
+        ? theme.palette.common.white
+        : theme.palette.common.black,
     "&:not(:last-child)": {
       marginRight: "2rem",
     },
@@ -55,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     height: "30px",
     width: "30px",
     color:
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? theme.palette.common.white
         : theme.palette.common.black,
   },
@@ -113,7 +118,7 @@ export default function Header() {
             <Grid
               item
               container
-              justify="space-between"
+              justifyContent="space-between"
               alignItems="center"
               style={{
                 maxWidth: "56rem",
@@ -161,9 +166,13 @@ export default function Header() {
                 >
                   {React.Children.toArray(
                     routes.map((route) => (
-                      <Link href={route.path} className={classes.link}>
+                      <Typography
+                        href={route.path}
+                        component={Link}
+                        className={classes.link}
+                      >
                         {route.name}
-                      </Link>
+                      </Typography>
                     )),
                   )}
                 </Grid>
@@ -174,14 +183,22 @@ export default function Header() {
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
-                        fill="currentColor"
-                        stroke="currentColor"
+                        fill={
+                          theme.palette.mode === "light"
+                            ? "currentColor"
+                            : "#fff"
+                        }
+                        stroke={
+                          theme.palette.mode === "light"
+                            ? "currentColor"
+                            : "#fff"
+                        }
                         style={{
                           width: "1.5rem",
                           height: "1.5rem",
                         }}
                       >
-                        {theme.palette.type === "dark" ? (
+                        {theme.palette.mode === "dark" ? (
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -223,14 +240,14 @@ export default function Header() {
         className={classes.modal}
         open={menuOpen}
         onClose={handleMenu}
-        onBackdropClick={handleMenu}
+        // onBackdropClick={handleMenu}
         closeAfterTransition
         disableEscapeKeyDown
-        ref={modalMenu}
+        ref={modalMenu.current}
         BackdropProps={{
           invisible: true,
         }}
-        style={{
+        sx={{
           marginTop: 8,
         }}
       >
@@ -282,7 +299,7 @@ export default function Header() {
                         height: "1.5rem",
                       }}
                     >
-                      {theme.palette.type === "dark" ? (
+                      {theme.palette.mode === "dark" ? (
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"

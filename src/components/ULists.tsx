@@ -1,4 +1,3 @@
-//@ts-ignore
 export default function ULists(props) {
   return (
     <ul>

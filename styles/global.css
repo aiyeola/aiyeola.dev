@@ -2,6 +2,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body.light-mode {
+  background-color: #fff;
+  color: #000;
+}
+body.dark-mode {
+  background-color: #1a1919;
+  color: #fff;
+}
+
 ::selection {
   background-color: #47a3f3;
   color: #fefefe;

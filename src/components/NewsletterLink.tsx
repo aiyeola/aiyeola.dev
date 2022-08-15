@@ -2,7 +2,6 @@ import { parseISO, format } from "date-fns";
 
 import Link from "@components/Link";
 
-//@ts-ignore
 export default function NewsletterLink({ slug, publishedAt }) {
   return (
     <li

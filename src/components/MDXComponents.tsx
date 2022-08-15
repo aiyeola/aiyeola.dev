@@ -6,7 +6,6 @@ import ULists from "@components/ULists";
 import OLists from "@components/OLists";
 import Code from "@components/Code";
 
-//@ts-ignore
 const CustomLink = (props) => {
   const href = props.href;
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
@@ -36,6 +35,9 @@ const CustomLink = (props) => {
     />
   );
 };
+interface Components {
+  [componentName: string]: React.ReactNode;
+}
 
 const MDXComponents = {
   Image,

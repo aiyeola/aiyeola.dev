@@ -3,7 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import mdxPrism from "mdx-prism";
 import readingTime from "reading-time";
-import renderToString from "next-mdx-remote/render-to-string";
+// import renderToString from "next-mdx-remote/render-to-string";
+import { serialize } from "next-mdx-remote/serialize";
 
 import MDXComponents from "@components/MDXComponents";
 
@@ -63,18 +64,19 @@ export async function getFileBySlug(type: string, slug: string) {
     slug: slug || null,
   };
 
-  const mdxSource = await renderToString(content, {
-    scope: data,
-    components: MDXComponents,
-    mdxOptions: {
-      remarkPlugins: [
-        require("remark-slug"),
-        require("remark-autolink-headings"),
-        require("remark-code-titles"),
-      ],
-      rehypePlugins: [mdxPrism],
-    },
-  });
+  const mdxSource = await serialize(content);
+  // const mdxSource = await renderToString(content, {
+  //   scope: data,
+  //   components: MDXComponents,
+  //   mdxOptions: {
+  //     remarkPlugins: [
+  //       require("remark-slug"),
+  //       require("remark-autolink-headings"),
+  //       require("remark-code-titles"),
+  //     ],
+  //     rehypePlugins: [mdxPrism],
+  //   },
+  // });
 
   return {
     mdxSource,

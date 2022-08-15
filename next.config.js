@@ -7,12 +7,16 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const __prod__ = process.env.NODE_ENV === "production";
 
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   images: {
     domains: [
       "i.scdn.co", // Spotify Album Art
     ],
   },
+  swcMinify: true,
   reactStrictMode: true,
   async headers() {
     return [
@@ -22,30 +26,31 @@ const nextConfig = {
       },
     ];
   },
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      require("./scripts/generate-sitemap");
-    }
-    return config;
-  },
+  // webpack: (config, { isServer }) => {
+  //   if (isServer) {
+  //     require("./scripts/generate-sitemap");
+  //   }
+  //   return config;
+  // },
 };
+module.exports = nextConfig
 
-module.exports = withPlugins(
-  [
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: "public",
-          disable: __prod__ ? false : true,
-          runtimeCaching,
-        },
-      },
-    ],
-    [withBundleAnalyzer],
-  ],
-  nextConfig,
-);
+// module.exports = withPlugins(
+//   [
+//     [
+//       withPWA,
+//       {
+//         pwa: {
+//           dest: "public",
+//           disable: __prod__ ? false : true,
+//           runtimeCaching,
+//         },
+//       },
+//     ],
+//     [withBundleAnalyzer],
+//   ],
+//   nextConfig,
+// );
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `

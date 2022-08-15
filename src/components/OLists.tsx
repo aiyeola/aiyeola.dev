@@ -1,4 +1,3 @@
-//@ts-ignore
 export default function OLists(props) {
   return (
     <ol>

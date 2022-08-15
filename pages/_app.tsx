@@ -1,17 +1,23 @@
-import React, { useEffect } from "react";
+import * as React from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import "nprogress/nprogress.css";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import CssBaseline from "@mui/material/CssBaseline";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import createCache from "@emotion/cache";
 import { MDXProvider } from "@mdx-js/react";
-import { ThemeProvider, responsiveFontSizes } from "@material-ui/core/styles";
+import { ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
 import useDarkMode from "use-dark-mode";
 
 import "styles/global.css";
 import { darkTheme, lightTheme } from "src/theme";
 import MDXComponents from "@components/MDXComponents";
+import { NextPageWithLayout } from "types/index";
 import "@lib/firebaseClient";
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createCache({ key: "css", prepend: true });
 
 const TopProgressBar = dynamic(
   () => {
@@ -20,23 +26,42 @@ const TopProgressBar = dynamic(
   { ssr: false },
 );
 
-function App({ Component, pageProps }: AppProps) {
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+type Props = {
+  Component: NextPageWithLayout;
+  pageProps: any;
+} & MyAppProps;
+
+function App(props: Props) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   const { value: isDark } = useDarkMode(true);
 
   const themeConfig = isDark
     ? responsiveFontSizes(darkTheme)
     : responsiveFontSizes(lightTheme);
 
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles);
-    }
-  }, []);
+  // const themeConfig = responsiveFontSizes(lightTheme);
+  const themeObject = {
+    true: responsiveFontSizes(darkTheme),
+    false: responsiveFontSizes(lightTheme),
+  };
+
+  // const themeConfig = React.useMemo(() => themeObject[isDark], [isDark]);
+
+  // const themeConfig = React.useMemo(() => {
+  //   if (isDark) {
+  //     responsiveFontSizes(darkTheme);
+  //   } else {
+  //     responsiveFontSizes(lightTheme);
+  //   }
+  // }, [isDark]);
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         <meta
           name="viewport"
@@ -45,12 +70,12 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <TopProgressBar />
       <ThemeProvider theme={themeConfig}>
+        <CssBaseline />
         <MDXProvider components={MDXComponents}>
-          <CssBaseline />
           <Component {...pageProps} />
         </MDXProvider>
       </ThemeProvider>
-    </>
+    </CacheProvider>
   );
 }
 

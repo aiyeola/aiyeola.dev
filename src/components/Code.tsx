@@ -1,4 +1,3 @@
-//@ts-ignore
 export default function Code(props) {
   return (
     <div

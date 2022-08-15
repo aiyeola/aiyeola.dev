@@ -1,6 +1,5 @@
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 
-//@ts-ignore
 export default function Paragraph(props) {
   return (
     <Typography

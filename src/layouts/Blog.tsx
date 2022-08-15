@@ -1,9 +1,9 @@
 import * as React from "react";
 import { parseISO, format as formatDate } from "date-fns";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import useTheme from "@material-ui/core/styles/useTheme";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useSWR from "swr";
 import format from "comma-number";
 import { DiscussionEmbed } from "disqus-react";
@@ -71,7 +71,7 @@ export default function BlogLayout({
         item
         container
         direction={matchesXS ? "column" : "row"}
-        justify={matchesXS ? undefined : "space-between"}
+        justifyContent={matchesXS ? undefined : "space-between"}
         style={{ marginBottom: "2rem" }}
       >
         <Grid
