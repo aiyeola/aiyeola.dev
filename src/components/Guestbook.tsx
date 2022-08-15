@@ -1,26 +1,20 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import useSWR, { mutate } from "swr";
-import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
-import Text from "@components/MuiComposed/Text";
 import { makeStyles } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 
 import fetcher from "@lib/fetcher";
+import Flex from "@components/MuiComposed/Flex";
+import Text from "@components/MuiComposed/Text";
 import Link from "@components/MuiComposed/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 
 const useStyles = makeStyles((theme) => ({
-  guestBox: {
-    border: `1px solid ${theme.palette.grey[400]}`,
-    borderRadius: 20,
-    padding: "1.1rem",
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
   deleteButton: {
     color: "rgb(220,39,38)",
     fontWeight: "bold",
@@ -30,74 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-//@ts-ignore
-function GuestbookEntry({ entry, user }) {
-  const classes = useStyles();
-
-  //@ts-ignore
-  const deleteEntry = async (e) => {
-    e.preventDefault();
-
-    await fetch(`/api/guestbook/${entry.id}`, {
-      method: "DELETE",
-    });
-
-    mutate("/api/guestbook");
-  };
-
-  return (
-    <>
-      <Grid
-        item
-        style={{
-          marginBottom: ".5rem",
-        }}
-      >
-        <Text variant="h6">{entry.body}</Text>
-      </Grid>
-      <Grid
-        item
-        style={{
-          marginBottom: "1rem",
-        }}
-      >
-        <Text
-          component={"span"}
-          variant="subtitle2"
-          style={{
-            color: "#858a93",
-          }}
-        >
-          {entry.created_by}
-        </Text>
-        <Text
-          component={"span"}
-          variant="subtitle2"
-          style={{
-            color: "rgb(156,163,175)",
-          }}
-        >
-          {" "}
-          / {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}{" "}
-        </Text>
-        {user && entry.created_by === user.name && (
-          <>
-            /
-            <Button
-              variant="text"
-              disableRipple
-              className={classes.deleteButton}
-              onClick={deleteEntry}
-            >
-              Delete
-            </Button>
-          </>
-        )}
-      </Grid>
-    </>
-  );
-}
 
 interface Entries {
   id: number;
@@ -112,7 +38,7 @@ export default function Guestbook({
 }: {
   initialEntries: Entries[];
 }) {
-  const classes = useStyles();
+  const theme = useTheme();
 
   const [form, setForm] = useState({
     state: "",
@@ -124,7 +50,6 @@ export default function Guestbook({
     initialData: initialEntries,
   });
 
-  //@ts-ignore
   const leaveEntry = async (e) => {
     e.preventDefault();
 
@@ -169,7 +94,15 @@ export default function Guestbook({
 
   return (
     <>
-      <Grid item className={classes.guestBox}>
+      <Flex
+        flexDirection="column"
+        p="1.1rem"
+        my="1rem"
+        sx={{
+          border: `1px solid ${theme.palette.grey[400]}`,
+          borderRadius: "20px",
+        }}
+      >
         <Text
           variant="h6"
           gutterBottom
@@ -210,6 +143,7 @@ export default function Guestbook({
             href="/api/auth"
             style={{
               fontWeight: "bold",
+              alignSelf: "flex-start",
             }}
           >
             Login
@@ -220,31 +154,62 @@ export default function Guestbook({
         ) : form.state === "success" ? (
           <SuccessMessage>{form.message}</SuccessMessage>
         ) : (
-          <Text
-            variant="subtitle2"
-            style={{
-              color: "grey",
-              marginTop: "1rem",
-            }}
-          >
+          <Text variant="subtitle2" color="grey" mt="1rem">
             Your information is only used to display your name and reply by
             email.
           </Text>
         )}
-      </Grid>
+      </Flex>
 
-      <Grid
-        item
-        container
-        direction="column"
-        style={{
-          marginTop: "2rem",
-        }}
-      >
+      <Flex flexDirection="column" mt="2rem">
         {entries?.map((entry: { id: string | number | null | undefined }) => (
           <GuestbookEntry key={entry.id} entry={entry} user={user} />
         ))}
-      </Grid>
+      </Flex>
+    </>
+  );
+}
+
+function GuestbookEntry({ entry, user }) {
+  const classes = useStyles();
+
+  const deleteEntry = async (e) => {
+    e.preventDefault();
+
+    await fetch(`/api/guestbook/${entry.id}`, {
+      method: "DELETE",
+    });
+
+    mutate("/api/guestbook");
+  };
+
+  return (
+    <>
+      <Flex mb=".5rem">
+        <Text variant="h6">{entry.body}</Text>
+      </Flex>
+      <Flex mb="1rem">
+        <Text component="span" variant="subtitle2" color="#858a93">
+          {entry.created_by}
+        </Text>
+        <Text component="span" variant="subtitle2" color="rgb(156,163,175)">
+          {" "}
+          / {format(new Date(entry.updated_at), "d MMM yyyy 'at' h:mm bb")}{" "}
+        </Text>
+        {user && entry.created_by === user.name && (
+          <>
+            /
+            <Button
+              variant="text"
+              disableRipple
+              className={classes.deleteButton}
+              onClick={deleteEntry}
+            >
+              Delete
+            </Button>
+          </>
+        )}
+      </Flex>
     </>
   );
 }

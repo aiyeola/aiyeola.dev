@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.25rem",
     fontWeight: 500,
     "&:not(:last-child)": {
-      marginRight: "2rem",
       marginBottom: 0,
       [theme.breakpoints.down("sm")]: {
         marginBottom: "1rem",
@@ -70,7 +69,14 @@ export default function Footer() {
         <NowPlaying />
 
         <Flex flexDirection={matchesXS ? "column" : "row"} mb="2rem">
-          <Flex flexDirection={matchesXS ? "column" : "row"}>
+          <Flex
+            flexDirection={matchesXS ? "column" : "row"}
+            sx={{
+              "& :not(:last-child)": {
+                marginRight: "2rem",
+              },
+            }}
+          >
             <Flex className={classes.footerLink}>
               <Link href="/">Home</Link>
             </Flex>

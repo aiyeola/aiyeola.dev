@@ -18,7 +18,7 @@ type Props = {
 
 export default function Container(props: Props) {
   const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   const router = useRouter();
 
@@ -29,9 +29,9 @@ export default function Container(props: Props) {
   };
 
   const meta = {
-    title: "Victor Aiyeola – Software Developer, BI developer",
+    title: "Victor Aiyeola – Software Developer",
     description:
-      "Javascript software developer, Business intelligence developer.",
+      "Javascript software developer",
     image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
     ...customMeta,

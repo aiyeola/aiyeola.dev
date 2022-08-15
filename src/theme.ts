@@ -53,6 +53,12 @@ const coreThemeObject = {
         disableElevation: true,
         variant: "contained",
       },
+      styleOverrides: {
+        contained: {
+          backgroundColor: "#e0e0e0",
+          color: "rgba(0, 0, 0, 0.87)",
+        },
+      },
     },
     MuiCircularProgress: {
       defaultProps: {
@@ -88,17 +94,6 @@ const coreThemeObject = {
       },
     },
   },
-  // props: {
-  //   MuiLink: {},
-  //   MuiButton: {},
-  //   MuiCircularProgress: {},
-  // },
-  // overrides: {
-  //   MuiToolbar: {},
-  //   MuiOutlinedInput: {},
-  //   MuiCircularProgress: {},
-  //   MuiTypography: {},
-  // },
 };
 
 //@ts-ignore

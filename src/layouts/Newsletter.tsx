@@ -35,7 +35,7 @@ export default function NewsletterLayout({
 }) {
   const theme = useTheme();
 
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <LayoutContainer

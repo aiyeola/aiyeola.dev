@@ -18,7 +18,7 @@ type Posts = {
 
 export default function BlogPost(props: Posts) {
   const theme = useTheme();
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { slug, title } = props;
 

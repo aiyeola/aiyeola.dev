@@ -39,7 +39,7 @@ export default function BlogLayout({
 }) {
   const theme = useTheme();
 
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { data } = useSWR(`/api/views/${frontMatter.slug}`, fetcher);
 

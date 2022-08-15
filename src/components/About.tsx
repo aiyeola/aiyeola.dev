@@ -1,5 +1,4 @@
 import Grid from "@mui/material/Grid";
-import Text from "@components/MuiComposed/Text";
 import Avatar from "@mui/material/Avatar";
 import { makeStyles } from "@mui/styles";
 import { useTheme } from '@mui/material/styles';
@@ -7,6 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
 import Link from "@components/MuiComposed/Link";
+import Text from "@components/MuiComposed/Text";
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -19,13 +19,13 @@ export default function About() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <LayoutContainer title="About - Victor Aiyeola">
       <Grid
         item
-        style={{
+        sx={{
           marginBottom: "1rem",
           alignSelf: matchesXS ? "center" : undefined,
         }}

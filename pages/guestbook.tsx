@@ -21,7 +21,7 @@ export default function GuestbookPage({
   return (
     <Container
       title="Guestbook – Victor Aiyeola"
-      description="Sign my digital guestbook and share some wisdom."
+      description="Sign my digital guestbook and drop some lines."
     >
       <Grid item>
         <Text
