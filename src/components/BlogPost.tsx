@@ -1,11 +1,11 @@
-import Grid from "@mui/material/Grid";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Text from "@components/MuiComposed/Text";
 import { useTheme } from "@mui/material/styles";
 import useSWR from "swr";
 import format from "comma-number";
 
+import Text from "@components/MuiComposed/Text";
 import Link from "@components/MuiComposed/Link";
+import Flex from "@components/MuiComposed/Flex";
 import fetcher from "@lib/fetcher";
 
 type Posts = {
@@ -26,36 +26,32 @@ export default function BlogPost(props: Posts) {
   const views = data?.total;
 
   return (
-    <Grid
-      item
-      container
-      direction={matchesXS ? "column" : "row"}
+    <Flex
+      flexDirection={matchesXS ? "column" : "row"}
       justifyContent={matchesXS ? undefined : "space-between"}
-      style={{
-        marginBottom: "2rem",
-      }}
+      width="100%"
+      mb="2rem"
     >
-      <Grid
-        item
-        style={{
+      <Flex
+        sx={{
           maxWidth: matchesXS ? "100%" : "75%",
         }}
       >
         <Link href={`/blog/${slug}`}>
           <Text
-            style={{
+            sx={{
               fontWeight: "bold",
             }}
           >
             {title}
           </Text>
         </Link>
-      </Grid>
-      <Grid item>
+      </Flex>
+      <Flex>
         <Text variant="subtitle1">
           {`${views ? format(views) : "––"} views`}
         </Text>
-      </Grid>
-    </Grid>
+      </Flex>
+    </Flex>
   );
 }

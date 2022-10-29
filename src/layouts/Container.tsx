@@ -30,8 +30,7 @@ export default function Container(props: Props) {
 
   const meta = {
     title: "Victor Aiyeola – Software Developer",
-    description:
-      "Javascript software developer",
+    description: "Javascript software developer",
     image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
     ...customMeta,
@@ -83,12 +82,13 @@ export default function Container(props: Props) {
           px="2rem"
           mt="1rem"
           mb="2rem"
-          mx="auto"
+          // mx="auto"
         >
           <Flex
             flexDirection="column"
             sx={{
               maxWidth: matchesXS ? "100vw" : "46rem",
+              width: "100%",
             }}
           >
             {children}

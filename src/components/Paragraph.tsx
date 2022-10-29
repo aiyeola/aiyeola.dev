@@ -4,7 +4,7 @@ export default function Paragraph(props) {
   return (
     <Text
       variant="body1"
-      style={{
+      sx={{
         marginTop: "1rem",
         marginBottom: "1rem",
         fontSize: "1.2rem",

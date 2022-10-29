@@ -15,7 +15,7 @@ const CustomLink = (props) => {
       <Link
         underline="always"
         color="primary"
-        style={{
+        sx={{
           fontWeight: "bold",
         }}
         href={href}
@@ -35,9 +35,6 @@ const CustomLink = (props) => {
     />
   );
 };
-interface Components {
-  [componentName: string]: React.ReactNode;
-}
 
 const MDXComponents = {
   Image,

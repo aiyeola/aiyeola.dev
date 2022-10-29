@@ -34,7 +34,7 @@ export default function BlogLayout({
   children,
   frontMatter,
 }: {
-  children: React.ReactNode | object;
+  children: React.ReactNode;
   frontMatter: FrontMatter;
 }) {
   const theme = useTheme();
