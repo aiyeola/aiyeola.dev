@@ -49,11 +49,11 @@ module.exports = withPlugins(
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `
-  default-src 'self' 'unsafe-inline' disqus.com c.disquscdn.com;
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com *.disqus.com c.disquscdn.com;
+  default-src 'self' disqus.com c.disquscdn.com;
+  script-src 'self' *.googletagmanager.com *.disqus.com c.disquscdn.com;
   child-src 'self' *.google.com;
   frame-src disqus.com;
-  style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
+  style-src 'self' *.googleapis.com c.disquscdn.com;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
@@ -69,7 +69,7 @@ const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
   {
     key: "Referrer-Policy",
-    value: "origin-when-cross-origin",
+    value: "strict-origin-when-cross-origin",
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
   {
