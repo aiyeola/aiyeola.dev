@@ -41,7 +41,8 @@ export default function About() {
         </Typography>
         <Avatar
           alt="Victor Aiyeola"
-          src="/static/images/avatar.jpg"
+          // src="/static/images/avatar.jpg"
+          src="/static/images/aiyeola.jpg"
           className={classes.large}
         />
       </Grid>

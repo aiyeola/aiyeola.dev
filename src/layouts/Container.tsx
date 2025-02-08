@@ -46,9 +46,8 @@ export default function Container(props: Props) {
   };
 
   const meta = {
-    title: "Victor Aiyeola – Software Developer, BI developer",
-    description:
-      "Javascript software developer, Business intelligence developer.",
+    title: "Victor Aiyeola - Frontend Engineer",
+    description: "Javascript frontend engineer",
     image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
     ...customMeta,

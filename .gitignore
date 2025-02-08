@@ -43,3 +43,5 @@ public/sitemap.xml
 **/public/sw.js.map
 **/public/worker-*.js
 **/public/worker-*.js.map
+
+yarn.lock
