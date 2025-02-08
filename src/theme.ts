@@ -1,9 +1,8 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
 import "@fontsource/quicksand/500.css";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import grey from "@material-ui/core/colors/grey";
-
 
 const coreThemeObject = {
   typography: {
@@ -73,7 +72,7 @@ const coreThemeObject = {
 };
 
 //@ts-ignore
-export const darkTheme = createMuiTheme({
+export const darkTheme = createTheme({
   ...coreThemeObject,
   palette: {
     type: "dark",
@@ -81,11 +80,9 @@ export const darkTheme = createMuiTheme({
 });
 
 //@ts-ignore
-export const lightTheme = createMuiTheme({
+export const lightTheme = createTheme({
   ...coreThemeObject,
   palette: {
     type: "light",
   },
 });
-
-

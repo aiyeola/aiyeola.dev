@@ -5,6 +5,7 @@ import Paragraph from "@components/Paragraph";
 import ULists from "@components/ULists";
 import OLists from "@components/OLists";
 import Code from "@components/Code";
+import { MDXProviderComponents } from "@mdx-js/react";
 
 //@ts-ignore
 const CustomLink = (props) => {
@@ -44,6 +45,6 @@ const MDXComponents = {
   ul: (props: any) => <ULists {...props} />,
   ol: (props: any) => <OLists {...props} />,
   code: Code,
-};
+} as MDXProviderComponents;
 
 export default MDXComponents;

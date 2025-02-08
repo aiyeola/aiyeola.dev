@@ -35,7 +35,9 @@ export default function Newsletter({
   mdxSource: Source;
   frontMatter: FrontMatter;
 }) {
-  const content = hydrate(mdxSource, { components: MDXComponents });
+  const content = hydrate(mdxSource, {
+    components: MDXComponents as Record<string, React.ReactNode>,
+  });
 
   return (
     <NewsletterLayout frontMatter={frontMatter}>{content}</NewsletterLayout>
