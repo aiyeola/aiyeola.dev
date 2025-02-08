@@ -75,7 +75,7 @@ export default function NewsletterLayout({
         </Grid>
       </Grid>
 
-      <Grid item>{children}</Grid>
+      <Grid item>{children as React.ReactNode}</Grid>
 
       <Grid
         item

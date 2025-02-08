@@ -65,7 +65,7 @@ export async function getFileBySlug(type: string, slug: string) {
 
   const mdxSource = await renderToString(content, {
     scope: data,
-    components: MDXComponents,
+    components: MDXComponents as Record<string, React.ReactNode>,
     mdxOptions: {
       remarkPlugins: [
         require("remark-slug"),

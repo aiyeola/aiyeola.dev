@@ -4,7 +4,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import "nprogress/nprogress.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { MDXProvider } from "@mdx-js/react";
+import { MDXProvider, MDXProviderComponents } from "@mdx-js/react";
 import { ThemeProvider, responsiveFontSizes } from "@material-ui/core/styles";
 import useDarkMode from "use-dark-mode";
 
@@ -45,7 +45,8 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <TopProgressBar />
       <ThemeProvider theme={themeConfig}>
-        <MDXProvider components={MDXComponents}>
+        <MDXProvider components={MDXComponents as MDXProviderComponents}>
+          {/* <MDXProvider components={MDXComponents}> */}
           <CssBaseline />
           <Component {...pageProps} />
         </MDXProvider>
