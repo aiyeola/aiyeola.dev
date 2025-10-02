@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid2";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";
@@ -34,10 +35,12 @@ export default function Blog({ posts }: { posts: Posts[] }) {
       >
         All Posts
       </Typography>
-      {!filteredBlogPosts.length && "No posts found."}
-      {filteredBlogPosts.map((frontMatter) => (
-        <BlogPost key={frontMatter.title} {...frontMatter} />
-      ))}
+      <Grid>
+        {!filteredBlogPosts.length && "No posts found."}
+        {filteredBlogPosts.map((frontMatter) => (
+          <BlogPost key={frontMatter.title} {...frontMatter} />
+        ))}
+      </Grid>
     </LayoutContainer>
   );
 }

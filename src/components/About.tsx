@@ -32,10 +32,11 @@ export default function About() {
         <Avatar
           alt="Victor Aiyeola"
           // src="/static/images/avatar.jpg"
-          src="/static/images/aiyeola.jpg"
+          src="/static/images/aiyeola_mini.jpeg"
           sx={{
             width: (theme) => theme.spacing(20),
             height: (theme) => theme.spacing(20),
+            objectFit: "cover",
           }}
         />
       </Grid>

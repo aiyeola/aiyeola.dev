@@ -30,6 +30,9 @@ export default function BlogPost(props: Posts) {
       container
       direction={matchesXS ? "column" : "row"}
       justifyContent={matchesXS ? undefined : "space-between"}
+      sx={{
+        marginBottom: "2rem",
+      }}
     >
       <Grid
         sx={{
@@ -49,7 +52,7 @@ export default function BlogPost(props: Posts) {
       </Grid>
       <Grid>
         <Typography variant="subtitle1">
-          {`${views ? format(views) : "––"} views`}
+          {`${views ? format(views) : "--"} views`}
         </Typography>
       </Grid>
     </Grid>
