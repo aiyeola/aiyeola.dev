@@ -48,7 +48,7 @@ export default function Footer() {
         >
           <Grid
             container
-            size={{ md: true }}
+            size={{ xs: 12, md: "grow" }}
             sx={{
               display: "flex",
               flexDirection: matchesXS ? "column" : "row",

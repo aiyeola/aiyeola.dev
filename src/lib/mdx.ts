@@ -6,6 +6,7 @@ import readingTime from "reading-time";
 import { serialize } from "next-mdx-remote/serialize";
 import remarkSlug from "remark-slug";
 import remarkAutolinkHeadings from "remark-autolink-headings";
+// @ts-ignore
 import remarkCodeTitles from "remark-code-titles";
 
 import MDXComponents from "@components/MDXComponents";
@@ -61,7 +62,7 @@ export async function getFileBySlug(type: string, slug: string) {
 
   const frontMatter = {
     ...data,
-    wordCount: content.split(/\s+/gu).length,
+    wordCount: content.split(/\s+/g).length,
     readingTime: readingTime(content),
     slug: slug || null,
   };

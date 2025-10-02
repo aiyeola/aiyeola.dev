@@ -40,7 +40,7 @@ export default function Header() {
   const { value: isDark, toggle: toggleDarkMode } = useDarkMode();
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const modalMenu = useRef();
+  const modalMenu = useRef<HTMLDivElement>(null);
   const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
   const isXsDown = useMediaQuery(theme.breakpoints.down("sm"));
 

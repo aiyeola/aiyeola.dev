@@ -103,7 +103,7 @@ export default function Guestbook({
   const [message, setMessage] = useState("");
   const { data: user } = useSWR("/api/user", fetcher);
   const { data: entries } = useSWR("/api/guestbook", fetcher, {
-    initialData: initialEntries,
+    fallbackData: initialEntries,
   });
 
   //@ts-ignore
