@@ -30,13 +30,11 @@ export default function BlogPost(props: Posts) {
       container
       direction={matchesXS ? "column" : "row"}
       justifyContent={matchesXS ? undefined : "space-between"}
-      sx={{
-        marginBottom: "2rem",
-      }}
     >
       <Grid
         sx={{
           maxWidth: matchesXS ? "100%" : "75%",
+          width: "100%",
         }}
       >
         <Link href={`/blog/${slug}`}>

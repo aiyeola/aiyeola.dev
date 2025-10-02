@@ -3,7 +3,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import TwitterIcon from "@mui/icons-material/Twitter";
+import XIcon from "@mui/icons-material/X";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { useTheme } from "@mui/material/styles";
@@ -26,24 +26,24 @@ export default function Footer() {
           marginTop: "auto",
           paddingTop: "2rem",
           maxWidth: "46rem",
+          width: "100%",
         }}
       >
-        <Grid container>
-          <Divider
-            sx={{
-              width: "100%",
-              marginBottom: "1rem",
-            }}
-          />
+        <Divider
+          sx={{
+            width: "100%",
+            marginBottom: "1rem",
+          }}
+        />
 
-          <NowPlaying />
-        </Grid>
+        <NowPlaying />
 
         <Grid
           container
           direction={matchesXS ? "column" : "row"}
           sx={{
             marginBottom: "2rem",
+            width: "100%",
           }}
         >
           <Grid
@@ -188,7 +188,7 @@ export default function Footer() {
               },
             }}
           >
-            <TwitterIcon
+            <XIcon
               sx={{
                 transition: "all 0.3s",
                 "&:hover": {

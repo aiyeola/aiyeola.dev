@@ -34,7 +34,6 @@ export default function Home({ posts }: { posts: Posts[] }) {
         >
           <Typography
             variant="h2"
-            paragraph
             style={{
               letterSpacing: "0.13rem",
             }}

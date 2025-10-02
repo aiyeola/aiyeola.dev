@@ -74,6 +74,7 @@ export default function NowPlaying() {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 maxWidth: "max-content",
+                width: "100%",
                 fontWeight: "bold",
                 marginLeft: matchesXS ? 0 : "1.2rem",
               }}
@@ -102,7 +103,7 @@ export default function NowPlaying() {
               display: matchesXS ? "none" : "block",
             }}
           >
-            {" – "}
+            {" - "}
           </Typography>
           <Typography
             sx={{
@@ -110,6 +111,7 @@ export default function NowPlaying() {
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
               maxWidth: "max-content",
+              width: "100%",
             }}
           >
             {data?.artist ?? "Spotify"}

@@ -102,6 +102,7 @@ export default function Container(props: Props) {
               width: "100%",
               [theme.breakpoints.down("xs")]: {
                 maxWidth: "100vw",
+                width: "100%",
               },
             })}
           >

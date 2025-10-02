@@ -23,10 +23,15 @@ export default function Blog({ posts }: { posts: Posts[] }) {
 
   return (
     <LayoutContainer
-      title="Blog – Victor Aiyeola"
+      title="Blog - Victor Aiyeola"
       description="Thoughts on the software industry, programming, tech, and my personal life."
     >
-      <Typography variant="h2" paragraph>
+      <Typography
+        variant="h2"
+        sx={{
+          marginBottom: "1.5rem",
+        }}
+      >
         All Posts
       </Typography>
       {!filteredBlogPosts.length && "No posts found."}
