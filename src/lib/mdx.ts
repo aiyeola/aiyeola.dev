@@ -3,7 +3,10 @@ import path from "path";
 import matter from "gray-matter";
 import mdxPrism from "mdx-prism";
 import readingTime from "reading-time";
-import renderToString from "next-mdx-remote/render-to-string";
+import { serialize } from "next-mdx-remote/serialize";
+import remarkSlug from "remark-slug";
+import remarkAutolinkHeadings from "remark-autolink-headings";
+import remarkCodeTitles from "remark-code-titles";
 
 import MDXComponents from "@components/MDXComponents";
 
@@ -63,14 +66,13 @@ export async function getFileBySlug(type: string, slug: string) {
     slug: slug || null,
   };
 
-  const mdxSource = await renderToString(content, {
+  const mdxSource = await serialize(content, {
     scope: data,
-    components: MDXComponents as Record<string, React.ReactNode>,
     mdxOptions: {
       remarkPlugins: [
-        require("remark-slug"),
-        require("remark-autolink-headings"),
-        require("remark-code-titles"),
+        remarkSlug,
+        remarkAutolinkHeadings,
+        remarkCodeTitles,
       ],
       rehypePlugins: [mdxPrism],
     },

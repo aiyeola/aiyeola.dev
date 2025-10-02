@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import hydrate from "next-mdx-remote/hydrate";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { getFiles, getFileBySlug } from "@lib/mdx";
 import NewsletterLayout from "@layouts/Newsletter";
@@ -15,12 +15,6 @@ type FrontMatter = {
   slug: string;
 };
 
-type Source = {
-  compiledSource: string;
-  renderedOutput: string;
-  scope: FrontMatter;
-};
-
 type ReadingTime = {
   text: string;
   minutes: number;
@@ -32,15 +26,13 @@ export default function Newsletter({
   mdxSource,
   frontMatter,
 }: {
-  mdxSource: Source;
+  mdxSource: MDXRemoteSerializeResult;
   frontMatter: FrontMatter;
 }) {
-  const content = hydrate(mdxSource, {
-    components: MDXComponents as Record<string, React.ReactNode>,
-  });
-
   return (
-    <NewsletterLayout frontMatter={frontMatter}>{content}</NewsletterLayout>
+    <NewsletterLayout frontMatter={frontMatter}>
+      <MDXRemote {...mdxSource} components={MDXComponents} />
+    </NewsletterLayout>
   );
 }
 

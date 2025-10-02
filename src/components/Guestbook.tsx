@@ -1,40 +1,19 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import useSWR, { mutate } from "swr";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@mui/material/Grid2";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 import fetcher from "@lib/fetcher";
 import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 
-const useStyles = makeStyles((theme) => ({
-  guestBox: {
-    border: `1px solid ${theme.palette.grey[400]}`,
-    borderRadius: 20,
-    padding: "1.1rem",
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
-  deleteButton: {
-    color: "rgb(220,39,38)",
-    fontWeight: "bold",
-    textTransform: "none",
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  },
-}));
-
 //@ts-ignore
 function GuestbookEntry({ entry, user }) {
-  const classes = useStyles();
-
   //@ts-ignore
   const deleteEntry = async (e) => {
     e.preventDefault();
@@ -49,23 +28,21 @@ function GuestbookEntry({ entry, user }) {
   return (
     <>
       <Grid
-        item
-        style={{
+        sx={{
           marginBottom: ".5rem",
         }}
       >
         <Typography variant="h6">{entry.body}</Typography>
       </Grid>
       <Grid
-        item
-        style={{
+        sx={{
           marginBottom: "1rem",
         }}
       >
         <Typography
           component={"span"}
           variant="subtitle2"
-          style={{
+          sx={{
             color: "#858a93",
           }}
         >
@@ -74,7 +51,7 @@ function GuestbookEntry({ entry, user }) {
         <Typography
           component={"span"}
           variant="subtitle2"
-          style={{
+          sx={{
             color: "rgb(156,163,175)",
           }}
         >
@@ -87,7 +64,14 @@ function GuestbookEntry({ entry, user }) {
             <Button
               variant="text"
               disableRipple
-              className={classes.deleteButton}
+              sx={{
+                color: "rgb(220,39,38)",
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "transparent",
+                },
+              }}
               onClick={deleteEntry}
             >
               Delete
@@ -112,8 +96,6 @@ export default function Guestbook({
 }: {
   initialEntries: Entries[];
 }) {
-  const classes = useStyles();
-
   const [form, setForm] = useState({
     state: "",
     message: "",
@@ -169,11 +151,19 @@ export default function Guestbook({
 
   return (
     <>
-      <Grid item className={classes.guestBox}>
+      <Grid
+        sx={(theme) => ({
+          border: `1px solid ${theme.palette.grey[400]}`,
+          borderRadius: 5,
+          padding: "1.1rem",
+          marginTop: "1rem",
+          marginBottom: "1rem",
+        })}
+      >
         <Typography
           variant="h6"
           gutterBottom
-          style={{
+          sx={{
             fontWeight: "bold",
           }}
         >
@@ -195,7 +185,7 @@ export default function Guestbook({
               endAdornment: (
                 <Button
                   onClick={leaveEntry}
-                  style={{
+                  sx={{
                     fontWeight: "bold",
                   }}
                 >
@@ -208,7 +198,7 @@ export default function Guestbook({
           <Button
             component={Link}
             href="/api/auth"
-            style={{
+            sx={{
               fontWeight: "bold",
             }}
           >
@@ -222,7 +212,7 @@ export default function Guestbook({
         ) : (
           <Typography
             variant="subtitle2"
-            style={{
+            sx={{
               color: "grey",
               marginTop: "1rem",
             }}
@@ -234,10 +224,9 @@ export default function Guestbook({
       </Grid>
 
       <Grid
-        item
         container
         direction="column"
-        style={{
+        sx={{
           marginTop: "2rem",
         }}
       >

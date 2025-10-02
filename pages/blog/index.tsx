@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";

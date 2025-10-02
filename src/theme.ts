@@ -1,88 +1,91 @@
 import "@fontsource/jost";
 import "@fontsource/quicksand";
 import "@fontsource/quicksand/500.css";
-import { createTheme } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
+import { createTheme } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
 
 const coreThemeObject = {
   typography: {
     fontFamily: "Quicksand",
+    h1: {
+      fontFamily: "Jost",
+      fontWeight: "bold",
+    },
+    h2: {
+      fontFamily: "Jost",
+      fontWeight: "bold",
+    },
+    h3: {
+      fontFamily: "Jost",
+      fontWeight: "bold",
+    },
+    h4: {
+      fontFamily: "Jost",
+      fontWeight: "bold",
+    },
+    body1: {
+      fontSize: "1.25rem",
+      fontWeight: 500,
+    },
   },
-  props: {
+  components: {
     MuiLink: {
-      underline: "none",
-      color: "inherit",
-    },
-    MuiButton: {
-      disableElevation: true,
-      variant: "contained",
-    },
-    MuiCircularProgress: {
-      size: 25,
-    },
-  },
-  overrides: {
-    MuiToolbar: {
-      root: {
-        justifyContent: "center",
-      },
-    },
-    MuiOutlinedInput: {
-      root: {
-        "&$focused $notchedOutline": {
-          borderColor: grey[900],
-        },
-      },
-      notchedOutline: {},
-      input: {
-        fontSize: "1rem",
-      },
-      adornedEnd: {
-        paddingRight: 0,
-      },
-    },
-    MuiCircularProgress: {
-      colorPrimary: {
+      defaultProps: {
+        underline: "none" as const,
         color: "inherit",
       },
     },
-    MuiTypography: {
-      h1: {
-        fontFamily: "Jost",
-        fontWeight: "bold",
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+        variant: "contained" as const,
       },
-      h2: {
-        fontFamily: "Jost",
-        fontWeight: "bold",
+    },
+    MuiCircularProgress: {
+      defaultProps: {
+        size: 25,
       },
-      h3: {
-        fontFamily: "Jost",
-        fontWeight: "bold",
+      styleOverrides: {
+        colorPrimary: {
+          color: "inherit",
+        },
       },
-      h4: {
-        fontFamily: "Jost",
-        fontWeight: "bold",
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          justifyContent: "center",
+        },
       },
-      body1: {
-        fontSize: "1.25rem",
-        fontWeight: 500,
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: grey[900],
+          },
+        },
+        input: {
+          fontSize: "1rem",
+        },
+        adornedEnd: {
+          paddingRight: 0,
+        },
       },
     },
   },
 };
 
-//@ts-ignore
 export const darkTheme = createTheme({
   ...coreThemeObject,
   palette: {
-    type: "dark",
+    mode: "dark",
   },
 });
 
-//@ts-ignore
 export const lightTheme = createTheme({
   ...coreThemeObject,
   palette: {
-    type: "light",
+    mode: "light",
   },
 });

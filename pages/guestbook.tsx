@@ -1,5 +1,5 @@
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid2";
+import Typography from "@mui/material/Typography";
 
 import redis from "@lib/redis";
 import Container from "@layouts/Container";
@@ -23,7 +23,7 @@ export default function GuestbookPage({
       title="Guestbook – Victor Aiyeola"
       description="Sign my digital guestbook and share some wisdom."
     >
-      <Grid item>
+      <Grid>
         <Typography
           variant="h2"
           gutterBottom
@@ -38,7 +38,7 @@ export default function GuestbookPage({
           information, wisdom, or even humor. Surprise me!
         </Typography>
       </Grid>
-      <Grid item>
+      <Grid>
         <Guestbook initialEntries={initialEntries} />
       </Grid>
     </Container>

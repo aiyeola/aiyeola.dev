@@ -1,7 +1,7 @@
-import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Typography from "@material-ui/core/Typography";
-import useTheme from "@material-ui/core/styles/useTheme";
+import Grid from "@mui/material/Grid2";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import useSWR from "swr";
 import format from "comma-number";
 
@@ -27,23 +27,21 @@ export default function BlogPost(props: Posts) {
 
   return (
     <Grid
-      item
       container
       direction={matchesXS ? "column" : "row"}
-      justify={matchesXS ? undefined : "space-between"}
-      style={{
+      justifyContent={matchesXS ? undefined : "space-between"}
+      sx={{
         marginBottom: "2rem",
       }}
     >
       <Grid
-        item
-        style={{
+        sx={{
           maxWidth: matchesXS ? "100%" : "75%",
         }}
       >
-        <Link href={`/blog/[slug]`} as={`/blog/${slug}`}>
+        <Link href={`/blog/${slug}`}>
           <Typography
-            style={{
+            sx={{
               fontWeight: "bold",
             }}
           >
@@ -51,7 +49,7 @@ export default function BlogPost(props: Posts) {
           </Typography>
         </Link>
       </Grid>
-      <Grid item>
+      <Grid>
         <Typography variant="subtitle1">
           {`${views ? format(views) : "––"} views`}
         </Typography>

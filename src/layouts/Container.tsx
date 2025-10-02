@@ -1,27 +1,19 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid2";
+import { styled } from "@mui/material/styles";
 
 import Header from "@layouts/Header";
 import Footer from "@layouts/Footer";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    maxWidth: "46rem",
-    [theme.breakpoints.down("xs")]: {
-      maxWidth: "100vw",
-    },
+const ToolbarMargin = styled("div")(({ theme }) => ({
+  ...theme.mixins.toolbar,
+  marginBottom: "3.3em",
+  [theme.breakpoints.down("md")]: {
+    marginBottom: "2.3em",
   },
-  toolbarMargin: {
-    ...theme.mixins.toolbar,
-    marginBottom: "3.3em",
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "2.3em",
-    },
-    [theme.breakpoints.down("xs")]: {
-      marginBottom: "1.25em",
-    },
+  [theme.breakpoints.down("xs")]: {
+    marginBottom: "1.25em",
   },
 }));
 
@@ -35,8 +27,6 @@ type Props = {
 };
 
 export default function Container(props: Props) {
-  const classes = useStyles();
-
   const router = useRouter();
 
   const { children, ...customProps } = props;
@@ -85,27 +75,36 @@ export default function Container(props: Props) {
       </Head>
       <Grid
         container
-        justify="center"
-        style={{
+        sx={{
           minHeight: "100vh",
+          justifyContent: "center",
         }}
       >
         <Header />
-        <div className={classes.toolbarMargin} />
+        <ToolbarMargin />
 
         <Grid
-          item
           container
           direction="column"
-          alignItems="center"
-          style={{
+          sx={{
             paddingLeft: "2rem",
             paddingRight: "2rem",
             marginTop: "1rem",
             marginBottom: "2rem",
+            alignItems: "center",
           }}
         >
-          <Grid item container direction="column" className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            sx={(theme) => ({
+              maxWidth: "46rem",
+              width: "100%",
+              [theme.breakpoints.down("xs")]: {
+                maxWidth: "100vw",
+              },
+            })}
+          >
             {children}
           </Grid>
 

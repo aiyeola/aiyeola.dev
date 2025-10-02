@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid2";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";
@@ -24,7 +24,6 @@ export default function Newsletter({
   return (
     <LayoutContainer title="Newsletter – Victor Aiyeola">
       <Grid
-        item
         style={{
           marginBottom: "1rem",
         }}
@@ -48,7 +47,6 @@ export default function Newsletter({
       <Subscribe />
 
       <Grid
-        item
         style={{
           marginTop: "1rem",
         }}

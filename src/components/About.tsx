@@ -1,22 +1,13 @@
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
-import useTheme from "@material-ui/core/styles/useTheme";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@mui/material/Grid2";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import LayoutContainer from "@layouts/Container";
 import Link from "@components/Link";
 
-const useStyles = makeStyles((theme) => ({
-  large: {
-    width: theme.spacing(20),
-    height: theme.spacing(20),
-  },
-}));
-
 export default function About() {
-  const classes = useStyles();
   const theme = useTheme();
 
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -24,8 +15,7 @@ export default function About() {
   return (
     <LayoutContainer title="About - Victor Aiyeola">
       <Grid
-        item
-        style={{
+        sx={{
           marginBottom: "1rem",
           alignSelf: matchesXS ? "center" : undefined,
         }}
@@ -33,7 +23,7 @@ export default function About() {
         <Typography
           variant="h2"
           paragraph
-          style={{
+          sx={{
             letterSpacing: "0.13rem",
           }}
         >
@@ -43,11 +33,14 @@ export default function About() {
           alt="Victor Aiyeola"
           // src="/static/images/avatar.jpg"
           src="/static/images/aiyeola.jpg"
-          className={classes.large}
+          sx={{
+            width: (theme) => theme.spacing(20),
+            height: (theme) => theme.spacing(20),
+          }}
         />
       </Grid>
 
-      <Grid item>
+      <Grid>
         <Typography gutterBottom>
           Hi, I'm Victor Aiyeola 😉. JavaScript software developer based in
           Lagos, Nigeria. I see every day as an opportunity to become
@@ -61,7 +54,7 @@ export default function About() {
             href="/newsletter"
             underline="always"
             color="primary"
-            style={{
+            sx={{
               fontWeight: "bold",
             }}
           >

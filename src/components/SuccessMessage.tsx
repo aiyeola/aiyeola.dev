@@ -1,20 +1,19 @@
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid2";
+import Typography from "@mui/material/Typography";
 
 export default function SuccessMessage({ children }: { children: string }) {
   return (
     <Grid
-      item
       container
       alignItems="center"
-      style={{
+      sx={{
         marginTop: "1rem",
       }}
     >
-      <Grid item>
+      <Grid>
         <Typography
           variant="subtitle2"
-          style={{
+          sx={{
             color: "#0a740a",
             fontWeight: 'bold',
             verticalAlign: "middle",

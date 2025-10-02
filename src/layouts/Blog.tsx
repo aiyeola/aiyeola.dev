@@ -1,9 +1,9 @@
 import * as React from "react";
 import { parseISO, format as formatDate } from "date-fns";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import useTheme from "@material-ui/core/styles/useTheme";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import Grid from "@mui/material/Grid2";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useSWR from "swr";
 import format from "comma-number";
 import { DiscussionEmbed } from "disqus-react";
@@ -62,21 +62,19 @@ export default function BlogLayout({
       date={new Date(frontMatter.publishedAt).toISOString()}
       type="article"
     >
-      <Grid item>
-        <Typography variant="h3" style={{ lineHeight: 1.4 }} paragraph>
+      <Grid>
+        <Typography variant="h3" sx={{ lineHeight: 1.4 }} paragraph>
           {frontMatter.title}
         </Typography>
       </Grid>
       <Grid
-        item
         container
         direction={matchesXS ? "column" : "row"}
-        justify={matchesXS ? undefined : "space-between"}
-        style={{ marginBottom: "2rem" }}
+        justifyContent={matchesXS ? undefined : "space-between"}
+        sx={{ marginBottom: "2rem" }}
       >
         <Grid
-          item
-          style={{
+          sx={{
             marginBottom: matchesXS ? "0.4rem" : 0,
           }}
         >
@@ -85,7 +83,7 @@ export default function BlogLayout({
             {formatDate(parseISO(frontMatter.publishedAt), "MMMM dd, yyyy")}
           </Typography>
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography variant="subtitle2">
             {frontMatter.readingTime.text}
             {` • `}
@@ -94,11 +92,10 @@ export default function BlogLayout({
         </Grid>
       </Grid>
 
-      <Grid item>{children as React.ReactNode}</Grid>
+      <Grid>{children as React.ReactNode}</Grid>
 
       <Grid
-        item
-        style={{
+        sx={{
           marginTop: "1rem",
         }}
       >
@@ -106,8 +103,7 @@ export default function BlogLayout({
       </Grid>
 
       <Grid
-        item
-        style={{
+        sx={{
           width: "100%",
           marginTop: "1rem",
         }}
