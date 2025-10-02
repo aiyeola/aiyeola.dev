@@ -1,16 +1,18 @@
-const withPlugins = require("next-compose-plugins");
-const withPWA = require("next-pwa");
-const runtimeCaching = require("next-pwa/cache");
+const withPWA = require("next-pwa")({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+});
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
-const __prod__ = process.env.NODE_ENV === "production";
-
 const nextConfig = {
   images: {
-    domains: [
-      "i.scdn.co", // Spotify Album Art
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.scdn.co", // Spotify Album Art
+      },
     ],
   },
   reactStrictMode: true,
@@ -30,30 +32,16 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
-  [
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: "public",
-          disable: __prod__ ? false : true,
-          runtimeCaching,
-        },
-      },
-    ],
-    [withBundleAnalyzer],
-  ],
-  nextConfig,
-);
+// Chain the plugins
+module.exports = withBundleAnalyzer(withPWA(nextConfig));
 
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self' disqus.com c.disquscdn.com;
-  script-src 'self' *.googletagmanager.com *.disqus.com c.disquscdn.com;
+  script-src 'self' 'unsafe-eval' *.googletagmanager.com *.disqus.com c.disquscdn.com;
   child-src 'self' *.google.com;
   frame-src disqus.com;
-  style-src 'self' *.googleapis.com c.disquscdn.com;
+  style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;

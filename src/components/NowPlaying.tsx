@@ -1,9 +1,9 @@
 import useSWR from "swr";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import useTheme from "@material-ui/core/styles/useTheme";
+import Grid from "@mui/material/Grid2";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 
 import fetcher from "@lib/fetcher";
@@ -17,15 +17,13 @@ export default function NowPlaying() {
 
   return (
     <Grid
-      item
       container
-      style={{
+      sx={{
         marginBottom: "2rem",
       }}
     >
       <Grid
-        item
-        style={{
+        sx={{
           display: "flex",
           flexDirection: matchesXS ? "row-reverse" : "row",
           alignItems: "center",
@@ -41,7 +39,7 @@ export default function NowPlaying() {
           />
         ) : (
           <Box
-            style={{
+            sx={{
               height: "1.2rem",
               width: "1.2rem",
               marginLeft: "auto",
@@ -59,7 +57,7 @@ export default function NowPlaying() {
         )}
 
         <Box
-          style={{
+          sx={{
             display: "inline-flex",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -71,11 +69,12 @@ export default function NowPlaying() {
         >
           {data?.songUrl && data.isPlaying ? (
             <Typography
-              style={{
+              sx={{
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 maxWidth: "max-content",
+                width: "100%",
                 fontWeight: "bold",
                 marginLeft: matchesXS ? 0 : "1.2rem",
               }}
@@ -90,7 +89,7 @@ export default function NowPlaying() {
             </Typography>
           ) : (
             <Typography
-              style={{
+              sx={{
                 fontWeight: "bold",
               }}
             >
@@ -99,19 +98,20 @@ export default function NowPlaying() {
           )}
           <Typography
             component="span"
-            style={{
+            sx={{
               margin: "0 0.5rem",
               display: matchesXS ? "none" : "block",
             }}
           >
-            {" – "}
+            {" - "}
           </Typography>
           <Typography
-            style={{
+            sx={{
               overflow: "hidden",
               textOverflow: "ellipsis",
               whiteSpace: "nowrap",
               maxWidth: "max-content",
+              width: "100%",
             }}
           >
             {data?.artist ?? "Spotify"}

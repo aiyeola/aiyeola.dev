@@ -1,31 +1,18 @@
 import { useState } from "react";
 import useSWR from "swr";
 import format from "comma-number";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@mui/material/Grid2";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 import fetcher from "@lib/fetcher";
 import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 
-const useStyles = makeStyles((theme) => ({
-  guestBox: {
-    border: `2px solid ${theme.palette.grey[400]}`,
-    borderRadius: 20,
-    padding: "1.1rem",
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
-}));
-
 export default function Subscribe() {
-  const classes = useStyles();
-
   const [form, setForm] = useState({
     state: "",
     message: "",
@@ -69,11 +56,19 @@ export default function Subscribe() {
   };
   return (
     <>
-      <Grid item className={classes.guestBox}>
+      <Grid
+        sx={(theme) => ({
+          border: `2px solid ${theme.palette.grey[400]}`,
+          borderRadius: 5,
+          padding: "1.1rem",
+          marginTop: "1rem",
+          marginBottom: "1rem",
+        })}
+      >
         <Typography
           variant="h6"
           gutterBottom
-          style={{
+          sx={{
             fontWeight: "bold",
           }}
         >
@@ -100,7 +95,7 @@ export default function Subscribe() {
               endAdornment: (
                 <Button
                   onClick={subscribe}
-                  style={{
+                  sx={{
                     fontWeight: "bold",
                   }}
                 >
@@ -121,7 +116,7 @@ export default function Subscribe() {
         ) : (
           <Typography
             variant="subtitle2"
-            style={{
+            sx={{
               color: "grey",
               marginTop: "1rem",
             }}

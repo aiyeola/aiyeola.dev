@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
-import Typography from "@material-ui/core/Typography";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid2";
 
 import LayoutContainer from "@layouts/Container";
 import { getAllFilesFrontMatter } from "@lib/mdx";
@@ -23,16 +24,23 @@ export default function Blog({ posts }: { posts: Posts[] }) {
 
   return (
     <LayoutContainer
-      title="Blog – Victor Aiyeola"
+      title="Blog - Victor Aiyeola"
       description="Thoughts on the software industry, programming, tech, and my personal life."
     >
-      <Typography variant="h2" paragraph>
+      <Typography
+        variant="h2"
+        sx={{
+          marginBottom: "1.5rem",
+        }}
+      >
         All Posts
       </Typography>
-      {!filteredBlogPosts.length && "No posts found."}
-      {filteredBlogPosts.map((frontMatter) => (
-        <BlogPost key={frontMatter.title} {...frontMatter} />
-      ))}
+      <Grid>
+        {!filteredBlogPosts.length && "No posts found."}
+        {filteredBlogPosts.map((frontMatter) => (
+          <BlogPost key={frontMatter.title} {...frontMatter} />
+        ))}
+      </Grid>
     </LayoutContainer>
   );
 }

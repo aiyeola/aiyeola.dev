@@ -1,47 +1,17 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import useTheme from "@material-ui/core/styles/useTheme";
+import Grid from "@mui/material/Grid2";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import XIcon from "@mui/icons-material/X";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { useTheme } from "@mui/material/styles";
 
 import Link from "@components/Link";
 import NowPlaying from "@components/NowPlaying";
 
-const useStyles = makeStyles((theme) => ({
-  link: {
-    "&:not(:last-child)": {
-      marginRight: "1rem",
-    },
-  },
-  footerLink: {
-    fontSize: "1.25rem",
-    fontWeight: 500,
-    "&:not(:last-child)": {
-      marginRight: "2rem",
-      marginBottom: 0,
-      [theme.breakpoints.down("xs")]: {
-        marginBottom: "1rem",
-      },
-      [theme.breakpoints.down(360)]: {
-        marginRight: "1rem",
-      },
-    },
-  },
-  hover: {
-    transition: "all 0.3s",
-    "&:hover": {
-      transform: "scale(1.2)",
-    },
-  },
-}));
-
 export default function Footer() {
-  const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery("(max-width: 360px)");
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -49,60 +19,117 @@ export default function Footer() {
   return (
     <>
       <Grid
-        item
         container
         direction={matches ? "column" : "row"}
-        justify="space-between"
-        style={{
+        justifyContent="space-between"
+        sx={{
           marginTop: "auto",
           paddingTop: "2rem",
           maxWidth: "46rem",
+          width: "100%",
         }}
       >
-        <Grid item container>
-          <Divider
-            style={{
-              width: "100%",
-              marginBottom: "1rem",
-            }}
-          />
+        <Divider
+          sx={{
+            width: "100%",
+            marginBottom: "1rem",
+          }}
+        />
 
-          <NowPlaying />
-        </Grid>
+        <NowPlaying />
 
         <Grid
-          item
           container
           direction={matchesXS ? "column" : "row"}
-          style={{
+          sx={{
             marginBottom: "2rem",
+            width: "100%",
           }}
         >
           <Grid
-            item
-            md
             container
-            style={{
+            size={{ xs: 12, md: "grow" }}
+            sx={{
               display: "flex",
               flexDirection: matchesXS ? "column" : "row",
             }}
           >
-            <Grid item className={classes.footerLink}>
+            <Grid
+              sx={(theme) => ({
+                fontSize: "1.25rem",
+                fontWeight: 500,
+                "&:not(:last-child)": {
+                  marginRight: "2rem",
+                  marginBottom: 0,
+                  [theme.breakpoints.down("xs")]: {
+                    marginBottom: "1rem",
+                  },
+                  [theme.breakpoints.down(360)]: {
+                    marginRight: "1rem",
+                  },
+                },
+              })}
+            >
               <Typography component="span">
                 <Link href="/">Home</Link>
               </Typography>
             </Grid>
-            <Grid item className={classes.footerLink}>
+            <Grid
+              sx={(theme) => ({
+                fontSize: "1.25rem",
+                fontWeight: 500,
+                "&:not(:last-child)": {
+                  marginRight: "2rem",
+                  marginBottom: 0,
+                  [theme.breakpoints.down("xs")]: {
+                    marginBottom: "1rem",
+                  },
+                  [theme.breakpoints.down(360)]: {
+                    marginRight: "1rem",
+                  },
+                },
+              })}
+            >
               <Typography component="span">
                 <Link href="/about">About</Link>
               </Typography>
             </Grid>
-            <Grid item className={classes.footerLink}>
+            <Grid
+              sx={(theme) => ({
+                fontSize: "1.25rem",
+                fontWeight: 500,
+                "&:not(:last-child)": {
+                  marginRight: "2rem",
+                  marginBottom: 0,
+                  [theme.breakpoints.down("xs")]: {
+                    marginBottom: "1rem",
+                  },
+                  [theme.breakpoints.down(360)]: {
+                    marginRight: "1rem",
+                  },
+                },
+              })}
+            >
               <Typography component="span">
                 <Link href="/guestbook">Guestbook</Link>
               </Typography>
             </Grid>
-            <Grid item className={classes.footerLink}>
+            <Grid
+              sx={(theme) => ({
+                fontSize: "1.25rem",
+                fontWeight: 500,
+                "&:not(:last-child)": {
+                  marginRight: "2rem",
+                  marginBottom: 0,
+                  [theme.breakpoints.down("xs")]: {
+                    marginBottom: "1rem",
+                  },
+                  [theme.breakpoints.down(360)]: {
+                    marginRight: "1rem",
+                  },
+                },
+              })}
+            >
               <Typography component="span">
                 <Link href="/newsletter">Newsletter</Link>
               </Typography>
@@ -111,14 +138,13 @@ export default function Footer() {
         </Grid>
 
         <Grid
-          item
-          style={{
+          sx={{
             alignSelf: "center",
             marginBottom: matches ? "1.2rem" : 0,
           }}
         >
           <Typography
-            style={{
+            sx={{
               flex: 1,
             }}
             variant="subtitle2"
@@ -128,8 +154,7 @@ export default function Footer() {
         </Grid>
 
         <Grid
-          item
-          style={{
+          sx={{
             alignSelf: "center",
           }}
         >
@@ -137,36 +162,80 @@ export default function Footer() {
             href="https://github.com/aiyeola"
             target="_blank"
             rel="noopener"
-            className={classes.link}
+            sx={{
+              "&:not(:last-child)": {
+                marginRight: "1rem",
+              },
+            }}
           >
-            <GitHubIcon className={classes.hover} />
+            <GitHubIcon
+              sx={{
+                transition: "all 0.3s",
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+            />
           </Link>
 
           <Link
             href="https://twitter.com/victor_aiyeola"
             target="_blank"
             rel="noopener"
-            className={classes.link}
+            sx={{
+              "&:not(:last-child)": {
+                marginRight: "1rem",
+              },
+            }}
           >
-            <TwitterIcon className={classes.hover} />
+            <XIcon
+              sx={{
+                transition: "all 0.3s",
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+            />
           </Link>
 
           <Link
             href="https://web.facebook.com/victoraiyeoladev"
             target="_blank"
             rel="noopener"
-            className={classes.link}
+            sx={{
+              "&:not(:last-child)": {
+                marginRight: "1rem",
+              },
+            }}
           >
-            <FacebookIcon className={classes.hover} />
+            <FacebookIcon
+              sx={{
+                transition: "all 0.3s",
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+            />
           </Link>
 
           <Link
             href="https://www.linkedin.com/in/victor-aiyeola"
             target="_blank"
             rel="noopener"
-            className={classes.link}
+            sx={{
+              "&:not(:last-child)": {
+                marginRight: "1rem",
+              },
+            }}
           >
-            <LinkedInIcon className={classes.hover} />
+            <LinkedInIcon
+              sx={{
+                transition: "all 0.3s",
+                "&:hover": {
+                  transform: "scale(1.2)",
+                },
+              }}
+            />
           </Link>
         </Grid>
       </Grid>
