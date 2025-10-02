@@ -9,8 +9,6 @@ import remarkAutolinkHeadings from "remark-autolink-headings";
 // @ts-ignore
 import remarkCodeTitles from "remark-code-titles";
 
-import MDXComponents from "@components/MDXComponents";
-
 const postsDirectory = path.join(process.cwd(), "blog");
 
 const root = process.cwd();
@@ -70,11 +68,7 @@ export async function getFileBySlug(type: string, slug: string) {
   const mdxSource = await serialize(content, {
     scope: data,
     mdxOptions: {
-      remarkPlugins: [
-        remarkSlug,
-        remarkAutolinkHeadings,
-        remarkCodeTitles,
-      ],
+      remarkPlugins: [remarkSlug, remarkAutolinkHeadings, remarkCodeTitles],
       rehypePlugins: [mdxPrism],
     },
   });
