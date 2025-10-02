@@ -7,6 +7,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   session(req, res);
 
   const { id } = req.query;
+
+  if (!id || typeof id !== 'string') {
+    return res.status(400).json({ error: 'Invalid ID' });
+  }
+
   //@ts-ignore
   const { login, email } = req.session;
   //@ts-ignore

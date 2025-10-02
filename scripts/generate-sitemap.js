@@ -1,12 +1,14 @@
 // Source: https://leerob.io/blog/nextjs-sitemap-robots
 
 const fs = require("fs");
-const globby = require("globby");
 const prettier = require("prettier");
 
 const { WEBSITE_URL } = require("../src/utils/configuration");
 
 (async () => {
+  // Import globby dynamically since it's now ESM-only
+  const { globby } = await import("globby");
+
   const prettierConfig = await prettier.resolveConfig("./.prettierrc.js");
 
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
@@ -47,7 +49,7 @@ const { WEBSITE_URL } = require("../src/utils/configuration");
     `;
 
   // If you're not using Prettier, you can remove this.
-  const formatted = prettier.format(sitemap, {
+  const formatted = await prettier.format(sitemap, {
     ...prettierConfig,
     parser: "html",
   });

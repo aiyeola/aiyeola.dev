@@ -16,6 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       client_id: `${CLIENT_ID}`,
       response_type: "code",
       redirect_uri: `${DOMAIN_NAME}/api/getToken`,
+      // redirect_uri: `http://localhost:3000/api/getToken`,
       scope: "user-read-playback-state user-read-email user-read-private",
       state: "authorization_code",
     });
@@ -34,6 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           grant_type: "authorization_code",
           code,
           redirect_uri: `${DOMAIN_NAME}/api/getToken`,
+          // redirect_uri: `http://localhost:3000/api/getToken`,
         }),
       })
     ).json();

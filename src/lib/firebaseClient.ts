@@ -1,6 +1,6 @@
-import firebase from "firebase/app";
-import "firebase/analytics"; 
-import "firebase/performance"; 
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAnalytics, isSupported } from "firebase/analytics";
+import { getPerformance } from "firebase/performance";
 
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,16 +13,19 @@ const clientCredentials = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(clientCredentials);
-  // Check that `window` is in scope for the analytics module!
-  if (typeof window !== "undefined") {
-    // Enable analytics. https://firebase.google.com/docs/analytics/get-started
-    if ("measurementId" in clientCredentials) {
-      firebase.analytics();
-      firebase.performance();
-    }
+const app = !getApps().length ? initializeApp(clientCredentials) : getApp();
+
+// Check that `window` is in scope for the analytics module!
+if (typeof window !== "undefined") {
+  // Enable analytics. https://firebase.google.com/docs/analytics/get-started
+  if (clientCredentials.measurementId) {
+    isSupported().then((supported) => {
+      if (supported) {
+        getAnalytics(app);
+        getPerformance(app);
+      }
+    });
   }
 }
 
-export default firebase;
+export default app;

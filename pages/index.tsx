@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid2";
+import Typography from "@mui/material/Typography";
 
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import LayoutContainer from "@layouts/Container";
@@ -28,14 +28,12 @@ export default function Home({ posts }: { posts: Posts[] }) {
     <LayoutContainer>
       <>
         <Grid
-          item
           style={{
             marginBottom: "2rem",
           }}
         >
           <Typography
             variant="h2"
-            paragraph
             style={{
               letterSpacing: "0.13rem",
             }}
@@ -59,13 +57,13 @@ export default function Home({ posts }: { posts: Posts[] }) {
           </Typography>
         </Grid>
 
-        <Grid item>
+        <Grid>
           <Typography variant="h3" gutterBottom>
             Latest Posts
           </Typography>
         </Grid>
 
-        <Grid item>
+        <Grid>
           {!sortedBlogPost.length && "No posts found."}
           {sortedBlogPost.map((frontMatter) => (
             <BlogPost key={frontMatter.title} {...frontMatter} />
@@ -73,7 +71,6 @@ export default function Home({ posts }: { posts: Posts[] }) {
         </Grid>
 
         <Grid
-          item
           style={{
             marginTop: "1rem",
           }}
