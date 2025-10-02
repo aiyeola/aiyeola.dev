@@ -13,7 +13,7 @@ html {
   z-index: 1301;
 }
 
-.dark-mode #nprogress .bar {
+[data-theme="dark"] #nprogress .bar {
   background: #fff !important;
 }
 
@@ -22,7 +22,7 @@ html {
   z-index: 1301;
 }
 
-.dark-mode #nprogress .peg {
+[data-theme="dark"] #nprogress .peg {
   box-shadow: 0 0 10px #fff, 0 0 5px #fff;
 }
 

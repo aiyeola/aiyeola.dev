@@ -15,7 +15,7 @@ import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import useDarkMode from "use-dark-mode";
+import { useTheme as useNextTheme } from "next-themes";
 
 import Link from "@components/Link";
 import routes from "routes";
@@ -37,7 +37,7 @@ function ElevationScroll(props: Props) {
 
 export default function Header() {
   const theme = useTheme();
-  const { value: isDark, toggle: toggleDarkMode } = useDarkMode();
+  const { theme: nextTheme, setTheme, systemTheme } = useNextTheme();
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const modalMenu = useRef<HTMLDivElement>(null);
@@ -45,6 +45,13 @@ export default function Header() {
   const isXsDown = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => setMounted(true), []);
+
+  const currentTheme = nextTheme === "system" ? systemTheme : nextTheme;
+  const isDark = currentTheme === "dark";
+
+  const toggleDarkMode = () => {
+    setTheme(isDark ? "light" : "dark");
+  };
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);

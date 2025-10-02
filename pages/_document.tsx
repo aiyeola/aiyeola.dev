@@ -61,7 +61,6 @@ export default class MyDocument extends Document {
           {(this.props as any).emotionStyleTags}
         </Head>
         <body>
-          <script src="noflash.js" />
           <Main />
           <NextScript />
         </body>
