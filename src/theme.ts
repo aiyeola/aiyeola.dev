@@ -40,6 +40,15 @@ const coreThemeObject = {
         disableElevation: true,
         variant: "contained" as const,
       },
+      styleOverrides: {
+        contained: {
+          backgroundColor: "#e0e0e0",
+          color: "black",
+          "&:hover": {
+            backgroundColor: "#d0d0d0",
+          },
+        },
+      },
     },
     MuiCircularProgress: {
       defaultProps: {
