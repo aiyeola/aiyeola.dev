@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       `https://api.buttondown.email/v1/subscribers`,
       {
         body: JSON.stringify({
-          email,
+          email_address: email,
           tags: ["aiyeola.dev"],
         }),
         headers: {
