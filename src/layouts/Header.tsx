@@ -106,7 +106,7 @@ export default function Header() {
                 }}
               >
                 <Link href="/">
-                  {isDark ? (
+                  {theme.palette.mode === "dark" ? (
                     <Image
                       src="/logos/white-logo.png"
                       alt="Victor Aiyeola"
@@ -251,7 +251,7 @@ export default function Header() {
             <Grid container>
               <Grid>
                 <Link href="/">
-                  {isDark ? (
+                  {theme.palette.mode === "dark" ? (
                     <Image
                       src="/logos/white-logo.png"
                       alt="Victor Aiyeola"

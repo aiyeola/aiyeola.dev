@@ -31,7 +31,6 @@ export default function About() {
         </Typography>
         <Avatar
           alt="Victor Aiyeola"
-          // src="/static/images/avatar.jpg"
           src="/static/images/aiyeola_mini.jpeg"
           sx={{
             width: (theme) => theme.spacing(20),
@@ -43,9 +42,8 @@ export default function About() {
 
       <Grid>
         <Typography gutterBottom>
-          Hi, I'm Victor Aiyeola 😉. JavaScript software developer based in
-          Lagos, Nigeria. I see every day as an opportunity to become
-          world-class 🌍.
+          Hi, I'm Victor Aiyeola ✌🏾. Software Engineer based in Lagos, Nigeria.
+          I see every day as an opportunity to become world-class 🌍.
         </Typography>
 
         <Typography>
