@@ -51,7 +51,13 @@ export default function BlogLayout({
         method: "POST",
       });
 
-    registerView();
+    const viewedKey = `blog-viewed-${frontMatter.slug}`;
+    const hasViewed = localStorage.getItem(viewedKey);
+
+    if (!hasViewed) {
+      registerView();
+      localStorage.setItem(viewedKey, "true");
+    }
   }, [frontMatter.slug]);
 
   return (
