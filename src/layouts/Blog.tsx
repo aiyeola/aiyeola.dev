@@ -6,6 +6,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useSWR from "swr";
 import format from "comma-number";
+import { useTheme as useNextTheme } from "next-themes";
 import { DiscussionEmbed } from "disqus-react";
 
 import fetcher from "@lib/fetcher";
@@ -38,6 +39,10 @@ export default function BlogLayout({
   frontMatter: FrontMatter;
 }) {
   const theme = useTheme();
+
+  const { theme: nextTheme, systemTheme } = useNextTheme();
+
+  const currentTheme = nextTheme === "system" ? systemTheme : nextTheme;
 
   const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
 
@@ -115,6 +120,7 @@ export default function BlogLayout({
         }}
       >
         <DiscussionEmbed
+          key={currentTheme}
           shortname="aiyeola"
           config={{
             url: `${WEBSITE_URL}/blog/${frontMatter.slug}`,

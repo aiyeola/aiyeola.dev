@@ -37,7 +37,7 @@
     "clsx": "^2.1.1",
     "comma-number": "^2.1.0",
     "date-fns": "^4.1.0",
-    "disqus-react": "^1.1.5",
+    "disqus-react": "^1.1.7",
     "firebase": "^11.2.0",
     "firebase-admin": "^13.0.1",
     "gray-matter": "^4.0.3",

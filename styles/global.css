@@ -127,3 +127,7 @@ code {
 .token.variable {
   color: #f59e0b;
 }
+
+#disqus_thread {
+  color-scheme: none;
+}
