@@ -36,10 +36,24 @@ export default function Container(props: Props) {
   };
 
   const meta = {
-    title: "Victor Aiyeola - Frontend Engineer",
-    description: "Javascript frontend engineer",
+    name: "Victor Aiyeola",
+    title: "Victor Aiyeola - Software Engineer",
+    description: "Software Engineer",
     image: "http://www.aiyeola.dev/static/images/banner-black.png",
     type: "website",
+    keywords: [
+      "victor",
+      "aiyeola",
+      "developer",
+      "personal website",
+      "blog",
+      "javascript",
+      "typescript",
+      "nextjs developer",
+      "nextjs engineer",
+      "sofware engineer",
+    ],
+    twitter_handle: "@victor_aiyeola",
     ...customMeta,
   };
 
@@ -48,11 +62,8 @@ export default function Container(props: Props) {
       <Head>
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
-        <meta
-          name="keywords"
-          content="victor, aiyeola, developer, personal website, blog, javascript, typescript"
-        />
-        <meta name="author" content="Victor Aiyeola" />
+        <meta name="keywords" content={meta.keywords?.toString()} />
+        <meta name="author" content={meta.name} />
         <meta name="description" content={meta.description} />
         <meta
           property="og:url"
@@ -63,9 +74,9 @@ export default function Container(props: Props) {
         <meta property="og:description" content={meta.description} />
         <meta property="og:image" content={meta.image} />
         <meta property="og:title" content={meta.title} />
-        <meta property="og:site_name" content="Victor Aiyeola" />
+        <meta property="og:site_name" content={meta.name} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@victor_aiyeola" />
+        <meta name="twitter:site" content={meta.twitter_handle} />
         <meta name="twitter:title" content={meta.title} />
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />

@@ -179,7 +179,7 @@ export default function Footer() {
           </Link>
 
           <Link
-            href="https://twitter.com/victor_aiyeola"
+            href="https://x.com/victor_aiyeola"
             target="_blank"
             rel="noopener"
             sx={{
