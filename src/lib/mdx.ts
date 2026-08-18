@@ -67,6 +67,10 @@ export async function getFileBySlug(type: string, slug: string) {
 
   const mdxSource = await serialize(content, {
     scope: data,
+    // Posts in ./data are authored in this repo, so JSX expressions such as
+    // <Image src={`...`} /> must keep working. next-mdx-remote >= 6 strips them
+    // by default; blockDangerousJS stays on to block eval/require/process.
+    blockJS: false,
     mdxOptions: {
       remarkPlugins: [remarkSlug, remarkAutolinkHeadings, remarkCodeTitles],
       rehypePlugins: [mdxPrism],
