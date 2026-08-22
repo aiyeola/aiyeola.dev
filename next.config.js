@@ -1,6 +1,20 @@
 const withPWA = require("next-pwa")({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
+  // next-pwa 5.x predates Next 15 and precaches build artifacts that Next never
+  // serves publicly. A single 404 in the precache manifest aborts the whole
+  // install ("bad-precaching-response"), so the new service worker never
+  // activates and outdated caches are never cleaned up.
+  buildExcludes: [
+    // Emitted at .next/dynamic-css-manifest.json — not under /_next/static, so
+    // /_next/dynamic-css-manifest.json is always a 404.
+    /dynamic-css-manifest\.json$/,
+    // Build-id scoped and fetched with every navigation anyway. Precaching them
+    // pins per-deploy URLs that 404 while a new deploy is still propagating;
+    // the static-js-assets runtime cache picks them up on first fetch instead.
+    /_buildManifest\.js$/,
+    /_ssgManifest\.js$/,
+  ],
 });
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",

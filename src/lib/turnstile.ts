@@ -19,13 +19,31 @@ interface SiteverifyResponse {
 let warnedMissingSecret = false;
 let warnedMissingHostnames = false;
 
+/**
+ * The hostnames siteverify may report, from TURNSTILE_HOSTNAMES.
+ *
+ * Each entry is expanded to cover its `www.` counterpart, because the apex and
+ * the www host are the same deployment and Cloudflare reports whichever one the
+ * visitor actually solved the widget on — production redirects the apex to
+ * www.aiyeola.dev, so listing only "aiyeola.dev" would reject every real
+ * submission. Not a loosening: both names resolve to DNS we control.
+ */
 function expectedHostnames() {
-  return new Set(
-    (process.env.TURNSTILE_HOSTNAMES ?? "")
-      .split(",")
-      .map((hostname) => hostname.trim())
-      .filter(Boolean),
-  );
+  const hostnames = new Set<string>();
+
+  for (const entry of (process.env.TURNSTILE_HOSTNAMES ?? "").split(",")) {
+    const hostname = entry.trim().toLowerCase();
+    if (!hostname) {
+      continue;
+    }
+
+    hostnames.add(hostname);
+    hostnames.add(
+      hostname.startsWith("www.") ? hostname.slice(4) : `www.${hostname}`,
+    );
+  }
+
+  return hostnames;
 }
 
 /**
@@ -106,7 +124,7 @@ export default async function verifyTurnstile(
     return false;
   }
 
-  if (!outcome.hostname || !hostnames.has(outcome.hostname)) {
+  if (!outcome.hostname || !hostnames.has(outcome.hostname.toLowerCase())) {
     console.error(
       `[turnstile] hostname "${outcome.hostname}" is not in TURNSTILE_HOSTNAMES`,
     );
