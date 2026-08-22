@@ -38,9 +38,9 @@ module.exports = withBundleAnalyzer(withPWA(nextConfig));
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self' disqus.com c.disquscdn.com;
-  script-src 'self' 'unsafe-eval' *.googletagmanager.com *.disqus.com c.disquscdn.com;
+  script-src 'self' 'unsafe-eval' *.googletagmanager.com *.disqus.com c.disquscdn.com https://challenges.cloudflare.com;
   child-src 'self' *.google.com;
-  frame-src disqus.com;
+  frame-src disqus.com https://challenges.cloudflare.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
   img-src * blob: data:;
   media-src 'none';

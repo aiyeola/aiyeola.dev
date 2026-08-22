@@ -61,17 +61,9 @@ async function testSpotify() {
       console.error('   Error:', tokenData.error);
       console.error('   Description:', tokenData.error_description);
       console.log('\n🔧 What to do:');
-      console.log('   1. Your refresh token has expired or is invalid');
-      console.log('   2. You need to re-authenticate with Spotify');
-      console.log('   3. Follow these steps to get a new refresh token:');
-      console.log('      a. Go to: https://developer.spotify.com/dashboard');
-      console.log('      b. Select your app');
-      console.log('      c. Go to Settings and note your Client ID and Client Secret');
-      console.log('      d. Add this redirect URI: http://localhost:3000/callback');
-      console.log('      e. Use this URL to authorize (replace CLIENT_ID):');
-      console.log('         https://accounts.spotify.com/authorize?client_id=CLIENT_ID&response_type=code&redirect_uri=http://localhost:3000/callback&scope=user-read-currently-playing');
-      console.log('      f. After authorizing, you\'ll get a code in the URL');
-      console.log('      g. Exchange the code for a refresh token using curl or Postman\n');
+      console.log('   Your refresh token has expired or is invalid — mint a new one:');
+      console.log('      yarn spotify:token');
+      console.log('   (see scripts/spotify-refresh-token.js --help for options)\n');
       return;
     }
 
