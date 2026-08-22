@@ -36,9 +36,20 @@ const nextConfig = {
 module.exports = withBundleAnalyzer(withPWA(nextConfig));
 
 // https://securityheaders.com
+// next-themes injects an inline <script> in <head> to apply the stored theme
+// before paint. Its exact (minified) source is what the hash below covers, so
+// the hash changes whenever next-themes or the minifier output changes —
+// `scripts/verify-csp-hashes.js` runs after `next build` and fails loudly if it drifts.
+const THEME_SCRIPT_HASH = "'sha256-CkJu+FPM6h06ebYA83FwNpYVxGp0on8HHLDwr3WVZmQ='";
+
+// In development the script is served unminified and Next.js injects its own
+// inline dev/HMR scripts, so hashes are useless there.
+const inlineScriptPolicy =
+  process.env.NODE_ENV === "development" ? "'unsafe-inline'" : THEME_SCRIPT_HASH;
+
 const ContentSecurityPolicy = `
   default-src 'self' disqus.com c.disquscdn.com;
-  script-src 'self' 'unsafe-eval' *.googletagmanager.com *.disqus.com c.disquscdn.com https://challenges.cloudflare.com;
+  script-src 'self' 'unsafe-eval' ${inlineScriptPolicy} *.googletagmanager.com *.disqus.com c.disquscdn.com https://challenges.cloudflare.com;
   child-src 'self' *.google.com;
   frame-src disqus.com https://challenges.cloudflare.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com c.disquscdn.com;
