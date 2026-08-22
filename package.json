@@ -20,7 +20,9 @@
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
-    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
+    "spotify:token": "node scripts/spotify-refresh-token.js",
+    "spotify:test": "node scripts/test-spotify.js"
   },
   "dependencies": {
     "@emotion/cache": "^11.13.1",
@@ -29,6 +31,7 @@
     "@emotion/styled": "^11.13.5",
     "@fontsource/jost": "^5.1.0",
     "@fontsource/quicksand": "^5.1.0",
+    "@marsidev/react-turnstile": "^1.6.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@mui/icons-material": "^6.3.1",

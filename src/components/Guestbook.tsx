@@ -11,6 +11,7 @@ import fetcher from "@lib/fetcher";
 import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
+import useFormShield from "@components/useFormShield";
 
 //@ts-ignore
 function GuestbookEntry({ entry, user }) {
@@ -105,25 +106,30 @@ export default function Guestbook({
   const { data: entries } = useSWR("/api/guestbook", fetcher, {
     fallbackData: initialEntries,
   });
+  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield();
 
   //@ts-ignore
   const leaveEntry = async (e) => {
     e.preventDefault();
 
-    if (message === "") {
+    if (message.trim() === "") {
       setForm({
         state: "error",
         message: "Kindly, fill in something",
       });
-    } else {
-      setForm({
-        state: "loading",
-        message: "",
-      });
+      return;
+    }
 
+    setForm({
+      state: "loading",
+      message: "",
+    });
+
+    try {
       const res = await fetch("/api/guestbook", {
         body: JSON.stringify({
           body: message,
+          ...(await getShieldPayload()),
         }),
         headers: {
           "Content-Type": "application/json",
@@ -131,7 +137,10 @@ export default function Guestbook({
         method: "POST",
       });
 
-      const { error } = await res.json();
+      const { error } = await res.json().catch(() => ({
+        error: res.ok ? "" : "Something went wrong. Please try again.",
+      }));
+
       if (error) {
         setForm({
           state: "error",
@@ -146,6 +155,13 @@ export default function Guestbook({
         state: "success",
         message: `Hooray! Thanks for signing my Guestbook.`,
       });
+    } catch (error) {
+      setForm({
+        state: "error",
+        message: "Something went wrong. Please try again.",
+      });
+    } finally {
+      resetShield();
     }
   };
 
@@ -173,27 +189,32 @@ export default function Guestbook({
           Share a message for a future visitor of my site.
         </Typography>
         {user?.name ? (
-          <TextField
-            fullWidth
-            size="small"
-            name="sign-message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            variant="outlined"
-            placeholder="Your Message..."
-            InputProps={{
-              endAdornment: (
-                <Button
-                  onClick={leaveEntry}
-                  sx={{
-                    fontWeight: "bold",
-                  }}
-                >
-                  {form.state === "loading" ? <CircularProgress /> : "Sign"}
-                </Button>
-              ),
-            }}
-          />
+          <form onSubmit={leaveEntry}>
+            <TextField
+              fullWidth
+              size="small"
+              name="sign-message"
+              value={message}
+              onFocus={arm}
+              onChange={(e) => setMessage(e.target.value)}
+              variant="outlined"
+              placeholder="Your Message..."
+              InputProps={{
+                endAdornment: (
+                  <Button
+                    type="submit"
+                    disabled={form.state === "loading"}
+                    sx={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {form.state === "loading" ? <CircularProgress /> : "Sign"}
+                  </Button>
+                ),
+              }}
+            />
+            {shieldFields}
+          </form>
         ) : (
           <Button
             component={Link}

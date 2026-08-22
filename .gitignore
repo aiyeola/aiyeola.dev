@@ -47,3 +47,5 @@ public/sitemap.xml
 .env
 
 package-lock.json
+
+tsconfig.tsbuildinfo

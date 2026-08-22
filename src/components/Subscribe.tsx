@@ -11,6 +11,7 @@ import fetcher from "@lib/fetcher";
 import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
+import useFormShield from "@components/useFormShield";
 
 export default function Subscribe() {
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ export default function Subscribe() {
   const [message, setMessage] = useState("");
   const { data } = useSWR("/api/subscribers", fetcher);
   const subscriberCount = format(data?.count);
+  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield();
 
   //@ts-ignore
   const subscribe = async (e) => {
@@ -29,30 +31,43 @@ export default function Subscribe() {
       message: "",
     });
 
-    const res = await fetch("/api/subscribe", {
-      body: JSON.stringify({
-        email: message,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
+    try {
+      const res = await fetch("/api/subscribe", {
+        body: JSON.stringify({
+          email: message,
+          ...(await getShieldPayload()),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
 
-    const { error } = await res.json();
-    if (error) {
+      const { error } = await res.json().catch(() => ({
+        error: res.ok ? "" : "Something went wrong. Please try again.",
+      }));
+
+      if (error) {
+        setForm({
+          state: "error",
+          message: error,
+        });
+        return;
+      }
+
+      setMessage("");
+      setForm({
+        state: "success",
+        message: `Hooray! You're now on the list.`,
+      });
+    } catch (error) {
       setForm({
         state: "error",
-        message: error,
+        message: "Something went wrong. Please try again.",
       });
-      return;
+    } finally {
+      resetShield();
     }
-
-    setMessage("");
-    setForm({
-      state: "success",
-      message: `Hooray! You're now on the list.`,
-    });
   };
   return (
     <>
@@ -79,7 +94,7 @@ export default function Subscribe() {
           articles.
         </Typography>
 
-        <form>
+        <form onSubmit={subscribe}>
           <TextField
             fullWidth
             size="small"
@@ -90,11 +105,13 @@ export default function Subscribe() {
             variant="outlined"
             placeholder="adam@flutter.com"
             required
+            onFocus={arm}
             onChange={(e) => setMessage(e.target.value)}
             InputProps={{
               endAdornment: (
                 <Button
-                  onClick={subscribe}
+                  type="submit"
+                  disabled={form.state === "loading"}
                   sx={{
                     fontWeight: "bold",
                   }}
@@ -108,6 +125,7 @@ export default function Subscribe() {
               ),
             }}
           />
+          {shieldFields}
         </form>
         {form.state === "error" ? (
           <ErrorMessage>{form.message}</ErrorMessage>
