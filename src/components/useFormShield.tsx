@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 
-import { ELAPSED_FIELD, HONEYPOT_FIELD, TOKEN_FIELD } from "@lib/formShield";
+import {
+  ELAPSED_FIELD,
+  HONEYPOT_FIELD,
+  ShieldAction,
+  TOKEN_FIELD,
+} from "@lib/formShield";
 
 const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -26,8 +31,11 @@ const honeypotStyles = {
  * Cloudflare script, so the subscribe box on every blog post costs nothing
  * until a visitor actually touches it. `getShieldPayload()` arms it too and
  * awaits the token, so an instant submit can't race the widget.
+ *
+ * `action` identifies the surface to Cloudflare; the endpoint verifying the
+ * token asserts the same value, so both sides read it from ACTIONS.
  */
-export default function useFormShield() {
+export default function useFormShield(action: ShieldAction) {
   const [armed, setArmed] = useState(false);
   const mountedAt = useRef(0);
   const honeypot = useRef<HTMLInputElement>(null);
@@ -116,8 +124,17 @@ export default function useFormShield() {
           siteKey={siteKey}
           onSuccess={settle}
           onExpire={() => settle(null)}
-          onError={() => settle(null)}
-          options={{ appearance: "interaction-only", size: "flexible" }}
+          onError={(code) => {
+            // Codes are documented at
+            // developers.cloudflare.com/turnstile/troubleshooting/client-side-errors
+            console.error(`[turnstile] widget error ${code}`);
+            settle(null);
+          }}
+          options={{
+            action,
+            appearance: "interaction-only",
+            size: "flexible",
+          }}
         />
       )}
     </>

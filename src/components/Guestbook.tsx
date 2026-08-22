@@ -12,6 +12,7 @@ import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 import useFormShield from "@components/useFormShield";
+import { ACTIONS } from "@lib/formShield";
 
 //@ts-ignore
 function GuestbookEntry({ entry, user }) {
@@ -106,7 +107,9 @@ export default function Guestbook({
   const { data: entries } = useSWR("/api/guestbook", fetcher, {
     fallbackData: initialEntries,
   });
-  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield();
+  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield(
+    ACTIONS.guestbook,
+  );
 
   //@ts-ignore
   const leaveEntry = async (e) => {

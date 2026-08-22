@@ -18,3 +18,17 @@ export const TOKEN_FIELD = "turnstileToken";
  * page-read-plus-type, so false positives are effectively nil.
  */
 export const MIN_ELAPSED_MS = 800;
+
+/**
+ * Turnstile action names, one per protected surface. Shared so the widget and
+ * the endpoint that verifies its token can't drift apart — Cloudflare echoes
+ * the action back from siteverify and the server asserts it matches.
+ *
+ * Must be 1-32 chars of letters, numbers, underscores or hyphens.
+ */
+export const ACTIONS = {
+  subscribe: "subscribe",
+  guestbook: "guestbook",
+} as const;
+
+export type ShieldAction = (typeof ACTIONS)[keyof typeof ACTIONS];

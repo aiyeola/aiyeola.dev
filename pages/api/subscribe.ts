@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 import getClientIp from "@lib/clientIp";
 import guardFormRequest from "@lib/formGuard";
+import { ACTIONS } from "@lib/formShield";
 
 // Deliberately conservative: no whitespace, one @, a dot in the domain.
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@.]+\.[^\s@]+$/;
@@ -15,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { email } = req.body;
 
   const guard = await guardFormRequest(req, {
-    scope: "subscribe",
+    scope: ACTIONS.subscribe,
     identifier: getClientIp(req),
     limit: 5,
     windowSeconds: 60 * 60,
@@ -31,7 +32,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(guard.status).json({ error: guard.error });
   }
 
-  if (typeof email !== "string" || email.length > 254 || !EMAIL_PATTERN.test(email)) {
+  if (
+    typeof email !== "string" ||
+    email.length > 254 ||
+    !EMAIL_PATTERN.test(email)
+  ) {
     return res.status(400).json({ error: "A valid email address is required" });
   }
 
