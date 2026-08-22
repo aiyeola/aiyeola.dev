@@ -12,6 +12,7 @@ import Link from "@components/Link";
 import SuccessMessage from "@components/SuccessMessage";
 import ErrorMessage from "@components/ErrorMessage";
 import useFormShield from "@components/useFormShield";
+import { ACTIONS } from "@lib/formShield";
 
 export default function Subscribe() {
   const [form, setForm] = useState({
@@ -21,7 +22,9 @@ export default function Subscribe() {
   const [message, setMessage] = useState("");
   const { data } = useSWR("/api/subscribers", fetcher);
   const subscriberCount = format(data?.count);
-  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield();
+  const { shieldFields, arm, getShieldPayload, resetShield } = useFormShield(
+    ACTIONS.subscribe,
+  );
 
   //@ts-ignore
   const subscribe = async (e) => {

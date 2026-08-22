@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import redis from "@lib/redis";
 import session from "@lib/session";
 import guardFormRequest from "@lib/formGuard";
+import { ACTIONS } from "@lib/formShield";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   session(req, res);
@@ -24,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const guard = await guardFormRequest(req, {
-      scope: "guestbook",
+      scope: ACTIONS.guestbook,
       // Already authenticated, so throttle the account rather than the IP.
       identifier: login,
       limit: 5,
